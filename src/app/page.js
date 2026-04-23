@@ -5,7 +5,7 @@ export default function Home() {
     <div className={styles.container}>
       <nav className="glass" style={{ padding: '1rem 2rem', position: 'fixed', width: '100%', top: 0, zIndex: 100 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' }}>
-          <h1 style={{ fontFamily: 'var(--font-outfit)', fontSize: '1.5rem', fontWeight: 700 }}>Practtiko</h1>
+          <h1 style={{ fontFamily: 'var(--font-outfit)', fontSize: '1.5rem', fontWeight: 700 }}>Practiiko</h1>
           <div style={{ display: 'flex', gap: '2rem' }}>
             <a href="#features">Características</a>
             <a href="#about">Nosotros</a>
@@ -19,7 +19,7 @@ export default function Home() {
           Gestión inteligente para <br /> mentes creativas.
         </h2>
         <p style={{ fontSize: '1.25rem', color: 'var(--muted-foreground)', maxWidth: '600px', margin: '0 auto 2.5rem' }}>
-          La plataforma definitiva que separa la complejidad técnica de la libertad creativa. Autogestiona tu web con Practtiko.
+          La plataforma definitiva que separa la complejidad técnica de la libertad creativa. Autogestiona tu web con Practiiko.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
           <button style={{ padding: '1rem 2rem', background: 'var(--primary)', borderRadius: 'var(--radius)', fontWeight: 600 }}>Prueba Gratis</button>

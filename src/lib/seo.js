@@ -8,12 +8,12 @@ export function generateSEO({
   image = "/og-image.jpg",
   noIndex = false,
 }) {
-  const baseUrl = "https://practtiko.com"; // Replace with actual domain
-  const fullTitle = title ? `${title} | Practtiko` : "Practtiko - Gestión Inteligente";
+  const baseUrl = "https://practiiko.com"; // Replace with actual domain
+  const fullTitle = title ? `${title} | Practiiko` : "Practiiko - Gestión Inteligente";
   
   return {
     title: fullTitle,
-    description: description || "Practtiko es la plataforma líder para la autogestión de servicios web con enfoque en eficiencia y diseño premium.",
+    description: description || "Practiiko es la plataforma líder para la autogestión de servicios web con enfoque en eficiencia y diseño premium.",
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: path,
@@ -22,7 +22,7 @@ export function generateSEO({
       title: fullTitle,
       description: description,
       url: `${baseUrl}${path}`,
-      siteName: "Practtiko",
+      siteName: "Practiiko",
       images: [
         {
           url: image,

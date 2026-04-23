@@ -14,7 +14,7 @@ const outfit = Outfit({
 
 export const metadata = generateSEO({
   title: "Inicio",
-  description: "Bienvenido a Practtiko, la solución definitiva para la autogestión de tu presencia web.",
+  description: "Bienvenido a Practiiko, la solución definitiva para la autogestión de tu presencia web.",
 });
 
 export default function RootLayout({ children }) {
