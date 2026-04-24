@@ -19,83 +19,192 @@ export default function ComingSoon() {
   }, []);
 
   return (
-    <div style={{
-      backgroundColor: '#FFFFFF',
-      backgroundImage: 'url("/coming-soon-bg.png")',
-      backgroundSize: '85%',
-      backgroundPosition: 'right bottom',
-      backgroundRepeat: 'no-repeat',
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      padding: '2rem',
-      fontFamily: 'var(--font-manrope), sans-serif',
-      position: 'relative',
-      overflow: 'hidden',
-      justifyContent: 'center'
-    }}>
-      {/* Background Shapes Pattern - Kept for subtle texture over the white area */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '300px',
-        opacity: 0.05,
-        zIndex: 0,
-        backgroundImage: `radial-gradient(circle at 20px 20px, #E67E22 2px, transparent 0)`,
-        backgroundSize: '40px 40px'
-      }}></div>
+    <>
+      <style jsx>{`
+        .coming-soon-container {
+          background-color: #FFFFFF;
+          background-image: url("/coming-soon-bg.png");
+          background-size: 85%;
+          background-position: right bottom;
+          background-repeat: no-repeat;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 2rem;
+          font-family: var(--font-manrope), sans-serif;
+          position: relative;
+          overflow: hidden;
+          justify-content: center;
+        }
 
-      <div style={{ maxWidth: '1200px', width: '100%', textAlign: 'left', zIndex: 1, marginTop: '-5vh' }}>
-        <div style={{ 
-          maxWidth: '700px' // Limit width to keep text over the white area of the bg
-        }}>
-          <div className="animate-fade-in">
-            <h2 style={{ 
-              color: '#E67E22', 
-              fontSize: '4.5rem', 
-              fontWeight: 900, 
-              lineHeight: 1.1, 
-              marginBottom: '4rem', 
-              letterSpacing: '-0.04em'
-            }}>
-              ¡Pronto estaremos <br /> 
-              <span style={{ color: '#004A8D' }}>en línea</span> para ustedes!
-            </h2>
+        .content-wrapper {
+          max-width: 1200px;
+          width: 100%;
+          text-align: left;
+          z-index: 1;
+          margin-top: -5vh;
+        }
 
-            {/* Countdown Container */}
-            <div style={{ 
-              display: 'flex', 
-              gap: '1.5rem', 
-              alignItems: 'center', 
-              marginBottom: '5rem' 
-            }}>
-               <div style={{ textAlign: 'center', minWidth: '80px' }}>
-                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.days}</div>
-                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Días</div>
-               </div>
-               <div style={{ width: '1px', height: '50px', backgroundColor: '#E0E0E0' }}></div>
-               <div style={{ textAlign: 'center', minWidth: '80px' }}>
-                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.hours}</div>
-                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Horas</div>
-               </div>
-               <div style={{ width: '1px', height: '50px', backgroundColor: '#E0E0E0' }}></div>
-               <div style={{ textAlign: 'center', minWidth: '80px' }}>
-                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.minutes}</div>
-                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Minutos</div>
-               </div>
-               <div style={{ width: '1px', height: '50px', backgroundColor: '#E0E0E0' }}></div>
-               <div style={{ textAlign: 'center', minWidth: '80px' }}>
-                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{String(timeLeft.seconds).padStart(2, '0')}</div>
-                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Segundos</div>
-               </div>
+        .text-block {
+          max-width: 700px;
+        }
+
+        .headline {
+          color: #E67E22;
+          font-size: 4.5rem;
+          font-weight: 900;
+          line-height: 1.1;
+          margin-bottom: 4rem;
+          letter-spacing: -0.04em;
+        }
+
+        .countdown-container {
+          display: flex;
+          gap: 1.5rem;
+          align-items: center;
+          margin-bottom: 5rem;
+        }
+
+        .countdown-item {
+          text-align: center;
+          min-width: 80px;
+        }
+
+        .countdown-value {
+          color: #D35400;
+          font-size: 4rem;
+          font-weight: 900;
+          line-height: 1;
+        }
+
+        .countdown-label {
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: #666;
+          margin-top: 0.5rem;
+        }
+
+        .divider {
+          width: 1px;
+          height: 50px;
+          background-color: #E0E0E0;
+        }
+
+        @media (max-width: 1024px) {
+          .coming-soon-container {
+            background-size: 60%;
+          }
+          .headline {
+            font-size: 3.5rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .coming-soon-container {
+            background-size: 100%;
+            background-position: center bottom;
+            padding: 1rem;
+            justify-content: flex-start;
+            padding-top: 5vh;
+          }
+
+          .content-wrapper {
+            text-align: center;
+            margin-top: 0;
+          }
+
+          .text-block {
+            max-width: 100%;
+          }
+
+          .headline {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+          }
+
+          .countdown-container {
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+          }
+
+          .countdown-item {
+            min-width: 60px;
+          }
+
+          .countdown-value {
+            font-size: 2.5rem;
+          }
+
+          .divider {
+            height: 30px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .headline {
+            font-size: 2.2rem;
+          }
+          .countdown-container {
+            gap: 0.5rem;
+          }
+          .countdown-item {
+            min-width: 50px;
+          }
+          .countdown-value {
+            font-size: 1.8rem;
+          }
+        }
+      `}</style>
+
+      <div className="coming-soon-container">
+        {/* Background Shapes Pattern */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '300px',
+          opacity: 0.05,
+          zIndex: 0,
+          backgroundImage: `radial-gradient(circle at 20px 20px, #E67E22 2px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+
+        <div className="content-wrapper">
+          <div className="text-block">
+            <div className="animate-fade-in">
+              <h2 className="headline">
+                ¡Pronto estaremos <br /> 
+                <span style={{ color: '#004A8D' }}>en línea</span> para ustedes!
+              </h2>
+
+              <div className="countdown-container">
+                 <div className="countdown-item">
+                   <div className="countdown-value">{timeLeft.days}</div>
+                   <div className="countdown-label">Días</div>
+                 </div>
+                 <div className="divider"></div>
+                 <div className="countdown-item">
+                   <div className="countdown-value">{timeLeft.hours}</div>
+                   <div className="countdown-label">Horas</div>
+                 </div>
+                 <div className="divider"></div>
+                 <div className="countdown-item">
+                   <div className="countdown-value">{timeLeft.minutes}</div>
+                   <div className="countdown-label">Minutos</div>
+                 </div>
+                 <div className="divider"></div>
+                 <div className="countdown-item">
+                   <div className="countdown-value">{String(timeLeft.seconds).padStart(2, '0')}</div>
+                   <div className="countdown-label">Segundos</div>
+                 </div>
+              </div>
             </div>
-
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
