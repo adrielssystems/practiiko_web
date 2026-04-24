@@ -1,166 +1,169 @@
-import styles from "./page.module.css";
+import { useState, useEffect } from 'react';
 
-// Premium Coming Soon Component - Stitch Inspired
+// Premium Coming Soon Component - Exact Image Replication
 function ComingSoon() {
+  const [timeLeft, setTimeLeft] = useState({ days: 38, hours: 14, minutes: 5 });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1 };
+        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59 };
+        if (prev.days > 0) return { days: prev.days - 1, hours: 23, minutes: 59 };
+        return prev;
+      });
+    }, 60000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div style={{
-      backgroundColor: 'var(--background)',
+      backgroundColor: '#FFFFFF',
       minHeight: '100vh',
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
-      padding: '2rem',
+      padding: '4rem 2rem',
+      fontFamily: 'var(--font-manrope), sans-serif',
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Background Tonal Layer (Stitch style) */}
+      {/* Background Shapes Pattern (Simplified CSS version) */}
       <div style={{
         position: 'absolute',
-        top: '10%',
-        right: '-5%',
-        width: '50vw',
-        height: '80vh',
-        backgroundColor: 'var(--surface-container-low)',
-        borderRadius: 'var(--radius)',
-        zIndex: 0
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '300px',
+        opacity: 0.1,
+        zIndex: 0,
+        backgroundImage: `radial-gradient(circle at 20px 20px, #E67E22 2px, transparent 0)`,
+        backgroundSize: '40px 40px'
       }}></div>
 
-      <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        width: '100%',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1.2fr',
-        gap: '4rem',
-        alignItems: 'center',
-        zIndex: 1
-      }}>
-        {/* Text Content */}
-        <div className="animate-fade-in">
-          <span style={{
-            color: 'var(--primary)',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.4em',
-            fontSize: '0.75rem',
-            marginBottom: '2.5rem',
-            display: 'block'
-          }}>Atelier Practiiko</span>
-
-          <h1 style={{
-            fontFamily: 'var(--font-noto-serif)',
-            fontSize: 'clamp(4rem, 10vw, 8rem)',
-            lineHeight: 0.85,
-            color: 'var(--foreground)',
-            marginBottom: '3rem',
-            letterSpacing: '-0.05em'
-          }}>
-            Lujo <br />
-            <span style={{ color: 'var(--primary)', marginLeft: '1.5rem' }}>Modular.</span>
-          </h1>
-
-          <p style={{
-            fontSize: '1.125rem',
-            color: 'var(--secondary)',
-            maxWidth: '400px',
-            lineHeight: 1.8,
-            marginBottom: '4rem'
-          }}>
-            Estamos curando una experiencia táctil donde la simplicidad se encuentra con la artesanía. La galería está casi lista para ser habitada.
-          </p>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-            <div style={{
-              width: '40px',
-              height: '1px',
-              backgroundColor: 'var(--primary)'
-            }}></div>
-            <a
-              href="https://www.instagram.com/practiiko/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontSize: '0.875rem',
-                fontWeight: 800,
-                textTransform: 'uppercase',
-                letterSpacing: '0.2em',
-                color: 'var(--foreground)'
-              }}
-            >
-              @practiiko
-            </a>
-          </div>
+      <div style={{ maxWidth: '900px', width: '100%', textAlign: 'center', zIndex: 1 }}>
+        {/* Logo Section */}
+        <div style={{ marginBottom: '5rem', display: 'flex', justifyContent: 'center' }}>
+           <div style={{ fontSize: '5rem', fontWeight: 900, letterSpacing: '-0.04em', display: 'flex', alignItems: 'baseline' }}>
+             <span style={{ color: '#E67E22' }}>Pract</span>
+             <span style={{ color: '#E67E22', position: 'relative' }}>
+               i<span style={{ color: '#004A8D', position: 'absolute', top: '-0.15em', left: '0.45em', fontSize: '0.8em' }}>•</span>
+             </span>
+             <span style={{ color: '#E67E22', position: 'relative' }}>
+               i<span style={{ color: '#004A8D', position: 'absolute', top: '-0.15em', left: '0.45em', fontSize: '0.8em' }}>•</span>
+             </span>
+             <span style={{ color: '#E67E22' }}>ko</span>
+           </div>
         </div>
 
-        {/* Visual Content (Asymmetric & Overlapping) */}
-        <div style={{ position: 'relative' }} className="animate-fade-in">
-          <div style={{
-            aspectRatio: '4/5',
-            width: '100%',
-            backgroundColor: 'var(--surface-container-high)',
-            borderRadius: 'var(--radius)',
-            overflow: 'hidden',
-            boxShadow: '0 40px 80px -20px rgba(0,0,0,0.1)'
-          }}>
-            <img
-              src="/hero-coming-soon.png"
-              alt="Practiiko Luxury Modular Sofa"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                filter: 'grayscale(0.1) contrast(1.05)'
-              }}
-            />
-          </div>
-
-          {/* Floating Glass Element */}
-          <div className="glass" style={{
-            position: 'absolute',
-            bottom: '-2rem',
-            left: '-3rem',
-            padding: '2.5rem',
-            borderRadius: 'var(--radius)',
-            maxWidth: '300px',
-            border: '1px solid var(--border-ghost)',
-            backdropFilter: 'blur(30px)'
-          }}>
-            <span style={{
-              display: 'block',
-              fontSize: '0.625rem',
-              fontWeight: 800,
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: '1.1fr 0.9fr', 
+          gap: '3rem', 
+          alignItems: 'center', 
+          textAlign: 'left' 
+        }}>
+          <div className="animate-fade-in">
+            <h2 style={{ 
+              color: '#E67E22', 
+              fontSize: '2.5rem', 
+              fontWeight: 900, 
+              lineHeight: 1, 
+              marginBottom: '1.5rem', 
               textTransform: 'uppercase',
-              letterSpacing: '0.2em',
-              color: 'var(--primary)',
-              marginBottom: '1rem'
-            }}>Status</span>
-            <p style={{
-              fontSize: '1rem',
-              fontWeight: 600,
-              lineHeight: 1.4,
-              color: 'var(--foreground)'
+              letterSpacing: '-0.02em'
             }}>
-              Montaje de la Galería <br /> en progreso final.
+              NUESTRA SOLUCIÓN ESTÁ LLEGANDO
+            </h2>
+            <p style={{ 
+              color: '#1B1C1C', 
+              fontSize: '1.125rem', 
+              lineHeight: 1.4, 
+              marginBottom: '3rem',
+              fontWeight: 500
+            }}>
+              Diseño inteligente, envío eficiente. Estamos empacando al vacío los muebles más cómodos y prácticos para ti. Prepárate para la innovación.
             </p>
+
+            {/* Countdown Container */}
+            <div style={{ 
+              display: 'flex', 
+              gap: '2rem', 
+              alignItems: 'center', 
+              marginBottom: '4rem' 
+            }}>
+               <div style={{ textAlign: 'center' }}>
+                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.days}</div>
+                 <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Días</div>
+               </div>
+               <div style={{ width: '1px', height: '60px', backgroundColor: '#E0E0E0' }}></div>
+               <div style={{ textAlign: 'center' }}>
+                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.hours}</div>
+                 <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Horas</div>
+               </div>
+               <div style={{ width: '1px', height: '60px', backgroundColor: '#E0E0E0' }}></div>
+               <div style={{ textAlign: 'center' }}>
+                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{String(timeLeft.minutes).padStart(2, '0')}</div>
+                 <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Minutos</div>
+               </div>
+            </div>
+
+            {/* CTA Form */}
+            <div style={{ 
+              display: 'flex', 
+              border: '1px solid #E0E0E0', 
+              borderRadius: '4px', 
+              overflow: 'hidden',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+            }}>
+              <input 
+                type="email" 
+                placeholder="Ingresa tu correo para ser el primero en saber..." 
+                style={{ 
+                  flex: 1, 
+                  padding: '1.25rem', 
+                  border: 'none', 
+                  fontSize: '0.95rem',
+                  outline: 'none'
+                }}
+              />
+              <button style={{ 
+                backgroundColor: '#004A8D', 
+                color: 'white', 
+                padding: '0 2rem', 
+                fontWeight: 800, 
+                textTransform: 'uppercase', 
+                fontSize: '0.9rem',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s'
+              }}>
+                NOTIFÍQUENME
+              </button>
+            </div>
+          </div>
+
+          {/* Visual Content */}
+          <div style={{ position: 'relative' }} className="animate-fade-in">
+            <div style={{
+              padding: '1rem',
+              backgroundColor: '#F8F9FA',
+              borderRadius: '2rem',
+              transform: 'rotate(2deg)',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+            }}>
+              <img 
+                src="/vacuum-package.png" 
+                alt="Practiiko Vacuum Package" 
+                style={{ 
+                  width: '100%', 
+                  borderRadius: '1.5rem',
+                  display: 'block'
+                }} 
+              />
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Vertical Branding */}
-      <div style={{
-        position: 'absolute',
-        right: '2rem',
-        top: '50%',
-        transform: 'rotate(90deg) translateY(-50%)',
-        transformOrigin: 'right center',
-        fontSize: '0.75rem',
-        fontWeight: 500,
-        letterSpacing: '0.5em',
-        textTransform: 'uppercase',
-        color: 'var(--secondary)',
-        opacity: 0.3,
-        pointerEvents: 'none'
-      }}>
-        Tactile Gallery Collection 2026
       </div>
     </div>
   );
