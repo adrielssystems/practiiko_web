@@ -102,16 +102,19 @@ export default function ComingSoon() {
 
         @media (max-width: 768px) {
           .coming-soon-container {
-            background-size: 100%;
-            background-position: center bottom;
+            background-size: 250%; /* Much larger to zoom in on the hand */
+            background-position: 85% bottom; /* Focus on the right side where the hand is */
             padding: 1rem;
             justify-content: flex-start;
-            padding-top: 5vh;
+            padding-top: 8vh;
           }
 
           .content-wrapper {
             text-align: center;
             margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
           }
 
           .text-block {
