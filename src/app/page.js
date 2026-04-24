@@ -87,8 +87,10 @@ function ComingSoon() {
   );
 }
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
-  const isComingSoon = process.env.NEXT_PUBLIC_COMING_SOON === 'true';
+  const isComingSoon = process.env.COMING_SOON === 'true';
 
   if (isComingSoon) {
     return <ComingSoon />;
