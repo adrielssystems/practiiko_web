@@ -1,88 +1,167 @@
 import styles from "./page.module.css";
 
-// Premium Coming Soon Component
+// Premium Coming Soon Component - Stitch Inspired
 function ComingSoon() {
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
+    <div style={{
       backgroundColor: 'var(--background)',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
       padding: '2rem',
-      textAlign: 'center'
+      position: 'relative',
+      overflow: 'hidden'
     }}>
-      <div className="animate-fade-in" style={{ maxWidth: '600px' }}>
-        <span style={{ 
-          color: 'var(--primary)', 
-          fontWeight: 700, 
-          textTransform: 'uppercase', 
-          letterSpacing: '0.3em',
-          fontSize: '0.75rem',
-          display: 'block',
-          marginBottom: '2rem'
-        }}>Atelier Practiiko</span>
-        
-        <h1 style={{ 
-          fontSize: 'clamp(3rem, 8vw, 5rem)', 
-          lineHeight: 1,
-          marginBottom: '2.5rem', 
-          color: 'var(--foreground)',
-          fontWeight: 700,
-          fontFamily: 'var(--font-noto-serif)',
-          letterSpacing: '-0.04em'
-        }}>
-          La galería táctil <br /> <span style={{ color: 'var(--primary)' }}>está llegando.</span>
-        </h1>
-        
-        <div style={{ 
-          height: '1px', 
-          width: '60px', 
-          backgroundColor: 'var(--primary)', 
-          margin: '0 auto 2.5rem auto' 
-        }}></div>
-        
-        <p style={{ 
-          fontSize: '1.25rem', 
-          color: 'var(--secondary)', 
-          lineHeight: 1.7,
-          marginBottom: '4rem',
-          maxWidth: '450px',
-          marginInline: 'auto'
-        }}>
-          Estamos curando una nueva experiencia de lujo modular para tu hogar. El diseño evoluciona, la espera termina pronto.
-        </p>
+      {/* Background Tonal Layer (Stitch style) */}
+      <div style={{
+        position: 'absolute',
+        top: '10%',
+        right: '-5%',
+        width: '50vw',
+        height: '80vh',
+        backgroundColor: 'var(--surface-container-low)',
+        borderRadius: 'var(--radius)',
+        zIndex: 0
+      }}></div>
 
-        <div className="glass" style={{ 
-          padding: '1.5rem 2rem', 
-          borderRadius: 'var(--radius)', 
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '1rem',
-          border: '1px solid var(--border-ghost)'
-        }}>
-          <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--foreground)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Inauguración Próximamente</span>
+      <div style={{
+        maxWidth: '1400px',
+        margin: '0 auto',
+        width: '100%',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1.2fr',
+        gap: '4rem',
+        alignItems: 'center',
+        zIndex: 1
+      }}>
+        {/* Text Content */}
+        <div className="animate-fade-in">
+          <span style={{
+            color: 'var(--primary)',
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '0.4em',
+            fontSize: '0.75rem',
+            marginBottom: '2.5rem',
+            display: 'block'
+          }}>Atelier Practiiko</span>
+
+          <h1 style={{
+            fontFamily: 'var(--font-noto-serif)',
+            fontSize: 'clamp(4rem, 10vw, 8rem)',
+            lineHeight: 0.85,
+            color: 'var(--foreground)',
+            marginBottom: '3rem',
+            letterSpacing: '-0.05em'
+          }}>
+            Lujo <br />
+            <span style={{ color: 'var(--primary)', marginLeft: '1.5rem' }}>Modular.</span>
+          </h1>
+
+          <p style={{
+            fontSize: '1.125rem',
+            color: 'var(--secondary)',
+            maxWidth: '400px',
+            lineHeight: 1.8,
+            marginBottom: '4rem'
+          }}>
+            Estamos curando una experiencia táctil donde la simplicidad se encuentra con la artesanía. La galería está casi lista para ser habitada.
+          </p>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+            <div style={{
+              width: '40px',
+              height: '1px',
+              backgroundColor: 'var(--primary)'
+            }}></div>
+            <a
+              href="https://www.instagram.com/practiiko/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontSize: '0.875rem',
+                fontWeight: 800,
+                textTransform: 'uppercase',
+                letterSpacing: '0.2em',
+                color: 'var(--foreground)'
+              }}
+            >
+              @practiiko
+            </a>
+          </div>
+        </div>
+
+        {/* Visual Content (Asymmetric & Overlapping) */}
+        <div style={{ position: 'relative' }} className="animate-fade-in">
+          <div style={{
+            aspectRatio: '4/5',
+            width: '100%',
+            backgroundColor: 'var(--surface-container-high)',
+            borderRadius: 'var(--radius)',
+            overflow: 'hidden',
+            boxShadow: '0 40px 80px -20px rgba(0,0,0,0.1)'
+          }}>
+            <img
+              src="/hero-coming-soon.png"
+              alt="Practiiko Luxury Modular Sofa"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                filter: 'grayscale(0.1) contrast(1.05)'
+              }}
+            />
+          </div>
+
+          {/* Floating Glass Element */}
+          <div className="glass" style={{
+            position: 'absolute',
+            bottom: '-2rem',
+            left: '-3rem',
+            padding: '2.5rem',
+            borderRadius: 'var(--radius)',
+            maxWidth: '300px',
+            border: '1px solid var(--border-ghost)',
+            backdropFilter: 'blur(30px)'
+          }}>
+            <span style={{
+              display: 'block',
+              fontSize: '0.625rem',
+              fontWeight: 800,
+              textTransform: 'uppercase',
+              letterSpacing: '0.2em',
+              color: 'var(--primary)',
+              marginBottom: '1rem'
+            }}>Status</span>
+            <p style={{
+              fontSize: '1rem',
+              fontWeight: 600,
+              lineHeight: 1.4,
+              color: 'var(--foreground)'
+            }}>
+              Montaje de la Galería <br /> en progreso final.
+            </p>
+          </div>
         </div>
       </div>
-      
-      <footer style={{ position: 'absolute', bottom: '3rem' }}>
-        <a 
-          href="https://www.instagram.com/practiiko/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          style={{ 
-            fontSize: '0.75rem', 
-            fontWeight: 800,
-            textTransform: 'uppercase',
-            letterSpacing: '0.2em',
-            color: 'var(--primary)',
-            textDecoration: 'none'
-          }}
-        >
-          @practiiko
-        </a>
-      </footer>
+
+      {/* Vertical Branding */}
+      <div style={{
+        position: 'absolute',
+        right: '2rem',
+        top: '50%',
+        transform: 'rotate(90deg) translateY(-50%)',
+        transformOrigin: 'right center',
+        fontSize: '0.75rem',
+        fontWeight: 500,
+        letterSpacing: '0.5em',
+        textTransform: 'uppercase',
+        color: 'var(--secondary)',
+        opacity: 0.3,
+        pointerEvents: 'none'
+      }}>
+        Tactile Gallery Collection 2026
+      </div>
     </div>
   );
 }
