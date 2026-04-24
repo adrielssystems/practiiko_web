@@ -88,9 +88,16 @@ function ComingSoon() {
 }
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default function Home() {
-  const isComingSoon = process.env.COMING_SOON === 'true';
+  const comingSoonVar = process.env.COMING_SOON || process.env.NEXT_PUBLIC_COMING_SOON;
+  const isComingSoon = comingSoonVar?.trim().toLowerCase() === 'true';
+
+  console.log('[DEBUG] COMING_SOON check:', { 
+    raw: comingSoonVar, 
+    evaluated: isComingSoon 
+  });
 
   if (isComingSoon) {
     return <ComingSoon />;
