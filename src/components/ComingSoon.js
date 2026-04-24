@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 export default function ComingSoon() {
-  const [timeLeft, setTimeLeft] = useState({ days: 38, hours: 14, minutes: 5 });
+  const [timeLeft, setTimeLeft] = useState({ days: 15, hours: 0, minutes: 0 });
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -24,10 +24,11 @@ export default function ComingSoon() {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      padding: '4rem 2rem',
+      padding: '2rem',
       fontFamily: 'var(--font-manrope), sans-serif',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      justifyContent: 'center'
     }}>
       {/* Background Shapes Pattern */}
       <div style={{
@@ -36,105 +37,83 @@ export default function ComingSoon() {
         left: 0,
         width: '100%',
         height: '300px',
-        opacity: 0.1,
+        opacity: 0.05,
         zIndex: 0,
         backgroundImage: `radial-gradient(circle at 20px 20px, #E67E22 2px, transparent 0)`,
         backgroundSize: '40px 40px'
       }}></div>
 
-      <div style={{ maxWidth: '900px', width: '100%', textAlign: 'center', zIndex: 1 }}>
-        {/* Logo Section */}
-        <div style={{ marginBottom: '5rem', display: 'flex', justifyContent: 'center' }}>
-           <div style={{ fontSize: '5rem', fontWeight: 900, letterSpacing: '-0.04em', display: 'flex', alignItems: 'baseline' }}>
-             <span style={{ color: '#E67E22' }}>Pract</span>
-             <span style={{ color: '#E67E22', position: 'relative' }}>
-               i<span style={{ color: '#004A8D', position: 'absolute', top: '-0.15em', left: '0.45em', fontSize: '0.8em' }}>•</span>
-             </span>
-             <span style={{ color: '#E67E22', position: 'relative' }}>
-               i<span style={{ color: '#004A8D', position: 'absolute', top: '-0.15em', left: '0.45em', fontSize: '0.8em' }}>•</span>
-             </span>
-             <span style={{ color: '#E67E22' }}>ko</span>
-           </div>
-        </div>
-
+      <div style={{ maxWidth: '1100px', width: '100%', textAlign: 'center', zIndex: 1, marginTop: '-5vh' }}>
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: '1.1fr 0.9fr', 
-          gap: '3rem', 
+          gridTemplateColumns: '1.2fr 0.8fr', 
+          gap: '4rem', 
           alignItems: 'center', 
           textAlign: 'left' 
         }}>
           <div className="animate-fade-in">
             <h2 style={{ 
               color: '#E67E22', 
-              fontSize: '2.5rem', 
+              fontSize: '4.5rem', 
               fontWeight: 900, 
-              lineHeight: 1, 
-              marginBottom: '1.5rem', 
-              textTransform: 'uppercase',
-              letterSpacing: '-0.02em'
+              lineHeight: 1.1, 
+              marginBottom: '4rem', 
+              letterSpacing: '-0.04em'
             }}>
-              NUESTRA SOLUCIÓN ESTÁ LLEGANDO
+              Pronto estaremos <br /> 
+              <span style={{ color: '#004A8D' }}>On line</span> para ustedes!
             </h2>
-            <p style={{ 
-              color: '#1B1C1C', 
-              fontSize: '1.125rem', 
-              lineHeight: 1.4, 
-              marginBottom: '3rem',
-              fontWeight: 500
-            }}>
-              Diseño inteligente, envío eficiente. Estamos empacando al vacío los muebles más cómodos y prácticos para ti. Prepárate para la innovación.
-            </p>
 
             {/* Countdown Container */}
             <div style={{ 
               display: 'flex', 
-              gap: '2rem', 
+              gap: '2.5rem', 
               alignItems: 'center', 
-              marginBottom: '4rem' 
+              marginBottom: '5rem' 
             }}>
                <div style={{ textAlign: 'center' }}>
-                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.days}</div>
-                 <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Días</div>
+                 <div style={{ color: '#D35400', fontSize: '5rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.days}</div>
+                 <div style={{ fontSize: '1rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Días</div>
                </div>
-               <div style={{ width: '1px', height: '60px', backgroundColor: '#E0E0E0' }}></div>
+               <div style={{ width: '1px', height: '80px', backgroundColor: '#E0E0E0' }}></div>
                <div style={{ textAlign: 'center' }}>
-                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.hours}</div>
-                 <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Horas</div>
+                 <div style={{ color: '#D35400', fontSize: '5rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.hours}</div>
+                 <div style={{ fontSize: '1rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Horas</div>
                </div>
-               <div style={{ width: '1px', height: '60px', backgroundColor: '#E0E0E0' }}></div>
+               <div style={{ width: '1px', height: '80px', backgroundColor: '#E0E0E0' }}></div>
                <div style={{ textAlign: 'center' }}>
-                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{String(timeLeft.minutes).padStart(2, '0')}</div>
-                 <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Minutos</div>
+                 <div style={{ color: '#D35400', fontSize: '5rem', fontWeight: 900, lineHeight: 1 }}>{String(timeLeft.minutes).padStart(2, '0')}</div>
+                 <div style={{ fontSize: '1rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Minutos</div>
                </div>
             </div>
 
-            {/* CTA Form */}
+            {/* CTA Form / Banner style */}
             <div style={{ 
               display: 'flex', 
               border: '1px solid #E0E0E0', 
-              borderRadius: '4px', 
+              borderRadius: '8px', 
               overflow: 'hidden',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+              boxShadow: '0 15px 45px rgba(0,0,0,0.06)',
+              maxWidth: '600px'
             }}>
               <input 
                 type="email" 
                 placeholder="Ingresa tu correo para ser el primero en saber..." 
                 style={{ 
                   flex: 1, 
-                  padding: '1.25rem', 
+                  padding: '1.75rem', 
                   border: 'none', 
-                  fontSize: '0.95rem',
+                  fontSize: '1.1rem',
                   outline: 'none'
                 }}
               />
               <button style={{ 
                 backgroundColor: '#004A8D', 
                 color: 'white', 
-                padding: '0 2rem', 
+                padding: '0 3rem', 
                 fontWeight: 800, 
                 textTransform: 'uppercase', 
-                fontSize: '0.9rem',
+                fontSize: '1rem',
                 border: 'none',
                 cursor: 'pointer',
                 transition: 'background-color 0.2s'
@@ -144,15 +123,11 @@ export default function ComingSoon() {
             </div>
           </div>
 
-          {/* Visual Content */}
-          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }} className="animate-fade-in">
+          {/* Visual Content - Higher, no background, no frame */}
+          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', marginTop: '-15vh' }} className="animate-fade-in">
             <div style={{
-              padding: '1rem',
-              backgroundColor: '#F8F9FA',
-              borderRadius: '2rem',
-              transform: 'rotate(1deg)',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
-              maxWidth: '350px' // Limit width for vertical image
+              width: '100%',
+              maxWidth: '450px'
             }}>
               <img 
                 src="/vacuum-package.png" 
@@ -160,8 +135,8 @@ export default function ComingSoon() {
                 style={{ 
                   width: '100%', 
                   height: 'auto',
-                  borderRadius: '1.5rem',
-                  display: 'block'
+                  display: 'block',
+                  filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.12))'
                 }} 
               />
             </div>
