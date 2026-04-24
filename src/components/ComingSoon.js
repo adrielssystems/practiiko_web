@@ -22,8 +22,8 @@ export default function ComingSoon() {
     <div style={{
       backgroundColor: '#FFFFFF',
       backgroundImage: 'url("/coming-soon-bg.png")',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center right',
+      backgroundSize: '85%',
+      backgroundPosition: 'right bottom',
       backgroundRepeat: 'no-repeat',
       minHeight: '100vh',
       display: 'flex',
