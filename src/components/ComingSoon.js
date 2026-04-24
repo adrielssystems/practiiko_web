@@ -3,17 +3,18 @@
 import { useState, useEffect } from 'react';
 
 export default function ComingSoon() {
-  const [timeLeft, setTimeLeft] = useState({ days: 15, hours: 0, minutes: 0 });
+  const [timeLeft, setTimeLeft] = useState({ days: 15, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(prev => {
-        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1 };
-        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59 };
-        if (prev.days > 0) return { days: prev.days - 1, hours: 23, minutes: 59 };
+        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
+        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        if (prev.days > 0) return { days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
         return prev;
       });
-    }, 60000);
+    }, 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -67,23 +68,28 @@ export default function ComingSoon() {
             {/* Countdown Container */}
             <div style={{ 
               display: 'flex', 
-              gap: '2.5rem', 
+              gap: '1.5rem', 
               alignItems: 'center', 
               marginBottom: '5rem' 
             }}>
-               <div style={{ textAlign: 'center' }}>
-                 <div style={{ color: '#D35400', fontSize: '5rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.days}</div>
-                 <div style={{ fontSize: '1rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Días</div>
+               <div style={{ textAlign: 'center', minWidth: '80px' }}>
+                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.days}</div>
+                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Días</div>
                </div>
-               <div style={{ width: '1px', height: '80px', backgroundColor: '#E0E0E0' }}></div>
-               <div style={{ textAlign: 'center' }}>
-                 <div style={{ color: '#D35400', fontSize: '5rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.hours}</div>
-                 <div style={{ fontSize: '1rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Horas</div>
+               <div style={{ width: '1px', height: '50px', backgroundColor: '#E0E0E0' }}></div>
+               <div style={{ textAlign: 'center', minWidth: '80px' }}>
+                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.hours}</div>
+                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Horas</div>
                </div>
-               <div style={{ width: '1px', height: '80px', backgroundColor: '#E0E0E0' }}></div>
-               <div style={{ textAlign: 'center' }}>
-                 <div style={{ color: '#D35400', fontSize: '5rem', fontWeight: 900, lineHeight: 1 }}>{String(timeLeft.minutes).padStart(2, '0')}</div>
-                 <div style={{ fontSize: '1rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Minutos</div>
+               <div style={{ width: '1px', height: '50px', backgroundColor: '#E0E0E0' }}></div>
+               <div style={{ textAlign: 'center', minWidth: '80px' }}>
+                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{timeLeft.minutes}</div>
+                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Minutos</div>
+               </div>
+               <div style={{ width: '1px', height: '50px', backgroundColor: '#E0E0E0' }}></div>
+               <div style={{ textAlign: 'center', minWidth: '80px' }}>
+                 <div style={{ color: '#D35400', fontSize: '4rem', fontWeight: 900, lineHeight: 1 }}>{String(timeLeft.seconds).padStart(2, '0')}</div>
+                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#666', marginTop: '0.5rem' }}>Segundos</div>
                </div>
             </div>
 
