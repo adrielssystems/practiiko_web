@@ -61,8 +61,8 @@ export default function ComingSoon() {
               marginBottom: '4rem', 
               letterSpacing: '-0.04em'
             }}>
-              Pronto estaremos <br /> 
-              <span style={{ color: '#004A8D' }}>On line</span> para ustedes!
+              ¡Pronto estaremos <br /> 
+              <span style={{ color: '#004A8D' }}>en línea</span> para ustedes!
             </h2>
 
             {/* Countdown Container */}
