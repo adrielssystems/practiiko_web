@@ -1,46 +1,287 @@
 import styles from "./page.module.css";
 
-export default function Home() {
+// Premium Coming Soon Component
+function ComingSoon() {
   return (
-    <div className={styles.container}>
-      <nav className="glass" style={{ padding: '1rem 2rem', position: 'fixed', width: '100%', top: 0, zIndex: 100 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' }}>
-          <h1 style={{ fontFamily: 'var(--font-outfit)', fontSize: '1.5rem', fontWeight: 700 }}>Practiiko</h1>
-          <div style={{ display: 'flex', gap: '2rem' }}>
-            <a href="#features">Características</a>
-            <a href="#about">Nosotros</a>
-            <button className="btn-primary" style={{ background: 'var(--primary)', padding: '0.5rem 1.25rem', borderRadius: 'var(--radius)', color: 'white' }}>Empezar</button>
-          </div>
-        </div>
-      </nav>
-
-      <header className={styles.hero}>
-        <h2 style={{ fontSize: '4rem', marginBottom: '1.5rem', background: 'linear-gradient(to right, #fff, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 800 }}>
-          Gestión inteligente para <br /> mentes creativas.
-        </h2>
-        <p style={{ fontSize: '1.25rem', color: 'var(--muted-foreground)', maxWidth: '600px', margin: '0 auto 2.5rem' }}>
-          La plataforma definitiva que separa la complejidad técnica de la libertad creativa. Autogestiona tu web con Practiiko.
+    <div style={{ 
+      minHeight: '100vh', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      backgroundColor: 'var(--background)',
+      padding: '2rem',
+      textAlign: 'center'
+    }}>
+      <div className="animate-fade-in" style={{ maxWidth: '600px' }}>
+        <span style={{ 
+          color: 'var(--primary)', 
+          fontWeight: 700, 
+          textTransform: 'uppercase', 
+          letterSpacing: '0.3em',
+          fontSize: '0.75rem',
+          display: 'block',
+          marginBottom: '2rem'
+        }}>Atelier Practiiko</span>
+        
+        <h1 style={{ 
+          fontSize: 'clamp(3rem, 8vw, 5rem)', 
+          lineHeight: 1,
+          marginBottom: '2.5rem', 
+          color: 'var(--foreground)',
+          fontWeight: 700,
+          fontFamily: 'var(--font-noto-serif)',
+          letterSpacing: '-0.04em'
+        }}>
+          La galería táctil <br /> <span style={{ color: 'var(--primary)' }}>está llegando.</span>
+        </h1>
+        
+        <div style={{ 
+          height: '1px', 
+          width: '60px', 
+          backgroundColor: 'var(--primary)', 
+          margin: '0 auto 2.5rem auto' 
+        }}></div>
+        
+        <p style={{ 
+          fontSize: '1.25rem', 
+          color: 'var(--secondary)', 
+          lineHeight: 1.7,
+          marginBottom: '4rem',
+          maxWidth: '450px',
+          marginInline: 'auto'
+        }}>
+          Estamos curando una nueva experiencia de lujo modular para tu hogar. El diseño evoluciona, la espera termina pronto.
         </p>
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-          <button style={{ padding: '1rem 2rem', background: 'var(--primary)', borderRadius: 'var(--radius)', fontWeight: 600 }}>Prueba Gratis</button>
-          <button className="glass" style={{ padding: '1rem 2rem', borderRadius: 'var(--radius)', fontWeight: 600 }}>Ver Demo</button>
-        </div>
-      </header>
 
-      <section className={styles.grid} id="features">
-        <div className="glass-card">
-          <h3>SEO Dinámico</h3>
-          <p>Optimización automática para buscadores en cada publicación.</p>
+        <div className="glass" style={{ 
+          padding: '1.5rem 2rem', 
+          borderRadius: 'var(--radius)', 
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '1rem',
+          border: '1px solid var(--border-ghost)'
+        }}>
+          <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--foreground)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Inauguración Próximamente</span>
         </div>
-        <div className="glass-card">
-          <h3>Autogestión</h3>
-          <p>Toma el control total de tu contenido sin depender de terceros.</p>
-        </div>
-        <div className="glass-card">
-          <h3>Rendimiento Premium</h3>
-          <p>Arquitectura Next.js diseñada para la velocidad y conversión.</p>
-        </div>
-      </section>
+      </div>
+      
+      <footer style={{ position: 'absolute', bottom: '3rem' }}>
+        <a 
+          href="https://www.instagram.com/practiiko/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{ 
+            fontSize: '0.75rem', 
+            fontWeight: 800,
+            textTransform: 'uppercase',
+            letterSpacing: '0.2em',
+            color: 'var(--primary)',
+            textDecoration: 'none'
+          }}
+        >
+          @practiiko
+        </a>
+      </footer>
     </div>
   );
 }
+
+export default function Home() {
+  const isComingSoon = process.env.NEXT_PUBLIC_COMING_SOON === 'true';
+
+  if (isComingSoon) {
+    return <ComingSoon />;
+  }
+
+  return (
+    <div className={styles.container}>
+      {/* Navigation - Glassmorphism Editorial Style */}
+      <nav className="glass" style={{ 
+        padding: '1.5rem 3rem', 
+        position: 'fixed', 
+        width: 'calc(100% - 4rem)', 
+        top: '2rem',
+        left: '2rem',
+        right: '2rem',
+        zIndex: 100,
+        backgroundColor: 'rgba(252, 249, 248, 0.7)',
+        backdropFilter: 'blur(20px)',
+        borderRadius: 'var(--radius)',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
+        <h1 style={{ 
+          fontSize: '1.5rem', 
+          fontWeight: 800, 
+          fontFamily: 'var(--font-noto-serif)',
+          color: 'var(--foreground)',
+          letterSpacing: '-0.03em'
+        }}>Practiiko</h1>
+        <div style={{ display: 'flex', gap: '3rem', alignItems: 'center' }}>
+          <a href="#concept" style={{ fontWeight: 600, fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Galería</a>
+          <a href="#designs" style={{ fontWeight: 600, fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Módulos</a>
+          <button style={{ 
+            background: 'var(--primary)', 
+            padding: '0.75rem 2rem', 
+            borderRadius: 'var(--radius)', 
+            color: 'white',
+            fontWeight: 700,
+            fontSize: '0.875rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em'
+          }}>Comprar</button>
+        </div>
+      </nav>
+
+      {/* Hero Section - Intentional Asymmetry */}
+      <header className="section-base" style={{ 
+        paddingTop: '20vh', 
+        paddingBottom: 'var(--space-hero)',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        overflow: 'hidden'
+      }}>
+        <div style={{ 
+          maxWidth: '1400px', 
+          margin: '0 auto', 
+          display: 'grid', 
+          gridTemplateColumns: '1.2fr 0.8fr',
+          gap: '4rem',
+          padding: '0 2rem'
+        }} className="animate-fade-in">
+          <div style={{ alignSelf: 'center' }}>
+            <span style={{ 
+              color: 'var(--primary)', 
+              fontWeight: 700, 
+              textTransform: 'uppercase', 
+              letterSpacing: '0.2em',
+              fontSize: '0.75rem',
+              display: 'block',
+              marginBottom: '2rem'
+            }}>Atelier Practiiko</span>
+            <h2 style={{ 
+              fontSize: '6rem', 
+              lineHeight: 0.95,
+              marginBottom: '2.5rem', 
+              color: 'var(--foreground)',
+              fontWeight: 700,
+              fontFamily: 'var(--font-noto-serif)',
+              letterSpacing: '-0.04em'
+            }}>
+              El lujo que llega <br /> <span style={{ color: 'var(--primary)' }}>en caja.</span>
+            </h2>
+            <p style={{ 
+              fontSize: '1.25rem', 
+              color: 'var(--secondary)', 
+              maxWidth: '500px', 
+              marginBottom: '4rem',
+              lineHeight: 1.7
+            }}>
+              Una experiencia de diseño táctil donde la simplicidad modular se encuentra con la artesanía moderna. Tu espacio, rediseñado.
+            </p>
+            <div style={{ display: 'flex', gap: '2rem' }}>
+              <button style={{ 
+                padding: '1.5rem 3rem', 
+                background: 'var(--primary)', 
+                color: 'white',
+                borderRadius: 'var(--radius)', 
+                fontWeight: 700,
+                fontSize: '1rem',
+                textTransform: 'uppercase'
+              }}>Explorar</button>
+            </div>
+          </div>
+          {/* Asymmetric Image/Visual block */}
+          <div style={{ 
+            position: 'relative',
+            height: '600px',
+            backgroundColor: 'var(--surface-container-low)',
+            borderRadius: 'var(--radius)',
+            overflow: 'hidden',
+            marginTop: '4rem'
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: '10%',
+              left: '-10%',
+              width: '120%',
+              height: '100%',
+              background: 'url("https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=2070") center/cover',
+              filter: 'grayscale(0.2) contrast(1.1)'
+            }}></div>
+          </div>
+        </div>
+      </header>
+
+      {/* Concept Section - Tonal Layering (No Lines) */}
+      <section id="concept" className="section-alt" style={{ padding: 'var(--space-section) 2rem' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(3, 1fr)', 
+            gap: '2px', // Invisible gap for tonal shift alignment
+            backgroundColor: 'transparent'
+          }}>
+            <div className="card-tactile" style={{ padding: '5rem 3rem' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary)', marginBottom: '1.5rem', display: 'block' }}>01</span>
+              <h3 style={{ fontSize: '2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-noto-serif)' }}>Logística Invisible</h3>
+              <p style={{ color: 'var(--secondary)', lineHeight: 1.8 }}>Tu sofá llega en módulos compactos, eliminando la fricción de la entrega tradicional.</p>
+            </div>
+            <div className="card-tactile" style={{ padding: '5rem 3rem' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary)', marginBottom: '1.5rem', display: 'block' }}>02</span>
+              <h3 style={{ fontSize: '2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-noto-serif)' }}>Artesanía Modular</h3>
+              <p style={{ color: 'var(--secondary)', lineHeight: 1.8 }}>Sin herramientas, sin manuales infinitos. El diseño se ensambla con la intuición de una galería.</p>
+            </div>
+            <div className="card-tactile" style={{ padding: '5rem 3rem' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary)', marginBottom: '1.5rem', display: 'block' }}>03</span>
+              <h3 style={{ fontSize: '2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-noto-serif)' }}>Evolución Táctil</h3>
+              <p style={{ color: 'var(--secondary)', lineHeight: 1.8 }}>Practiiko no es estático. Crece y se transforma según el ritmo de tu vida.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Editorial Quote Section */}
+      <section className="section-base" style={{ padding: 'var(--space-section) 2rem', textAlign: 'center' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <blockquote style={{ 
+            fontSize: '2.5rem', 
+            fontFamily: 'var(--font-noto-serif)', 
+            lineHeight: 1.3,
+            color: 'var(--foreground)',
+            fontStyle: 'italic'
+          }}>
+            "En Practiiko, no vendemos muebles; curamos la atmósfera de tu hogar a través de la simplicidad táctil."
+          </blockquote>
+          <cite style={{ display: 'block', marginTop: '3rem', fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', fontSize: '0.75rem', color: 'var(--primary)' }}>
+            — Atelier Practiiko
+          </cite>
+        </div>
+      </section>
+
+      {/* Social CTA */}
+      <footer className="section-highlight" style={{ padding: '6rem 2rem', textAlign: 'center' }}>
+        <h2 style={{ fontSize: '1.5rem', marginBottom: '2rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Inspiración diaria</h2>
+        <a 
+          href="https://www.instagram.com/practiiko/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{ 
+            fontSize: '2rem', 
+            fontFamily: 'var(--font-noto-serif)',
+            color: 'var(--primary)',
+            textDecoration: 'none',
+            borderBottom: '2px solid var(--primary)',
+            paddingBottom: '0.5rem'
+          }}
+        >
+          @practiiko
+        </a>
+      </footer>
+    </div>
+  );
+}
+

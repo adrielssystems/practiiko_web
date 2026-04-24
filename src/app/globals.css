@@ -1,38 +1,46 @@
 :root {
-  /* Colors - Premium Slate Palette */
-  --background: #0a0a0c;
-  --foreground: #f8fafc;
+  /* Colors - The Tactile Gallery (Stitch Concept) */
+  --background: #FCF9F8; /* Warm Tonal Background */
+  --foreground: #1B1C1C; /* Authoritative Charcoal */
   
-  --card: #111114;
-  --card-foreground: #f8fafc;
+  --surface: #FCF9F8;
+  --surface-container-low: #F6F3F2;
+  --surface-container-high: #EAE7E7;
+  --surface-container-highest: #E4E2E1;
   
-  --popover: #0a0a0c;
-  --popover-foreground: #f8fafc;
+  --primary: #775A19; /* Artisanal Gold */
+  --primary-container: #C5A059;
+  --on-primary: #FFFFFF;
   
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
+  --secondary: #5F5E5E; /* Technical Gray */
+  --secondary-container: #E4E2E1;
   
-  --secondary: #1e293b;
-  --secondary-foreground: #f8fafc;
+  --accent: #C5A059;
+  --muted: #F0EDED;
+  --muted-foreground: #656464;
   
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
+  --border-ghost: rgba(127, 118, 103, 0.2);
   
-  --accent: #3b82f6;
-  --accent-foreground: #f8fafc;
+  --radius: 0.75rem; /* XL roundedness for buttons */
   
-  --destructive: #ef4444;
-  --destructive-foreground: #f8fafc;
-  
-  --border: #1e293b;
-  --input: #1e293b;
-  --ring: #3b82f6;
-  
-  --radius: 0.75rem;
-  
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  --gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+  /* Spacing Scale - Intentional Whitespace */
+  --space-hero: 8rem;
+  --space-section: 10rem;
+}
+
+/* The No-Line Rule: Boundaries through Tonal Transitions */
+.section-base { background-color: var(--surface); }
+.section-alt { background-color: var(--surface-container-low); }
+.section-highlight { background-color: var(--surface-container-high); }
+
+.card-tactile {
+  background-color: var(--surface-container-low);
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.card-tactile:hover {
+  background-color: var(--surface-container-high);
 }
 
 * {
