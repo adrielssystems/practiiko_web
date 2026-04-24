@@ -145,19 +145,21 @@ export default function ComingSoon() {
           </div>
 
           {/* Visual Content */}
-          <div style={{ position: 'relative' }} className="animate-fade-in">
+          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }} className="animate-fade-in">
             <div style={{
               padding: '1rem',
               backgroundColor: '#F8F9FA',
               borderRadius: '2rem',
-              transform: 'rotate(2deg)',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+              transform: 'rotate(1deg)',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+              maxWidth: '350px' // Limit width for vertical image
             }}>
               <img 
                 src="/vacuum-package.png" 
                 alt="Practiiko Vacuum Package" 
                 style={{ 
                   width: '100%', 
+                  height: 'auto',
                   borderRadius: '1.5rem',
                   display: 'block'
                 }} 
