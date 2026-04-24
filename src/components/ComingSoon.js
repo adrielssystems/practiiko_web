@@ -93,40 +93,6 @@ export default function ComingSoon() {
                </div>
             </div>
 
-            {/* CTA Form / Banner style */}
-            <div style={{ 
-              display: 'flex', 
-              border: '1px solid #E0E0E0', 
-              borderRadius: '8px', 
-              overflow: 'hidden',
-              boxShadow: '0 15px 45px rgba(0,0,0,0.06)',
-              maxWidth: '600px'
-            }}>
-              <input 
-                type="email" 
-                placeholder="Ingresa tu correo para ser el primero en saber..." 
-                style={{ 
-                  flex: 1, 
-                  padding: '1.75rem', 
-                  border: 'none', 
-                  fontSize: '1.1rem',
-                  outline: 'none'
-                }}
-              />
-              <button style={{ 
-                backgroundColor: '#004A8D', 
-                color: 'white', 
-                padding: '0 3rem', 
-                fontWeight: 800, 
-                textTransform: 'uppercase', 
-                fontSize: '1rem',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s'
-              }}>
-                NOTIFÍQUENME
-              </button>
-            </div>
           </div>
         </div>
       </div>
