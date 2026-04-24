@@ -129,15 +129,16 @@ export default function ComingSoon() {
             </div>
           </div>
 
-          {/* Visual Content - "Coming out of the monitor" effect */}
+          {/* Visual Content - "Coming out of the monitor" effect refined */}
           <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="animate-fade-in">
             <div style={{
               width: '100%',
-              maxWidth: '700px',
+              maxWidth: '900px', // Slightly larger for better detail
               position: 'absolute',
-              bottom: '-30vh', // Positioned low to look like it's coming from below/behind
-              right: '-10vw',
-              zIndex: 10
+              bottom: '-15vh', // Adjusted to show more of the hand
+              right: '-5vw',  // Moved closer to the center
+              zIndex: 10,
+              pointerEvents: 'none' // Allow interaction with elements behind if any
             }}>
               <img 
                 src="/vacuum-package.png" 
@@ -146,8 +147,9 @@ export default function ComingSoon() {
                   width: '100%', 
                   height: 'auto',
                   display: 'block',
-                  transform: 'rotate(-5deg) scale(1.1)', // Dynamic angle
-                  filter: 'drop-shadow(0 40px 100px rgba(0,0,0,0.18))'
+                  transform: 'rotate(-8deg) scale(1.15)', // Refined angle and scale
+                  filter: 'drop-shadow(0 50px 120px rgba(0,0,0,0.2))',
+                  transformOrigin: 'bottom right'
                 }} 
               />
             </div>
