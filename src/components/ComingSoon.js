@@ -44,11 +44,11 @@ export default function ComingSoon() {
         backgroundSize: '40px 40px'
       }}></div>
 
-      <div style={{ maxWidth: '1100px', width: '100%', textAlign: 'center', zIndex: 1, marginTop: '-5vh' }}>
+      <div style={{ maxWidth: '1200px', width: '100%', textAlign: 'center', zIndex: 1, marginTop: '-5vh' }}>
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: '1.2fr 0.8fr', 
-          gap: '4rem', 
+          gridTemplateColumns: '1fr 1fr', 
+          gap: '2rem', 
           alignItems: 'center', 
           textAlign: 'left' 
         }}>
@@ -129,11 +129,15 @@ export default function ComingSoon() {
             </div>
           </div>
 
-          {/* Visual Content - Higher, no background, no frame */}
-          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', marginTop: '-15vh' }} className="animate-fade-in">
+          {/* Visual Content - "Coming out of the monitor" effect */}
+          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="animate-fade-in">
             <div style={{
               width: '100%',
-              maxWidth: '450px'
+              maxWidth: '700px',
+              position: 'absolute',
+              bottom: '-30vh', // Positioned low to look like it's coming from below/behind
+              right: '-10vw',
+              zIndex: 10
             }}>
               <img 
                 src="/vacuum-package.png" 
@@ -142,7 +146,8 @@ export default function ComingSoon() {
                   width: '100%', 
                   height: 'auto',
                   display: 'block',
-                  filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.12))'
+                  transform: 'rotate(-5deg) scale(1.1)', // Dynamic angle
+                  filter: 'drop-shadow(0 40px 100px rgba(0,0,0,0.18))'
                 }} 
               />
             </div>
