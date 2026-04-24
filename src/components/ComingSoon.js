@@ -21,6 +21,10 @@ export default function ComingSoon() {
   return (
     <div style={{
       backgroundColor: '#FFFFFF',
+      backgroundImage: 'url("/coming-soon-bg.png")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center right',
+      backgroundRepeat: 'no-repeat',
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
@@ -31,7 +35,7 @@ export default function ComingSoon() {
       overflow: 'hidden',
       justifyContent: 'center'
     }}>
-      {/* Background Shapes Pattern */}
+      {/* Background Shapes Pattern - Kept for subtle texture over the white area */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -44,13 +48,9 @@ export default function ComingSoon() {
         backgroundSize: '40px 40px'
       }}></div>
 
-      <div style={{ maxWidth: '1200px', width: '100%', textAlign: 'center', zIndex: 1, marginTop: '-5vh' }}>
+      <div style={{ maxWidth: '1200px', width: '100%', textAlign: 'left', zIndex: 1, marginTop: '-5vh' }}>
         <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: '1fr 1fr', 
-          gap: '2rem', 
-          alignItems: 'center', 
-          textAlign: 'left' 
+          maxWidth: '700px' // Limit width to keep text over the white area of the bg
         }}>
           <div className="animate-fade-in">
             <h2 style={{ 
@@ -126,32 +126,6 @@ export default function ComingSoon() {
               }}>
                 NOTIFÍQUENME
               </button>
-            </div>
-          </div>
-
-          {/* Visual Content - "Coming out of the monitor" effect refined */}
-          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="animate-fade-in">
-            <div style={{
-              width: '100%',
-              maxWidth: '900px', // Slightly larger for better detail
-              position: 'absolute',
-              bottom: '-15vh', // Adjusted to show more of the hand
-              right: '-5vw',  // Moved closer to the center
-              zIndex: 10,
-              pointerEvents: 'none' // Allow interaction with elements behind if any
-            }}>
-              <img 
-                src="/vacuum-package.png" 
-                alt="Practiiko Vacuum Package" 
-                style={{ 
-                  width: '100%', 
-                  height: 'auto',
-                  display: 'block',
-                  transform: 'rotate(-8deg) scale(1.15)', // Refined angle and scale
-                  filter: 'drop-shadow(0 50px 120px rgba(0,0,0,0.2))',
-                  transformOrigin: 'bottom right'
-                }} 
-              />
             </div>
           </div>
         </div>
