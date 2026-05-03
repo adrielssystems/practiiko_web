@@ -1,3 +1,4 @@
+import { headers } from 'next/headers';
 import ComingSoon from "@/components/ComingSoon";
 import TopNavBar from "@/components/TopNavBar";
 import HeroSection from "@/components/HeroSection";
@@ -12,9 +13,17 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export default function Home() {
+export default async function Home() {
+  const headersList = await headers();
+  const host = headersList.get('host') || '';
+
   const comingSoonVar = process.env.COMING_SOON || process.env.NEXT_PUBLIC_COMING_SOON;
-  const isComingSoon = comingSoonVar?.trim().toLowerCase() === 'true';
+  let isComingSoon = comingSoonVar?.trim().toLowerCase() === 'true';
+
+  // Omitir Coming Soon si estamos en el subdominio landing
+  if (host.includes('landing.practiiko.com') || host.includes('localhost')) {
+    isComingSoon = false;
+  }
 
   if (isComingSoon) {
     return <ComingSoon />;
