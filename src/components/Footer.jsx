@@ -13,7 +13,7 @@ export default function Footer() {
         <div>
           <h4 className="font-bold text-[#0477BF] mb-6">Explorar</h4>
           <nav className="flex flex-col gap-4">
-            <a className="text-slate-500 hover:text-[#F28705] hover:translate-x-1 transition-all inline-block" href="#">Términos y Condiciones</a>
+            <a className="text-slate-500 hover:text-[#F28705] hover:translate-x-1 transition-all inline-block" href="/terminos">Términos y Condiciones</a>
             <a className="text-slate-500 hover:text-[#F28705] hover:translate-x-1 transition-all inline-block" href="#">Aviso de Privacidad</a>
           </nav>
         </div>
