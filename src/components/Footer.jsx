@@ -43,6 +43,24 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      
+      {/* Ubicación / Mapa */}
+      <div className="max-w-[1280px] mx-auto px-8 pb-12">
+        <h4 className="font-bold text-[#0477BF] mb-6 text-center">Nuestra Ubicación</h4>
+        <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-gray-200" style={{ height: '300px' }}>
+          <iframe 
+            src="https://maps.google.com/maps?q=10.969919,-63.8512784&hl=es&z=17&output=embed" 
+            width="100%" 
+            height="100%" 
+            style={{ border: 0 }} 
+            allowFullScreen="" 
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Ubicación Practiiko"
+          ></iframe>
+        </div>
+      </div>
+
       <div className="max-w-[1280px] mx-auto px-8 py-6 border-t border-gray-300 text-center">
         <p className="text-slate-500">© 2024 Practiiko. Muebles de diseño, entregados en una caja.</p>
       </div>
