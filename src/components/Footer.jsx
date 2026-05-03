@@ -6,7 +6,7 @@ export default function Footer() {
           <img 
             alt="Practiiko Logo" 
             className="h-14 w-auto mb-4 block hover:opacity-80 transition-opacity cursor-pointer" 
-            src="https://lh3.googleusercontent.com/aida/ADBb0ujBgqQ5B82D1q0TDueNBbi-5SD4UyhAuji8q3FCUq0CQajVMbU4CbwnFqFKtWmCGVE0Bd_TrP0abYUMmUD8AZ1Ze_yISDUntym1mHqu_m2ofc6ugHdJEvM3H90frFo60tne119or4L4BFPhyMCc_yWHd4VcnZXtZP8MP2uFbG8XUE0Zt_Bo4TP7blMF_8-9y3chPf63hCjv4-liIixSzra9Ddkx4d5ZT68iryJ3uo3WUK1wYdkqHJXyhCqIGlbvBgulW2lnj7uAyw" 
+            src="/logo.webp" 
           />
           <p className="text-slate-500 mb-6 max-w-xs">Transformando hogares con muebles de diseño inteligente, accesibles y listos para disfrutar.</p>
         </div>
