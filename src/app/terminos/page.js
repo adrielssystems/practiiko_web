@@ -19,7 +19,7 @@ export default function TerminosYCondiciones() {
           
           <div className="prose prose-slate max-w-none text-on-surface-variant space-y-6">
             <p>
-              Bienvenido a <strong>Practiiko</strong>. Al acceder y utilizar nuestro sitio web (landing.practiiko.com y sus subdominios), usted acepta estar sujeto a los siguientes Términos y Condiciones, los cuales se rigen por la legislación de la República Bolivariana de Venezuela, incluyendo la <em>Ley Orgánica de Precios Justos</em>, la <em>Ley sobre Mensajes de Datos y Firmas Electrónicas</em>, y demás normativas aplicables a la protección del consumidor y el comercio electrónico.
+              Bienvenido a <strong>Practiiko</strong>. Al acceder y utilizar nuestro sitio web (practiiko.com y sus subdominios), usted acepta estar sujeto a los siguientes Términos y Condiciones, los cuales se rigen por la legislación de la República Bolivariana de Venezuela, incluyendo la <em>Ley Orgánica de Precios Justos</em>, la <em>Ley sobre Mensajes de Datos y Firmas Electrónicas</em>, y demás normativas aplicables a la protección del consumidor y el comercio electrónico.
             </p>
 
             <h2 className="text-xl font-bold text-[#0477BF] mt-8">1. Información General y Naturaleza del Servicio</h2>
