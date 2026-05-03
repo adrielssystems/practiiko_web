@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Practiiko | Muebles de diseño entregados en una caja</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2d3136",
+                        "on-primary-fixed": "#001d34",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#af5d01",
+                        "surface-container-highest": "#e0e2e9",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#ffb77f",
+                        "on-primary-fixed-variant": "#004a79",
+                        "surface-container-low": "#f1f3fa",
+                        "on-surface": "#181c21",
+                        "primary-fixed": "#d0e4ff",
+                        "outline": "#707882",
+                        "on-tertiary-container": "#fff8f5",
+                        "on-tertiary-fixed-variant": "#6f3900",
+                        "surface-variant": "#e0e2e9",
+                        "background": "#f8f9ff",
+                        "on-secondary-fixed": "#2b1700",
+                        "tertiary-fixed": "#ffdcc4",
+                        "on-primary-container": "#f8f9ff",
+                        "surface-tint": "#00629f",
+                        "secondary-fixed": "#ffddbb",
+                        "inverse-primary": "#9bcbff",
+                        "inverse-on-surface": "#eef1f7",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#0477bf",
+                        "surface-dim": "#d7dae0",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed-dim": "#ffb867",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c0c7d2",
+                        "secondary": "#885200",
+                        "on-secondary-container": "#704300",
+                        "surface-container-high": "#e6e8ef",
+                        "secondary-container": "#fead4a",
+                        "on-background": "#181c21",
+                        "tertiary": "#8b4900",
+                        "on-surface-variant": "#404751",
+                        "surface-container": "#ebeef4",
+                        "primary": "#005e98",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#9bcbff",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "surface": "#f8f9ff",
+                        "on-tertiary-fixed": "#2f1500"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "container-max": "1280px",
+                        "lg": "48px",
+                        "base": "8px",
+                        "md": "24px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "xl": "80px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Work Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-bold": ["Work Sans"],
+                        "button": ["Plus Jakarta Sans"],
+                        "body-lg": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "button": ["16px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b border-gray-100 bg-white/95 backdrop-blur-sm shadow-[0_10px_30px_rgba(4,119,191,0.08)]">
+<div class="max-w-[1280px] mx-auto px-6 flex items-center justify-between h-20">
+<a class="text-2xl font-extrabold tracking-tight text-[#0477BF] font-headline-lg" href="#"><img alt="Practiiko Logo" class="h-16 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0ujBgqQ5B82D1q0TDueNBbi-5SD4UyhAuji8q3FCUq0CQajVMbU4CbwnFqFKtWmCGVE0Bd_TrP0abYUMmUD8AZ1Ze_yISDUntym1mHqu_m2ofc6ugHdJEvM3H90frFo60tne119or4L4BFPhyMCc_yWHd4VcnZXtZP8MP2uFbG8XUE0Zt_Bo4TP7blMF_8-9y3chPf63hCjv4-liIixSzra9Ddkx4d5ZT68iryJ3uo3WUK1wYdkqHJXyhCqIGlbvBgulW2lnj7uAyw"/></a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 font-medium hover:text-[#F28705] transition-colors duration-200 text-[16px]" href="#">Colchones</a>
+<a class="text-[#0477BF] border-b-2 border-[#0477BF] pb-1 font-headline-md text-[16px]" href="#">Muebles</a>
+<a class="text-slate-600 font-medium hover:text-[#F28705] transition-colors duration-200 text-[16px]" href="#">Nosotros</a>
+</div>
+<button class="bg-[#F28705] text-white px-6 py-3 rounded-xl font-button active:scale-95 transition-transform duration-150 shadow-lg shadow-orange-500/20">
+                Comprar Ahora
+            </button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative bg-[#F2F2F2] overflow-hidden">
+<div class="max-w-[1280px] mx-auto px-6 py-20 md:py-32 grid md:grid-cols-2 gap-12 items-center">
+<div class="relative z-10">
+<span class="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label-bold text-xs mb-6 uppercase tracking-wider">
+                        DISEÑO INTELIGENTE
+                    </span>
+<h1 class="font-display-xl text-display-xl text-[#0477BF] mb-6 leading-tight">
+                        Muebles de diseño, entregados en una caja
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
+                        Transforma tu hogar con mobiliario premium que llega a tu puerta en formato compacto. Tecnología de ensamble intuitivo para un estilo de vida moderno y práctico.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-[#F28705] text-white px-8 py-4 rounded-xl font-button text-lg hover:translate-y-[-2px] transition-all duration-200 shadow-xl shadow-orange-500/30">
+                            Ver Mobiliario
+                        </button>
+<button class="border-2 border-[#0477BF] text-[#0477BF] px-8 py-4 rounded-xl font-button text-lg hover:bg-[#0477BF]/5 transition-all">
+                            Cómo funciona
+                        </button>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-video md:aspect-square rounded-[40px] overflow-hidden shadow-2xl bg-white p-4">
+<img alt="Sofá modular de diseño premium en color gris oscuro con texturizado de pana" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhtmzjdKdRfSRPthOSnB7Dx0bIw2sZtUnZ-EU2DVaqalUTFRFIeg2KkxYXst7G0E7eWZSmnBrCtqz8QYZG_gLp9ew8hbPd720mDQOAGjsH6hlAL_PbjdNBr48ZX6Y0botfIUUXKzaMOgP4Xoouwr1J34B9Ur0AG86lutLs3eJlX8XPyiPmozKyqIQYR3cvpvN9dYCpndgKCGd-wMKO0mfrLyilR6KT3ec-TeE5bhKWaZQRCqNzBWo_8mr8F8pBt9s_Z-iRYZ8JZclE"/>
+</div>
+<!-- Floating Badge -->
+<div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl flex items-center gap-4">
+<div class="w-12 h-12 bg-[#F2A341]/10 rounded-full flex items-center justify-center text-[#F28705]">
+<span class="material-symbols-outlined" data-icon="local_shipping" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<div>
+<p class="font-label-bold text-on-surface">Envío a Domicilio</p>
+<p class="text-xs text-on-surface-variant">En formato compacto</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Differentiators -->
+<section class="py-24 bg-white">
+<div class="max-w-[1280px] mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">¿Por qué elegir Muebles Practiiko?</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Reinventamos la experiencia de amueblar tu espacio con soluciones modulares y entrega eficiente.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-12">
+<div class="text-center group">
+<div class="w-20 h-20 bg-primary-container/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[#0477BF] text-4xl" data-icon="inventory_2">inventory_2</span>
+</div>
+<h3 class="font-headline-md text-xl mb-4">Diseño Ready-to-Box</h3>
+<p class="text-on-surface-variant font-body-md">Sofás y sillones diseñados para viajar en cajas optimizadas, facilitando su ingreso a cualquier espacio reducido.</p>
+</div>
+<div class="text-center group">
+<div class="w-20 h-20 bg-secondary-container/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[#F28705] text-4xl" data-icon="build">build</span>
+</div>
+<h3 class="font-headline-md text-xl mb-4">Ensamble sin Estrés</h3>
+<p class="text-on-surface-variant font-body-md">Sistema de armado intuitivo que no requiere herramientas complejas. Tendrás tu nuevo mueble listo en minutos.</p>
+</div>
+<div class="text-center group">
+<div class="w-20 h-20 bg-primary-container/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[#0477BF] text-4xl" data-icon="chair">chair</span>
+</div>
+<h3 class="font-headline-md text-xl mb-4">Confort Garantizado</h3>
+<p class="text-on-surface-variant font-body-md">Estructuras sólidas y espumas de alta densidad que ofrecen el equilibrio perfecto entre estética y comodidad.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Offer Banner -->
+<section class="px-6">
+<div class="max-w-[1280px] mx-auto bg-gradient-to-r from-[#F28705] to-[#F2A341] rounded-[32px] p-12 relative overflow-hidden">
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="text-white">
+<h2 class="font-headline-lg text-headline-lg mb-2">¡Rediseña tu sala hoy!</h2>
+<p class="text-lg opacity-90">Envío sin costo en toda nuestra línea de muebles de diseño.</p>
+</div>
+<button class="bg-white text-[#F28705] px-10 py-4 rounded-xl font-button text-lg hover:bg-opacity-90 transition-all shadow-lg">
+                        Explorar Catálogo
+                    </button>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
+<div class="absolute bottom-0 left-0 w-32 h-32 bg-black/5 rounded-full -ml-16 -mb-16"></div>
+</div>
+</section>
+<!-- Product Gallery -->
+<section class="py-24">
+<div class="max-w-[1280px] mx-auto px-6">
+<div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Colección de Muebles Destacados</h2>
+<p class="text-on-surface-variant mt-2">Piezas icónicas que definen el carácter de tu hogar.</p>
+</div>
+<img alt="Logo Practiiko" class="h-12 w-auto opacity-50 grayscale hover:grayscale-0 transition-all cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsCG7EaiBjMSrU-0q_ojcRnLs63GXDXeZDjK6pPAKmgRCv1lZaYwDO3unNHbpEYrSJjrSQMuiyOuxvMPQnaSxQ6kFSK6jMFWwxfgCp9U84S_XlPGv26uJS0qQzyVfH0H6Fh87uiDyoLrDsBC10T2DxqMrs19UEnxS6qMhTQO92nAl4yid8nXre_bC7k5x2e4vPz_X7jKdm89KjnacidXhCSfb14PHKk0WQzKGNA4yGXLcLG1nOmQ7fc20zZuEHSbErg9wK_PQ-fvgp"/>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Product Card 1 -->
+<div class="bg-white border border-[#E0E0E0] rounded-3xl overflow-hidden hover:border-transparent hover:shadow-[0_10px_30px_rgba(4,119,191,0.08)] transition-all duration-300 group">
+<div class="aspect-[4/5] relative overflow-hidden bg-gray-50 p-6">
+<img alt="Sofá Cama Nórdico Verde Olivo" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/ADBb0uimFFXDgQfwN-T_T45HawyYHgd-GTqR1G1rZwfNardQOlFeWpGAzGr111JTgvQBjDxTdFZEB2ogrsIco7Uwc9OSdrGA4pb8DSz1uXUAY7n-j1z6M38MZBIyfE9jzyr-JJrf5bWD6WBMLq4BOmWsSVvfIRR2qzmMGcqGiCUTw_Eay7-BL2HVXL2aSZykgu-18jO-8clVwm8S7seNnY1he9OGURu4ZlE888fuvaMUeZ5UlvEt9tjJOa34y2ALoIeWXGYPJ9f7duV9EA"/>
+<span class="absolute top-4 left-4 bg-secondary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Nuevo</span>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-lg mb-2">Sofá Cama Nórdico</h4>
+<p class="text-on-surface-variant text-sm mb-4">Minimalismo escandinavo con sistema de apertura fácil.</p>
+<div class="flex items-center justify-between">
+<span class="font-headline-lg text-xl text-[#0477BF]">$8,499</span>
+<button class="text-[#0477BF] font-button text-sm flex items-center gap-1 hover:underline">
+                                    Detalles <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-white border border-[#E0E0E0] rounded-3xl overflow-hidden hover:border-transparent hover:shadow-[0_10px_30px_rgba(4,119,191,0.08)] transition-all duration-300 group">
+<div class="aspect-[4/5] relative overflow-hidden bg-gray-50 p-6">
+<img alt="Sofá Curvo Sunset Terracota" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/ADBb0uhVeR77oP4dx-LVCsFA3XQlnmmB3KpdDeYLLe3mW-Xuu_vBmqu8tERlonvAhSNvKGgsmqz-bGIA93iVSLWAqC0kt5bCATg1Ps7GQ96S3o476m7kWHCOUjwgGS8woueHrum1FV0blbDXnLF_zl9bxeqIC0mBefKiylEtH_zhIcfnjY8ZHWqM9vMe3ux7i-P6Nc1RYbKodP37fvKuOHY53rCT562bQJAXzGQSZtbH-9p08TKlGYAGE19EyABO5izREPJOpZxTK8Z5pF4"/>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-lg mb-2">Sofá Curvo Sunset</h4>
+<p class="text-on-surface-variant text-sm mb-4">Líneas orgánicas y textura bouclé de alta resistencia.</p>
+<div class="flex items-center justify-between">
+<span class="font-headline-lg text-xl text-[#0477BF]">$12,200</span>
+<button class="text-[#0477BF] font-button text-sm flex items-center gap-1 hover:underline">
+                                    Detalles <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-white border border-[#E0E0E0] rounded-3xl overflow-hidden hover:border-transparent hover:shadow-[0_10px_30px_rgba(4,119,191,0.08)] transition-all duration-300 group">
+<div class="aspect-[4/5] relative overflow-hidden bg-gray-50 p-6">
+<img alt="Poltrona Botánica con estampado floral" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/ADBb0uhk3dmjtV1-trj11UUYJcNvDn1LCyM_74Kb4MimwGB3RAYhXSr5Y1v3rV8JsL5d5rXM9R8APrjDQsLsu4K58cnCImnc144lHpjXOUqOHKMrdvzwcpbwGLlVwkelVpDY_MKHV1gjBhtKtv4DMhtRqzmSV9Vn-6gz1uggli_xjGLmM2eUPqe4fvs57kihrOcz0U2i469BFhqJsui_cGVeo6OnWV5N79TItCZd7WTnqu_yvk33hFD62NatdMP-XN8Aodyn7v3tnk9sww"/>
+<span class="absolute top-4 left-4 bg-[#D93004] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Oferta</span>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-lg mb-2">Poltrona Botánica</h4>
+<p class="text-on-surface-variant text-sm mb-4">Pieza de acento ergonómica con diseño vanguardista.</p>
+<div class="flex items-center justify-between">
+<span class="font-headline-lg text-xl text-[#0477BF]">$10,150</span>
+<button class="text-[#0477BF] font-button text-sm flex items-center gap-1 hover:underline">
+                                    Detalles <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-white border border-[#E0E0E0] rounded-3xl overflow-hidden hover:border-transparent hover:shadow-[0_10px_30px_rgba(4,119,191,0.08)] transition-all duration-300 group">
+<div class="aspect-[4/5] relative overflow-hidden bg-gray-50 p-6">
+<img alt="Sillón Pétalo Rose en tono rosa viejo" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/ADBb0ui__WDM-eIX5AufPOMKWhLO27qa59jjFWDLes2L27Zb4G5EpYclMaMKtIEO73rMuQMy4OyWxoU3aaPC5fpoZFfYA1S0UcLqJuG9kizc5BOZU_BPVl4gzQQmZxPkBfJL6jhYz9Tt82R50wvPjRuX7ll7YYqF0V7EOsAJjn7pQ5Og1mJ01xKiHeG1_3SXqqaBwaWO9eQcAevAt4ty1S773TtdquKwbE7YzWDT6WapB-_faAjpqP7agFQO2izBmOKUDCRNkJ0nlORWr8M"/>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-lg mb-2">Sillón Pétalo Rose</h4>
+<p class="text-on-surface-variant text-sm mb-4">Estructura envolvente ideal para rincones de lectura.</p>
+<div class="flex items-center justify-between">
+<span class="font-headline-lg text-xl text-[#0477BF]">$5,400</span>
+<button class="text-[#0477BF] font-button text-sm flex items-center gap-1 hover:underline">
+                                    Detalles <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Logística Inteligente Section -->
+<section class="bg-[#F2F2F2] py-24 overflow-hidden">
+<div class="max-w-[1280px] mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-[#0477BF] mb-4">Logística Inteligente: Tu hogar en una caja</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Tecnología aplicada al transporte de mobiliario para una experiencia sin complicaciones.</p>
+</div>
+<!-- 4-Step Process -->
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+<div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-2xl bg-[#0477BF]/10 flex items-center justify-center text-[#0477BF] mb-6">
+<span class="material-symbols-outlined text-4xl" data-icon="compress">compress</span>
+</div>
+<h4 class="font-headline-md text-lg mb-3">1. Compresión</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Tecnología de vacío industrial que reduce el volumen del mueble hasta un 75% sin dañar los materiales.</p>
+</div>
+<div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-2xl bg-[#0477BF]/10 flex items-center justify-center text-[#0477BF] mb-6">
+<span class="material-symbols-outlined text-4xl" data-icon="package_2">package_2</span>
+</div>
+<h4 class="font-headline-md text-lg mb-3">2. Empaque</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Cajas planas y reforzadas diseñadas para proteger cada pieza y facilitar el transporte.</p>
+</div>
+<div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-2xl bg-[#0477BF]/10 flex items-center justify-center text-[#0477BF] mb-6">
+<span class="material-symbols-outlined text-4xl" data-icon="delivery_dining">delivery_dining</span>
+</div>
+<h4 class="font-headline-md text-lg mb-3">3. Entrega</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Recibe en tu puerta un empaque compacto que cabe en cualquier ascensor o maleta de auto.</p>
+</div>
+<div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-2xl bg-[#0477BF]/10 flex items-center justify-center text-[#0477BF] mb-6">
+<span class="material-symbols-outlined text-4xl" data-icon="expand_content">expand_content</span>
+</div>
+<h4 class="font-headline-md text-lg mb-3">4. Expansión</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Abre, expande y estrena. Tu mueble toma su forma final en pocos minutos.</p>
+</div>
+</div>
+<!-- Before and After & Space Comparison -->
+<div class="grid lg:grid-cols-12 gap-12 items-center mb-20">
+<div class="lg:col-span-7">
+<div class="relative group rounded-[40px] overflow-hidden shadow-2xl border-8 border-white">
+<img alt="Comparación caja vs sofá armado Practiiko" class="w-full h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdPNA1MVDVOhFjKR98COh322BULzJSBN8jc7Km-mK0_5wH3ZOs8VITqaC3gCMAhPdPwkeAwS_S-J21ceo-0aFWalMSgFm10how2hLeA2VTwB9DCPF0UOEI2okEcQTyVn8pHyHUbODv9RHlbBBX0fzfs-bHd9fd5CWbrk69nRGtFEiBiZtUQRuJMztRtx9NXqd7t9hvWRDDuEjJ6ibn1NKj7zzIobm_xv7EBp8qNB7Yx7MMdJA-43qvIFm6Jr7LIY14zM0MLA9mQocL"/>
+<div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-8 text-white">
+<p class="font-headline-md text-xl">De la caja a tu sala en minutos</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 space-y-12">
+<div class="bg-[#0477BF]/5 p-8 rounded-[32px] border border-[#0477BF]/10">
+<h4 class="font-headline-md text-xl mb-6 text-[#0477BF]">Eficiencia de Espacio</h4>
+<div class="flex items-center justify-between gap-4">
+<div class="flex-1 flex flex-col items-center">
+<div class="grid grid-cols-2 gap-2 mb-4"><div class="w-10 h-10 bg-[#0477BF] rounded shadow-sm flex items-center justify-center text-white font-bold text-xs">P</div><div class="w-10 h-10 bg-[#0477BF] rounded shadow-sm flex items-center justify-center text-white font-bold text-xs">P</div></div>
+<p class="font-label-bold text-[10px] uppercase text-center">1 Sofá (3 Plazas)</p>
+</div>
+<div class="text-[#0477BF] font-display-xl text-3xl">=</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-24 h-22 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-gray-500">chair</span>
+</div>
+<p class="font-label-bold text-[10px] uppercase text-center">1 Sofá (3 Plazas)</p>
+</div>
+</div>
+<p class="mt-8 text-sm text-on-surface-variant italic">Nuestra logística optimizada (2 cajas = 1 mueble) reduce la huella de carbono y los costos de envío para ti.</p>
+</div>
+</div>
+</div>
+<!-- Final Promo Banner -->
+<div class="bg-[#F28705] rounded-[24px] p-8 md:p-12 text-center text-white shadow-xl shadow-orange-500/20 relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-lg text-2xl md:text-3xl mb-2 text-4xl md:text-5xl font-extrabold">Diseño inteligente, envío inteligente</h3>
+<p class="text-lg md:text-xl font-medium opacity-90 text-2xl md:text-3xl font-bold">Disfruta de ENVÍO GRATIS a todo el pais</p>
+</div>
+<!-- Subtle background pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-0 right-0 w-64 h-64 border-[40px] border-white rounded-full -mr-32 -mt-32"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 border-[30px] border-white rounded-full -ml-24 -mb-24"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Comfort & Support Component -->
+<section class="py-20 bg-surface-container-low">
+<div class="max-w-[1280px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">Ergonomía que se adapta a ti</h2>
+<p class="text-on-surface-variant mb-10">Nuestros muebles no solo son bellos; están diseñados bajo estrictos estándares de soporte corporal para asegurar que cada momento de descanso sea reparador.</p>
+<div class="space-y-8">
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-bold text-xs uppercase tracking-tighter">Blando</span>
+<span class="font-label-bold text-xs uppercase tracking-tighter">Medio</span>
+<span class="font-label-bold text-xs uppercase tracking-tighter">Firme</span>
+</div>
+<div class="h-3 w-full bg-gradient-to-r from-[#F28705] via-white to-[#0477BF] rounded-full border border-outline-variant relative">
+<div class="absolute top-1/2 left-[60%] -translate-y-1/2 w-6 h-6 bg-white border-4 border-[#0477BF] rounded-full shadow-md"></div>
+</div>
+<p class="mt-3 text-sm text-center text-[#0477BF] font-semibold">Nivel Comfort Plus: Soporte equilibrado para uso diario</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white p-4 rounded-2xl flex items-start gap-3 shadow-sm">
+<span class="material-symbols-outlined text-[#0477BF]" data-icon="chair_alt">chair_alt</span>
+<div>
+<h5 class="font-label-bold text-sm">Base Reforzada</h5>
+<p class="text-[12px] text-on-surface-variant">Madera sustentable</p>
+</div>
+</div>
+<div class="bg-white p-4 rounded-2xl flex items-start gap-3 shadow-sm">
+<span class="material-symbols-outlined text-[#0477BF]" data-icon="layers">layers</span>
+<div>
+<h5 class="font-label-bold text-sm">Multi-Capa</h5>
+<p class="text-[12px] text-on-surface-variant">Espumas HR de alta gama</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<img alt="Fondo decorativo degradado" class="w-full rounded-[40px] shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1ncUZkm2Wwga_ZFYGWxCzAQQAC1ro_6BV-XAaGK24ng8vaQLGreYONzXHtFU5kc6RkCfyGZfnOF0vCgf0ea9dyq4Q17nft5ClPfGQdJrU-PFfIdkQuqttTwqygtpnusqCMd-868EAPZMONj9cUOtcbHFezmSrs2mZIwqT3NZoZEoMghZ9uAjHCg3sf1fN2iS0zEGmd3JZU4H7xCOsQxJrTr0fdQ6QC7UEhQxYP_uVLG-J4OiG2V6cPnjUY9buDgsWhvY0Q-nsvcCj"/>
+<div class="absolute inset-0 flex items-center justify-center p-8">
+<div class="bg-white/90 backdrop-blur px-8 py-10 rounded-3xl text-center shadow-xl">
+<div class="text-[#0477BF] font-display-xl text-5xl mb-2">100%</div>
+<p class="font-label-bold uppercase text-xs tracking-widest text-on-surface-variant">Satisfacción Total</p>
+<div class="w-12 h-1 bg-[#F28705] mx-auto my-4"></div>
+<p class="text-sm">Si el diseño o la comodidad no cumplen tus expectativas, facilitamos tu devolución.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-gray-200 bg-[#F2F2F2] font-['Plus_Jakarta_SANS'] text-sm">
+<div class="max-w-[1280px] mx-auto px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+<div>
+<span class="text-xl font-bold text-[#0477BF] mb-4 block"><img alt="Practiiko Logo" class="h-14 w-auto mb-4 block" src="https://lh3.googleusercontent.com/aida/ADBb0ujBgqQ5B82D1q0TDueNBbi-5SD4UyhAuji8q3FCUq0CQajVMbU4CbwnFqFKtWmCGVE0Bd_TrP0abYUMmUD8AZ1Ze_yISDUntym1mHqu_m2ofc6ugHdJEvM3H90frFo60tne119or4L4BFPhyMCc_yWHd4VcnZXtZP8MP2uFbG8XUE0Zt_Bo4TP7blMF_8-9y3chPf63hCjv4-liIixSzra9Ddkx4d5ZT68iryJ3uo3WUK1wYdkqHJXyhCqIGlbvBgulW2lnj7uAyw"/></span>
+<p class="text-slate-500 mb-6 max-w-xs">Transformando hogares con muebles de diseño inteligente, accesibles y listos para disfrutar.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#0477BF] hover:bg-[#0477BF] hover:text-white transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="facebook">social_leaderboard</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#0477BF] hover:bg-[#0477BF] hover:text-white transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="camera">camera</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-[#0477BF] mb-6">Explorar</h4>
+<nav class="flex flex-col gap-4">
+<a class="text-slate-500 hover:text-[#F28705] transition-all underline underline-offset-4" href="#">Términos y Condiciones</a>
+<a class="text-slate-500 hover:text-[#F28705] transition-all underline underline-offset-4" href="#">Aviso de Privacidad</a>
+<a class="text-slate-500 hover:text-[#F28705] transition-all underline underline-offset-4" href="#">Políticas de Envío</a>
+<a class="text-slate-500 hover:text-[#F28705] transition-all underline underline-offset-4" href="#">Contacto de Soporte</a>
+</nav>
+</div>
+<div>
+<h4 class="font-bold text-[#0477BF] mb-6">Newsletter</h4>
+<p class="text-slate-500 mb-4">Recibe lanzamientos exclusivos de nuevas colecciones.</p>
+<div class="flex gap-2">
+<input class="bg-white border-none rounded-xl px-4 py-3 text-sm flex-1 focus:ring-2 focus:ring-[#0477BF]" placeholder="Tu email" type="email"/>
+<button class="bg-[#0477BF] text-white px-4 py-3 rounded-xl hover:bg-opacity-90 transition-all">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-[1280px] mx-auto px-8 py-6 border-t border-gray-300 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500">© 2024 Practiiko. Muebles de diseño, entregados en una caja.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-slate-400" data-icon="credit_card">credit_card</span>
+<span class="material-symbols-outlined text-slate-400" data-icon="account_balance">account_balance</span>
+<span class="material-symbols-outlined text-slate-400" data-icon="payments">payments</span>
+</div>
+</div>
+</footer>
+<!-- WhatsApp Button -->
+<a aria-label="WhatsApp Support" class="fixed bottom-8 right-8 z-[60] bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group" href="#">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.4 2.4-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.8-5.6 5.6-9.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+</a>
+</body></html>
