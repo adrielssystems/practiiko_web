@@ -6,7 +6,7 @@ export default function TopNavBar() {
           <img 
             alt="Practiiko Logo" 
             className="h-16 w-auto transition-transform duration-300 group-hover:scale-105" 
-            src="/logo.jpg" 
+            src="/logo.webp" 
           />
         </a>
         <div className="hidden md:flex items-center gap-8">
