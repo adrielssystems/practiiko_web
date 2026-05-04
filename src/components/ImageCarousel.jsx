@@ -45,8 +45,8 @@ export default function ImageCarousel() {
                   />
                   {/* Subtle overlay with zoom icon */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-700 flex items-center justify-center">
-                    <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full transform scale-50 group-hover/item:scale-100 transition-transform duration-500">
-                      <span className="material-symbols-outlined text-white text-3xl">zoom_in</span>
+                    <div className="bg-white/20 backdrop-blur-sm p-2.5 rounded-full transform scale-50 group-hover/item:scale-100 transition-transform duration-500">
+                      <span className="material-symbols-outlined text-white text-xl">zoom_in</span>
                     </div>
                   </div>
                 </div>
@@ -59,7 +59,7 @@ export default function ImageCarousel() {
       {/* Lightbox Modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-md animate-in fade-in duration-300"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/70 backdrop-blur-md animate-in fade-in duration-300"
           onClick={() => setSelectedImage(null)}
         >
           <div className="relative max-w-4xl w-full h-full flex items-center justify-center animate-in zoom-in-95 duration-300">
