@@ -16,7 +16,7 @@ export default function ImageCarousel() {
     <section className="py-12 bg-white overflow-hidden group">
       <div className="relative w-full">
         {/* Infinite scroll wrapper */}
-        <div className="flex w-fit animate-infinite-scroll group-hover:pause">
+        <div className="flex w-fit animate-infinite-scroll">
           {duplicatedImages.map((image, index) => (
             <div 
               key={index} 

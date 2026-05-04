@@ -22,6 +22,6 @@ body {
   animation: infinite-scroll 60s linear infinite;
 }
 
-.pause {
-  animation-play-state: paused !important;
+.group:hover .animate-infinite-scroll {
+  animation-play-state: paused;
 }
