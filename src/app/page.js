@@ -2,6 +2,7 @@ import { headers } from 'next/headers';
 import ComingSoon from "@/components/ComingSoon";
 import TopNavBar from "@/components/TopNavBar";
 import HeroSection from "@/components/HeroSection";
+import ImageCarousel from "@/components/ImageCarousel";
 import Differentiators from "@/components/Differentiators";
 import OfferBanner from "@/components/OfferBanner";
 import ProductGallery from "@/components/ProductGallery";
@@ -35,6 +36,7 @@ export default async function Home() {
 
       <main className="pt-20">
         <HeroSection />
+        <ImageCarousel />
         <Differentiators />
         <OfferBanner />
         <ProductGallery />
