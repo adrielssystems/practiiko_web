@@ -24,9 +24,9 @@ export default function HeroSection() {
             Transforma tu hogar con mobiliario premium que llega a tu puerta en formato compacto. Tecnología de ensamble intuitivo para un estilo de vida moderno y práctico.
           </p>
           <div className="flex flex-wrap gap-4">
-            <button className="bg-[#F28705] text-white px-8 py-4 rounded-xl font-button text-lg hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 shadow-xl shadow-orange-500/30">
-              Ver Mobiliario
-            </button>
+            <a href="/catalogo" className="bg-[#F28705] text-white px-8 py-4 rounded-xl font-button text-lg hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 shadow-xl shadow-orange-500/30 inline-block text-center">
+              Ver Catálogo
+            </a>
             <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-button text-lg hover:bg-white hover:text-[#0477BF] transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm bg-white/10">
               Cómo funciona
             </button>
