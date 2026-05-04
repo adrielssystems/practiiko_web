@@ -23,10 +23,10 @@ export default function ErgonomicsSection() {
           <img 
             alt="Ergonomía" 
             className="w-full rounded-[40px] shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1ncUZkm2Wwga_ZFYGWxCzAQQAC1ro_6BV-XAaGK24ng8vaQLGreYONzXHtFU5kc6RkCfyGZfnOF0vCgf0ea9dyq4Q17nft5ClPfGQdJrU-PFfIdkQuqttTwqygtpnusqCMd-868EAPZMONj9cUOtcbHFezmSrs2mZIwqT3NZoZEoMghZ9uAjHCg3sf1fN2iS0zEGmd3JZU4H7xCOsQxJrTr0fdQ6QC7UEhQxYP_uVLG-J4OiG2V6cPnjUY9buDgsWhvY0Q-nsvcCj" 
+            src="/ergonomia.avif" 
           />
           <div className="absolute inset-0 flex items-center justify-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <div className="bg-white/95 backdrop-blur px-8 py-10 rounded-3xl text-center shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+            <div className="bg-white/60 backdrop-blur-md px-8 py-10 rounded-3xl text-center shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
               <div className="text-[#0477BF] font-display-xl text-5xl mb-2 scale-90 group-hover:scale-100 transition-transform duration-500 delay-100">100%</div>
               <p className="font-label-bold uppercase text-xs tracking-widest text-on-surface-variant">Satisfacción Total</p>
               <div className="w-12 h-1 bg-[#F28705] mx-auto my-4 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-200"></div>
