@@ -9,23 +9,19 @@ async function getGalleryData() {
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
       WHERE p.status = 'active'
-      ORDER BY p.is_featured DESC, p.created_at DESC
+      AND (p.tags @> '["Best Seller"]'::jsonb OR p.is_featured = true)
+      ORDER BY p.created_at DESC
     `);
 
-    const categoriesRes = await query("SELECT * FROM categories ORDER BY name ASC");
-
-    return {
-      products: productsRes.rows,
-      categories: categoriesRes.rows
-    };
+    return productsRes.rows;
   } catch (e) {
     console.error("Error fetching gallery data:", e);
-    return { products: [], categories: [] };
+    return [];
   }
 }
 
 export default async function ProductGallery() {
-  const { products, categories } = await getGalleryData();
+  const products = await getGalleryData();
 
   if (products.length === 0) return null;
 
@@ -33,7 +29,6 @@ export default async function ProductGallery() {
     <section id="productos" className="py-32 bg-[#F9FBFC] overflow-hidden">
       <ProductGalleryClient 
         initialProducts={products} 
-        categories={categories} 
       />
     </section>
   );

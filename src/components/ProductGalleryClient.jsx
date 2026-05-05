@@ -4,20 +4,9 @@ import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 
-export default function ProductGalleryClient({ initialProducts, categories }) {
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [filteredProducts, setFilteredProducts] = useState(initialProducts);
+export default function ProductGalleryClient({ initialProducts }) {
   const containerRef = useRef(null);
   const cardsRef = useRef([]);
-
-  // Sincronizar productos filtrados
-  useEffect(() => {
-    if (activeCategory === "all") {
-      setFilteredProducts(initialProducts);
-    } else {
-      setFilteredProducts(initialProducts.filter(p => p.category_id === parseInt(activeCategory)));
-    }
-  }, [activeCategory, initialProducts]);
 
   // Animaciones GSAP
   useLayoutEffect(() => {
@@ -30,7 +19,7 @@ export default function ProductGalleryClient({ initialProducts, categories }) {
         ease: "power4.out"
       });
 
-      // Animación de las tarjetas al cambiar de categoría
+      // Animación de las tarjetas
       gsap.fromTo(".product-card", 
         { opacity: 0, y: 30, scale: 0.95 },
         { 
@@ -46,7 +35,7 @@ export default function ProductGalleryClient({ initialProducts, categories }) {
     }, containerRef);
 
     return () => ctx.revert();
-  }, [activeCategory]);
+  }, []);
 
   const handleMouseMove = (e, index) => {
     const card = cardsRef.current[index];
@@ -106,37 +95,18 @@ export default function ProductGalleryClient({ initialProducts, categories }) {
   return (
     <div ref={containerRef} className="max-w-[1400px] mx-auto px-6">
       
-      {/* HEADER & FILTROS */}
+      {/* HEADER: SIMPLE & ELEGANT */}
       <div className="gallery-header flex flex-col items-center text-center mb-20">
-        <span className="text-primary font-bold tracking-[0.3em] text-xs mb-4 uppercase">Exclusividad en cada pieza</span>
+        <span className="text-primary font-bold tracking-[0.3em] text-xs mb-4 uppercase">Favoritos de la comunidad</span>
         <h2 className="font-headline-lg text-5xl md:text-6xl text-on-surface mb-6 max-w-3xl leading-tight">
-          Colección de <span className="text-primary italic">Muebles de Autor</span>
+          Los más <span className="text-primary italic">vendidos</span>
         </h2>
-        <div className="w-20 h-1 bg-secondary rounded-full mb-12"></div>
-
-        {/* Categorías Navigation */}
-        <div className="flex flex-wrap justify-center gap-4 p-2 bg-white/50 backdrop-blur-md border border-gray-100 rounded-full shadow-sm">
-          <button 
-            onClick={() => setActiveCategory("all")}
-            className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-500 ${activeCategory === 'all' ? 'bg-primary text-white shadow-lg' : 'text-on-surface-variant hover:bg-gray-50'}`}
-          >
-            Todos los Diseños
-          </button>
-          {categories.map(cat => (
-            <button 
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id.toString())}
-              className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-500 ${activeCategory === cat.id.toString() ? 'bg-primary text-white shadow-lg' : 'text-on-surface-variant hover:bg-gray-50'}`}
-            >
-              {cat.name}
-            </button>
-          ))}
-        </div>
+        <div className="w-20 h-1 bg-secondary rounded-full"></div>
       </div>
 
-      {/* GRID DE PRODUCTOS */}
+      {/* GRID DE PRODUCTOS (Solo Best Sellers) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-        {filteredProducts.map((prod, idx) => (
+        {initialProducts.map((prod, idx) => (
           <div 
             key={prod.id} 
             ref={el => cardsRef.current[idx] = el}
