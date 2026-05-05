@@ -1,4 +1,4 @@
-import { headers } from 'next/headers';
+import { headers } from 'next/headers'; // Updated metadata
 import ComingSoon from "@/components/ComingSoon";
 import TopNavBar from "@/components/TopNavBar";
 import HeroSection from "@/components/HeroSection";

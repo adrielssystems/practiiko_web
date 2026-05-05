@@ -137,7 +137,7 @@ export default function ProductGalleryClient({ initialProducts }) {
                 )}
               </div>
 
-              {/* Quick View Button (Invisible until hover) */}
+              {/* Action Overlay */}
               <div className="absolute inset-0 bg-primary/20 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center translate-y-10 group-hover:translate-y-0">
                 <Link 
                   href={`/catalogo/${prod.slug || prod.id}`}
@@ -172,8 +172,8 @@ export default function ProductGalleryClient({ initialProducts }) {
         ))}
       </div>
 
-      {/* Empty State */}
-      {initialProducts.length === 0 && (
+      {/* Empty State - Usando la lista correcta initialProducts */}
+      {initialProducts && initialProducts.length === 0 && (
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <div className="w-20 h-20 rounded-full bg-gray-50 flex items-center justify-center mb-6">
              <span className="material-symbols-outlined text-4xl text-gray-300">search_off</span>
