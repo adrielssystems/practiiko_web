@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { getImageUrl } from "@/lib/utils";
 
 export default function CatalogClient({ initialProducts, categories }) {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -144,7 +145,7 @@ export default function CatalogClient({ initialProducts, categories }) {
               <img 
                 alt={prod.name} 
                 className="parallax-img w-full h-full object-contain p-8 scale-90 group-hover:scale-100 transition-transform duration-1000 ease-out" 
-                src={prod.main_image || "/placeholder-furniture.jpg"} 
+                src={getImageUrl(prod.main_image)} 
               />
               
               {/* Labels Overlay */}

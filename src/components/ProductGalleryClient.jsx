@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { getImageUrl } from "@/lib/utils";
 
 export default function ProductGalleryClient({ initialProducts }) {
   const containerRef = useRef(null);
@@ -120,7 +121,7 @@ export default function ProductGalleryClient({ initialProducts }) {
               <img 
                 alt={prod.name} 
                 className="parallax-img w-full h-full object-contain scale-90 group-hover:scale-100 transition-transform duration-700" 
-                src={prod.main_image || "/placeholder-furniture.jpg"} 
+                src={getImageUrl(prod.main_image)} 
               />
               
               {/* Overlay Tags */}
