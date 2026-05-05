@@ -6,6 +6,7 @@ import ImageCarousel from "@/components/ImageCarousel";
 import Differentiators from "@/components/Differentiators";
 import OfferBanner from "@/components/OfferBanner";
 import ProductGallery from "@/components/ProductGallery";
+import MattressSection from "@/components/MattressSection";
 import LogisticsSection from "@/components/LogisticsSection";
 import ErgonomicsSection from "@/components/ErgonomicsSection";
 import Footer from "@/components/Footer";
@@ -40,6 +41,7 @@ export default async function Home() {
         <Differentiators />
         <OfferBanner />
         <ProductGallery />
+        <MattressSection />
         <LogisticsSection />
         <ErgonomicsSection />
       </main>
