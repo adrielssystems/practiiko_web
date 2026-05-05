@@ -173,7 +173,7 @@ export default function ProductGalleryClient({ initialProducts }) {
       </div>
 
       {/* Empty State */}
-      {filteredProducts.length === 0 && (
+      {initialProducts.length === 0 && (
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <div className="w-20 h-20 rounded-full bg-gray-50 flex items-center justify-center mb-6">
              <span className="material-symbols-outlined text-4xl text-gray-300">search_off</span>
