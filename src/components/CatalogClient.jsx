@@ -14,7 +14,8 @@ export default function CatalogClient({ initialProducts, categories }) {
     if (activeCategory === "all") {
       setFilteredProducts(initialProducts);
     } else {
-      setFilteredProducts(initialProducts.filter(p => p.category_id === parseInt(activeCategory)));
+      // Usamos comparación suave para evitar problemas de tipos (string vs number)
+      setFilteredProducts(initialProducts.filter(p => p.category_id == activeCategory));
     }
   }, [activeCategory, initialProducts]);
 
@@ -87,18 +88,24 @@ export default function CatalogClient({ initialProducts, categories }) {
       
       {/* HEADER SECTION */}
       <div className="catalog-header mb-20 text-left">
-        <div className="flex items-center gap-4 mb-6">
-            <span className="h-[2px] w-12 bg-primary"></span>
-            <span className="text-primary font-black tracking-widest text-[10px] uppercase">Curaduría de Excelencia</span>
-        </div>
-        <h1 className="font-headline-lg text-6xl md:text-7xl text-on-surface mb-8 leading-[0.9]">
-          Explora la <br /> <span className="text-primary italic">Nueva Colección</span>
+        <h1 className="font-headline-lg text-6xl md:text-7xl text-on-surface mb-8 leading-[0.9] flex flex-wrap items-center gap-x-4">
+          Explora la <br /> <span className="text-primary italic">Nueva Colección Practiiko</span>
+          <img 
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsCG7EaiBjMSrU-0q_ojcRnLs63GXDXeZDjK6pPAKmgRCv1lZaYwDO3unNHbpEYrSJjrSQMuiyOuxvMPQnaSxQ6kFSK6jMFWwxfgCp9U84S_XlPGv26uJS0qQzyVfH0H6Fh87uiDyoLrDsBC10T2DxqMrs19UEnxS6qMhTQO92nAl4yid8nXre_bC7k5x2e4vPz_X7jKdm89KjnacidXhCSfb14PHKk0WQzKGNA4yGXLcLG1nOmQ7fc20zZuEHSbErg9wK_PQ-fvgp" 
+            alt="Practiiko" 
+            className="h-12 md:h-16 w-auto inline-block object-contain"
+          />
         </h1>
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <p className="text-on-surface-variant max-w-xl text-lg leading-relaxed">
-              Cada pieza en nuestro catálogo es el resultado de una búsqueda incansable por el equilibrio perfecto entre la ergonomía moderna y el arte mobiliario.
-            </p>
+            <div className="max-w-xl">
+              <p className="text-on-surface text-xl font-bold leading-tight mb-2">
+                El sofá de moda que llega en caja y cobra vida en tu casa.
+              </p>
+              <p className="text-on-surface-variant text-lg">
+                ¡Dale un toque de tendencia a tu hogar!
+              </p>
+            </div>
             
             {/* Filter Pills */}
             <div className="flex flex-wrap gap-2 p-1.5 bg-gray-50 rounded-3xl border border-gray-100">
