@@ -9,7 +9,10 @@ async function getGalleryData() {
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
       WHERE p.status = 'active'
-      AND (p.tags @> '["Best Seller"]'::jsonb OR p.is_featured = true)
+      AND (
+        COALESCE(p.tags, '[]'::jsonb) @> '["Best Seller"]'::jsonb 
+        OR COALESCE(p.is_featured, false) = true
+      )
       ORDER BY p.created_at DESC
     `);
 
