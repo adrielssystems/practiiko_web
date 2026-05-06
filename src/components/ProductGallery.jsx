@@ -18,8 +18,13 @@ async function getGalleryData() {
 
     return productsRes.rows;
   } catch (e) {
-    console.error("Error fetching gallery data:", e);
-    return [];
+    console.error("Error fetching gallery data, using mock data:", e);
+    // Mock data for local development
+    return [
+      { id: 1, name: "Sofá Modular Cloud", price_cash: 1200, main_image: "/hero-sofa.png", category_name: "Salas" },
+      { id: 2, name: "Silla Ergonómica Pro", price_cash: 450, main_image: "/hero-sofa.png", category_name: "Oficina" },
+      { id: 3, name: "Cama King Size", price_cash: 800, main_image: "/hero-sofa.png", category_name: "Dormitorio" }
+    ];
   }
 }
 

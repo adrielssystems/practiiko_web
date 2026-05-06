@@ -25,8 +25,17 @@ async function getCatalogData() {
       categories: categoriesRes.rows
     };
   } catch (e) {
-    console.error("Error fetching catalog data:", e);
-    return { products: [], categories: [] };
+    console.error("Error fetching catalog data, using mock data:", e);
+    return { 
+      products: [
+        { id: 1, name: "Sofá Cloud", price_cash: 1200, category_name: "Salas", description: "Comodidad absoluta." },
+        { id: 2, name: "Mesa Loft", price_cash: 250, category_name: "Comedor", description: "Estilo industrial." }
+      ], 
+      categories: [
+        { id: 1, name: "Salas" },
+        { id: 2, name: "Comedor" }
+      ] 
+    };
   }
 }
 
