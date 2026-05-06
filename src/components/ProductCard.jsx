@@ -7,9 +7,6 @@ import { getImageUrl } from "@/lib/utils";
 export default function ProductCard({ product, isPreview = false }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  // Características por defecto si no hay
-  const features = product.features || ["Calidad Premium", "Diseño Ergonómico", "Materiales Duraderos"];
-
   const handleFlip = (e) => {
     // Si es un link dentro de la tarjeta, no girar
     if (e.target.tagName === 'A' || e.target.closest('a')) return;
@@ -18,14 +15,14 @@ export default function ProductCard({ product, isPreview = false }) {
 
   return (
     <div 
-      className={`product-card-container group h-[500px] w-full cursor-pointer perspective-1000 ${isFlipped ? 'is-flipped' : ''}`}
+      className={`product-card-container group h-[540px] w-full cursor-pointer perspective-1000 ${isFlipped ? 'is-flipped' : ''}`}
       onClick={handleFlip}
     >
-      <div className="product-card-inner relative w-full h-full transition-transform duration-700 preserve-3d shadow-xl rounded-[40px]">
+      <div className="product-card-inner relative w-full h-full transition-transform duration-700 transform-style-3d shadow-xl rounded-[40px]">
         
-        {/* FRONT SIDE */}
+        {/* CARA FRONTAL (DISEÑO OXARELLYS) */}
         <div className="product-card-front absolute inset-0 backface-hidden bg-white rounded-[40px] p-6 flex flex-col border border-gray-100 overflow-hidden">
-          {/* Image Container */}
+          {/* Contenedor de Imagen */}
           <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-gray-50 mb-6 group">
             <img 
               alt={product.name} 
@@ -34,7 +31,7 @@ export default function ProductCard({ product, isPreview = false }) {
             />
           </div>
 
-          {/* Info */}
+          {/* Información del Producto */}
           <div className="flex flex-col flex-1 px-2">
             <div className="flex justify-between items-start mb-1">
               <span className="text-[10px] text-primary font-black uppercase tracking-[0.2em]">{product.category_name || 'Muebles'}</span>
@@ -61,41 +58,40 @@ export default function ProductCard({ product, isPreview = false }) {
           </div>
         </div>
 
-        {/* BACK SIDE (Características) */}
-        <div className="product-card-back absolute inset-0 backface-hidden bg-primary text-white rounded-[40px] p-8 flex flex-col rotate-y-180 shadow-2xl">
-          <div className="flex flex-col h-full">
-            <div className="mb-6">
-              <h4 className="text-white/60 font-black text-[10px] uppercase tracking-[0.3em] mb-2">Detalles del Diseño</h4>
-              <h3 className="text-2xl font-bold leading-tight">{product.name}</h3>
+        {/* CARA TRASERA (DISEÑO OXARELLYS) */}
+        <div className="product-card-back absolute inset-0 backface-hidden bg-primary text-white rounded-[40px] p-10 flex flex-col rotate-y-180 shadow-2xl overflow-hidden">
+          <div className="flex flex-col h-full justify-center items-center text-center">
+            {/* Decoración superior */}
+            <div className="mb-6 relative">
+              <div className="absolute inset-0 bg-white/20 blur-xl rounded-full"></div>
+              <span className="material-symbols-outlined text-5xl text-secondary relative z-10">description</span>
             </div>
+            
+            <h4 className="text-white/60 font-black text-[10px] uppercase tracking-[0.3em] mb-2">Más información</h4>
+            <h3 className="text-2xl font-bold mb-6 leading-tight">{product.name}</h3>
 
-            <div className="flex-1">
-              <h5 className="text-xs font-black uppercase tracking-widest text-secondary mb-4">Características:</h5>
-              <ul className="space-y-4">
-                {features.slice(0, 5).map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="material-symbols-outlined text-secondary text-sm mt-0.5">check_circle</span>
-                    <span className="text-sm font-medium leading-snug">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="flex-1 flex items-center">
+              <p className="text-white/90 text-base leading-relaxed line-clamp-[6]">
+                {product.description || "Esta pieza exclusiva de Practiiko combina ergonomía de vanguardia con un diseño minimalista pensado para espacios modernos."}
+              </p>
             </div>
 
             {!isPreview && (
-              <div className="mt-auto flex flex-col gap-3">
+              <div className="mt-8 pt-6 border-t border-white/10 w-full relative z-10">
                 <Link 
                   href={`/catalogo/${product.slug || product.id}`}
-                  className="w-full bg-white text-primary text-center py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-secondary hover:text-white transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                  className="bg-secondary text-white px-10 py-3 rounded-full font-bold text-sm shadow-xl hover:bg-white hover:text-primary transition-all duration-300 inline-block mb-4"
                 >
                   Ver Ficha Completa
                 </Link>
-                <p className="text-[9px] text-white/40 text-center uppercase tracking-widest">Toca para volver</p>
+                <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold">Haz clic para volver</p>
               </div>
             )}
           </div>
           
           {/* Slogan Decorativo */}
-          <div className="absolute bottom-8 right-8 opacity-10">
+          <div className="absolute bottom-8 right-8 opacity-10 pointer-events-none">
             <img src="/logo-white.png" alt="" className="h-12 w-auto grayscale" />
           </div>
         </div>
@@ -106,7 +102,7 @@ export default function ProductCard({ product, isPreview = false }) {
         .perspective-1000 {
           perspective: 1000px;
         }
-        .preserve-3d {
+        .transform-style-3d {
           transform-style: preserve-3d;
         }
         .backface-hidden {
@@ -119,7 +115,6 @@ export default function ProductCard({ product, isPreview = false }) {
           transform: rotateY(180deg);
         }
         .product-card-container:hover .product-card-inner {
-           /* Pequeño efecto de inclinación antes del giro */
            ${!isFlipped ? 'transform: rotateY(10deg);' : ''}
         }
       `}</style>
