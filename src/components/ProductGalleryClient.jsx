@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { getImageUrl } from "@/lib/utils";
+import ProductCard from "./ProductCard";
 
 export default function ProductGalleryClient({ initialProducts }) {
   const containerRef = useRef(null);
@@ -107,69 +108,8 @@ export default function ProductGalleryClient({ initialProducts }) {
 
       {/* GRID DE PRODUCTOS (Solo Best Sellers) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-        {initialProducts.map((prod, idx) => (
-          <div 
-            key={prod.id} 
-            ref={el => cardsRef.current[idx] = el}
-            onMouseMove={(e) => handleMouseMove(e, idx)}
-            onMouseLeave={() => handleMouseLeave(idx)}
-            className="product-card group relative bg-white rounded-[40px] p-4 transition-all duration-500 hover:shadow-[0_40px_80px_rgba(4,119,191,0.12)] border border-transparent hover:border-gray-50"
-            style={{ transformStyle: 'preserve-3d' }}
-          >
-            {/* Image Container */}
-            <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-gray-50 mb-6">
-              <img 
-                alt={prod.name} 
-                className="parallax-img w-full h-full object-contain scale-90 group-hover:scale-100 transition-transform duration-700" 
-                src={getImageUrl(prod.main_image)} 
-              />
-              
-              {/* Overlay Tags */}
-              <div className="absolute top-6 left-6 flex flex-col gap-2">
-                {(prod.tags?.includes('Best Seller') || prod.is_featured) && (
-                  <div className="bg-secondary text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-xl">
-                    Top Pick
-                  </div>
-                )}
-                {prod.is_promotion && (
-                  <div className="bg-[#D93004] text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-xl">
-                    Limited
-                  </div>
-                )}
-              </div>
-
-              {/* Action Overlay */}
-              <div className="absolute inset-0 bg-primary/20 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center translate-y-10 group-hover:translate-y-0">
-                <Link 
-                  href={`/catalogo/${prod.slug || prod.id}`}
-                  className="bg-white text-primary px-8 py-3 rounded-full font-bold text-sm shadow-2xl hover:scale-105 transition-transform"
-                >
-                  Ver Detalles
-                </Link>
-              </div>
-            </div>
-
-            {/* Info */}
-            <div className="px-4 pb-4">
-              <div className="flex justify-between items-start mb-2">
-                <span className="text-[10px] text-primary/60 font-black uppercase tracking-[0.2em]">{prod.category_name}</span>
-                <span className="text-secondary font-black text-xs uppercase">{prod.code}</span>
-              </div>
-              <h3 className="font-headline-md text-xl text-on-surface mb-4 group-hover:text-primary transition-colors duration-300">
-                {prod.name}
-              </h3>
-              
-              <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
-                <div className="flex flex-col">
-                  <span className="text-2xl font-black text-primary">${parseFloat(prod.price_cash || 0).toLocaleString()}</span>
-                  <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Inversión única</span>
-                </div>
-                <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                  <span className="material-symbols-outlined text-xl">arrow_forward</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        {initialProducts.map((prod) => (
+          <ProductCard key={prod.id} product={prod} />
         ))}
       </div>
 

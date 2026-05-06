@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { getImageUrl } from "@/lib/utils";
+import ProductCard from "./ProductCard";
 
 export default function CatalogClient({ initialProducts, categories }) {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -132,71 +133,7 @@ export default function CatalogClient({ initialProducts, categories }) {
       {/* PRODUCTS GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
         {filteredProducts.map((prod, idx) => (
-          <div 
-            key={prod.id} 
-            ref={el => cardsRef.current[idx] = el}
-            onMouseMove={(e) => handleMouseMove(e, idx)}
-            onMouseLeave={() => handleMouseLeave(idx)}
-            className="product-card group flex flex-col"
-            style={{ transformStyle: 'preserve-3d' }}
-          >
-            {/* Visual Container */}
-            <div className="relative aspect-[4/5] rounded-[48px] overflow-hidden bg-[#F0F4F7] mb-8 group-hover:shadow-[0_40px_100px_rgba(4,119,191,0.15)] transition-shadow duration-700">
-              <img 
-                alt={prod.name} 
-                className="parallax-img w-full h-full object-contain p-8 scale-90 group-hover:scale-100 transition-transform duration-1000 ease-out" 
-                src={getImageUrl(prod.main_image)} 
-              />
-              
-              {/* Labels Overlay */}
-              <div className="absolute top-8 left-8 flex flex-col gap-3">
-                {prod.is_featured && (
-                  <div className="bg-white/80 backdrop-blur-md text-primary text-[9px] font-black px-4 py-2 rounded-full uppercase tracking-widest border border-primary/10">
-                    Edición de Autor
-                  </div>
-                )}
-                {prod.is_promotion && (
-                  <div className="bg-secondary text-white text-[9px] font-black px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
-                    Precio Cashea
-                  </div>
-                )}
-              </div>
-
-              {/* Action Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-12">
-                 <Link 
-                   href={`/catalogo/${prod.slug || prod.id}`}
-                   className="bg-white text-on-surface px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:scale-110 transition-transform shadow-2xl"
-                 >
-                   Descubrir
-                 </Link>
-              </div>
-            </div>
-
-            {/* Content Section */}
-            <div className="flex flex-col flex-1 px-4">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-[10px] text-primary font-black uppercase tracking-[0.2em]">{prod.category_name}</span>
-                <span className="h-1 w-1 rounded-full bg-gray-300"></span>
-                <span className="text-[10px] text-gray-400 font-bold uppercase">{prod.code || "PR-001"}</span>
-              </div>
-              
-              <h3 className="font-headline-md text-2xl text-on-surface mb-6 group-hover:text-primary transition-colors duration-300">
-                {prod.name}
-              </h3>
-              
-              <div className="flex items-end justify-between mt-auto">
-                <div className="flex flex-col">
-                  <span className="text-3xl font-black text-primary">${parseFloat(prod.price_cash || 0).toLocaleString()}</span>
-                  <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1">Venta Directa</span>
-                </div>
-                <div className="flex items-center gap-2 text-primary group-hover:translate-x-2 transition-transform duration-300">
-                   <span className="font-bold text-[10px] uppercase tracking-widest">Ver más</span>
-                   <span className="material-symbols-outlined text-lg">east</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProductCard key={prod.id} product={prod} />
         ))}
       </div>
 
