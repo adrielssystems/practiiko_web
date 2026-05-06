@@ -85,7 +85,7 @@ export default function ProductCard({ product, isPreview = false }) {
                 <Link 
                   href={`/catalogo/${product.slug || product.id}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="bg-secondary text-white px-10 py-3 rounded-full font-bold text-sm shadow-xl hover:bg-white hover:text-primary transition-all duration-300 inline-block mb-4"
+                  className="bg-[#F28705] text-white px-10 py-3 rounded-full font-bold text-sm shadow-xl hover:bg-white hover:text-primary transition-all duration-300 inline-block mb-4"
                 >
                   Ver Ficha Completa
                 </Link>
