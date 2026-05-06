@@ -61,10 +61,14 @@ export default function ProductCard({ product, isPreview = false }) {
         {/* CARA TRASERA (DISEÑO OXARELLYS) */}
         <div className="product-card-back absolute inset-0 backface-hidden bg-primary text-white rounded-[40px] p-10 flex flex-col rotate-y-180 shadow-2xl overflow-hidden">
           <div className="flex flex-col h-full justify-center items-center text-center">
-            {/* Decoración superior */}
+            {/* Decoración superior: Logo Practiiko */}
             <div className="mb-6 relative">
-              <div className="absolute inset-0 bg-white/20 blur-xl rounded-full"></div>
-              <span className="material-symbols-outlined text-5xl text-secondary relative z-10">description</span>
+              <div className="absolute inset-0 bg-white/20 blur-2xl rounded-full scale-150"></div>
+              <img 
+                src="/logo-p.png" 
+                alt="Practiiko Logo" 
+                className="w-16 h-16 object-contain relative z-10 drop-shadow-lg"
+              />
             </div>
             
             <h4 className="text-white/60 font-black text-[10px] uppercase tracking-[0.3em] mb-2">Más información</h4>
