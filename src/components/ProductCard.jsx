@@ -32,36 +32,30 @@ export default function ProductCard({ product, isPreview = false }) {
               className="w-full h-full object-contain p-4 scale-90 group-hover:scale-100 transition-transform duration-700" 
               src={getImageUrl(product.main_image || (product.images && product.images[0]))} 
             />
-            
-            {/* Overlay Tags */}
-            <div className="absolute top-4 left-4 flex flex-col gap-2">
-              {(product.is_featured) && (
-                <div className="bg-secondary text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">
-                  Top Pick
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Info */}
-          <div className="flex flex-col flex-1">
-            <div className="flex justify-between items-start mb-2">
-              <span className="text-[10px] text-primary/60 font-black uppercase tracking-[0.2em]">{product.category_name || 'Muebles'}</span>
-              <span className="text-gray-300 font-bold text-[10px] uppercase">{product.code}</span>
+          <div className="flex flex-col flex-1 px-2">
+            <div className="flex justify-between items-start mb-1">
+              <span className="text-[10px] text-primary font-black uppercase tracking-[0.2em]">{product.category_name || 'Muebles'}</span>
             </div>
-            <h3 className="font-headline-md text-xl text-on-surface mb-4">
+            <h3 className="font-headline-md text-xl text-on-surface mb-4 leading-tight">
               {product.name || "Nombre del Producto"}
             </h3>
             
-            <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+            <div className="flex items-center justify-between mt-auto mb-4">
               <div className="flex flex-col">
                 <span className="text-2xl font-black text-primary">
                   ${parseFloat(product.price_cash || product.price_bcv || 0).toLocaleString()}
                 </span>
                 <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Inversión única</span>
               </div>
-              <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                <span className="material-symbols-outlined text-xl">sync_alt</span>
+            </div>
+
+            <div className="flex items-center justify-between pt-4 border-t border-gray-50 mb-2">
+               <span className="text-[10px] text-gray-400 font-black uppercase tracking-widest">Ver Características</span>
+               <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                <span className="material-symbols-outlined text-lg">sync_alt</span>
               </div>
             </div>
           </div>
