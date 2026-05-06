@@ -65,7 +65,7 @@ export default function ProductCard({ product, isPreview = false }) {
             <div className="mb-6 relative">
               <div className="absolute inset-0 bg-white/20 blur-2xl rounded-full scale-150"></div>
               <img 
-                src="/logo-p.png" 
+                src="/logo-p.jpeg" 
                 alt="Practiiko Logo" 
                 className="w-16 h-16 object-contain relative z-10 drop-shadow-lg"
               />
