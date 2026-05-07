@@ -55,21 +55,21 @@ export default function NosotrosPage() {
           {/* Background Image with Parallax effect simulation */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80\u0026w=2000" 
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000" 
               alt="Nuestra Misión" 
-              className="w-full h-full object-cover grayscale opacity-50"
+              className="w-full h-full object-cover grayscale opacity-60"
             />
-            <div className="absolute inset-0 bg-primary/80 mix-blend-multiply"></div>
+            <div className="absolute inset-0 bg-primary/70 mix-blend-multiply"></div>
           </div>
 
           <div className="relative z-10 max-w-[1000px] mx-auto px-6 text-center">
             <span className="text-secondary font-bold tracking-[0.4em] text-xs mb-6 uppercase block">Nuestra Misión</span>
-            <h2 className="text-white font-headline-lg text-4xl md:text-6xl mb-12 leading-tight">
-              Practiiko reconoce la importancia de establecer una relación basada en la <span className="italic text-secondary">confianza</span> y el <span className="italic text-secondary">compromiso</span>.
+            <h2 className="text-white font-headline-lg text-4xl md:text-6xl mb-12 leading-tight drop-shadow-sm">
+              Practiiko reconoce la importancia de establecer una relación basada en la <span className="italic text-secondary drop-shadow-[0_2px_10px_rgba(242,135,5,0.4)]">confianza</span> y el <span className="italic text-secondary drop-shadow-[0_2px_10px_rgba(242,135,5,0.4)]">compromiso</span>.
             </h2>
-            <div className="w-24 h-1 bg-secondary mx-auto rounded-full mb-12"></div>
-            <p className="text-white/80 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
-              Nuestra misión es transformar cada rincón en un espacio de bienestar, ofreciendo muebles de alta gama listos para disfrutar, entregados directamente en tu puerta.
+            <div className="w-24 h-1 bg-secondary mx-auto rounded-full mb-12 shadow-lg shadow-secondary/20"></div>
+            <p className="text-white text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed font-medium">
+              Nuestra misión es transformar cada rincón en un espacio de bienestar, ofreciendo muebles de alta gama listos para disfrutar. <span className="text-secondary font-bold">Desempaca y ¡Listo!</span> Es lujo, es simple, es Practiiko.
             </p>
           </div>
         </section>
