@@ -2,6 +2,7 @@ import TopNavBar from "@/components/TopNavBar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
   title: "Nosotros | Practiiko",
@@ -37,10 +38,12 @@ export default function NosotrosPage() {
 
             <div className="relative group animate-in slide-in-from-right duration-700 h-[400px] md:h-[600px] w-full">
               <div className="rounded-[48px] overflow-hidden shadow-2xl relative h-full w-full">
-                <img 
-                  src="/nosotros1.jpg?v=1.1" 
+                <Image 
+                  src="/nosotros1.jpg" 
                   alt="Diseño de Interiores Practiiko" 
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  fill
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
               </div>
@@ -54,10 +57,11 @@ export default function NosotrosPage() {
         <section className="relative py-32 md:py-48 flex items-center justify-center overflow-hidden min-h-[500px]">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
-            <img 
-              src="/nosotros2.jpg?v=1.1" 
+            <Image 
+              src="/nosotros2.jpg" 
               alt="Nuestra Misión" 
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-primary/80"></div>
           </div>
