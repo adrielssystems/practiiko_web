@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { getImageUrl } from "@/lib/utils";
 
-export default function ProductCard({ product, isPreview = false }) {
-  const [isFlipped, setIsFlipped] = useState(false);
+export default function ProductCard({ product, isFlipped, onFlip, isPreview = false }) {
+  // Características por defecto si no hay
+  const features = product.features || ["Calidad Premium", "Diseño Ergonómico", "Materiales Duraderos"];
 
   const handleFlip = (e) => {
     // Si es un link dentro de la tarjeta, no girar
     if (e.target.tagName === 'A' || e.target.closest('a')) return;
-    setIsFlipped(!isFlipped);
+    onFlip();
   };
 
   return (
