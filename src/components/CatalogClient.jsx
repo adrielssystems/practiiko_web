@@ -9,8 +9,13 @@ import ProductCard from "./ProductCard";
 export default function CatalogClient({ initialProducts, categories }) {
   const [activeCategory, setActiveCategory] = useState("all");
   const [filteredProducts, setFilteredProducts] = useState(initialProducts);
+  const [activeCardId, setActiveCardId] = useState(null);
   const containerRef = useRef(null);
   const cardsRef = useRef([]);
+
+  const handleFlip = (id) => {
+    setActiveCardId(prevId => prevId === id ? null : id);
+  };
 
   useEffect(() => {
     if (activeCategory === "all") {
@@ -133,7 +138,12 @@ export default function CatalogClient({ initialProducts, categories }) {
       {/* PRODUCTS GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
         {filteredProducts.map((prod, idx) => (
-          <ProductCard key={prod.id} product={prod} />
+          <ProductCard 
+            key={prod.id} 
+            product={prod} 
+            isFlipped={activeCardId === prod.id}
+            onFlip={() => handleFlip(prod.id)}
+          />
         ))}
       </div>
 
