@@ -1,13 +1,17 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="w-full border-t border-gray-200 bg-[#F2F2F2] font-body-md text-sm">
       <div className="max-w-[1280px] mx-auto px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
         <div>
-          <img 
-            alt="Practiiko Logo" 
-            className="h-14 w-auto mb-4 block hover:opacity-80 transition-opacity cursor-pointer" 
-            src="/logo.webp" 
-          />
+          <Link href="/">
+            <img 
+              alt="Practiiko Logo" 
+              className="h-14 w-auto mb-4 block hover:opacity-80 transition-opacity cursor-pointer" 
+              src="/logo.webp" 
+            />
+          </Link>
           <p className="text-slate-500 mb-6 max-w-xs">Transformando hogares con muebles de diseño inteligente, accesibles y listos para disfrutar.</p>
         </div>
         <div className="md:justify-self-center">
