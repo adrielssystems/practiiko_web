@@ -63,7 +63,7 @@ export default function NosotrosPage() {
           </div>
 
           <div className="relative z-10 max-w-[1000px] mx-auto px-6 text-center">
-            <span className="text-secondary font-bold tracking-[0.4em] text-xs mb-6 uppercase block [text-shadow:0_0_10px_rgba(255,255,255,0.3)]">Nuestra Misión</span>
+            <span className="text-secondary font-bold tracking-[0.4em] text-xs mb-6 uppercase block [text-shadow:-0.5px_-0.5px_0_#fff,0.5px_-0.5px_0_#fff,-0.5px_0.5px_0_#fff,0.5px_0.5px_0_#fff]">Nuestra Misión</span>
             <h2 className="text-white font-headline-lg text-4xl md:text-6xl mb-12 leading-tight drop-shadow-sm">
               Practiiko reconoce la importancia de establecer una relación basada en la <span className="italic text-secondary [text-shadow:-1px_-1px_0_#fff,1px_-1px_0_#fff,-1px_1px_0_#fff,1px_1px_0_#fff,0_4px_20px_rgba(242,135,5,0.3)]">confianza</span> y el <span className="italic text-secondary [text-shadow:-1px_-1px_0_#fff,1px_-1px_0_#fff,-1px_1px_0_#fff,1px_1px_0_#fff,0_4px_20px_rgba(242,135,5,0.3)]">compromiso</span>.
             </h2>
