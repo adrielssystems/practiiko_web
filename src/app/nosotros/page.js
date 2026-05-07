@@ -63,13 +63,13 @@ export default function NosotrosPage() {
           </div>
 
           <div className="relative z-10 max-w-[1000px] mx-auto px-6 text-center">
-            <span className="text-secondary font-bold tracking-[0.4em] text-xs mb-6 uppercase block">Nuestra Misión</span>
+            <span className="text-secondary font-bold tracking-[0.4em] text-xs mb-6 uppercase block [text-shadow:0_0_10px_rgba(255,255,255,0.3)]">Nuestra Misión</span>
             <h2 className="text-white font-headline-lg text-4xl md:text-6xl mb-12 leading-tight drop-shadow-sm">
-              Practiiko reconoce la importancia de establecer una relación basada en la <span className="italic text-secondary drop-shadow-[0_2px_10px_rgba(242,135,5,0.4)]">confianza</span> y el <span className="italic text-secondary drop-shadow-[0_2px_10px_rgba(242,135,5,0.4)]">compromiso</span>.
+              Practiiko reconoce la importancia de establecer una relación basada en la <span className="italic text-secondary [text-shadow:-1px_-1px_0_#fff,1px_-1px_0_#fff,-1px_1px_0_#fff,1px_1px_0_#fff,0_4px_20px_rgba(242,135,5,0.3)]">confianza</span> y el <span className="italic text-secondary [text-shadow:-1px_-1px_0_#fff,1px_-1px_0_#fff,-1px_1px_0_#fff,1px_1px_0_#fff,0_4px_20px_rgba(242,135,5,0.3)]">compromiso</span>.
             </h2>
             <div className="w-24 h-1 bg-secondary mx-auto rounded-full mb-12 shadow-lg shadow-secondary/20"></div>
             <p className="text-white text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed font-medium">
-              Nuestra misión es transformar cada rincón en un espacio de bienestar, ofreciendo muebles de alta gama listos para disfrutar. <span className="text-secondary font-bold">Desempaca y ¡Listo!</span> Es lujo, es simple, es Practiiko.
+              Nuestra misión es transformar cada rincón en un espacio de bienestar, ofreciendo muebles de alta gama listos para disfrutar. <span className="text-secondary font-bold [text-shadow:-0.5px_-0.5px_0_#fff,0.5px_-0.5px_0_#fff,-0.5px_0.5px_0_#fff,0.5px_0.5px_0_#fff]">Desempaca y ¡Listo!</span> Es lujo, es simple, es Practiiko.
             </p>
           </div>
         </section>
