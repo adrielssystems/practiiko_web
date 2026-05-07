@@ -35,14 +35,14 @@ export default function NosotrosPage() {
               </div>
             </div>
 
-            <div className="relative group animate-in slide-in-from-right duration-700">
-              <div className="rounded-[48px] overflow-hidden shadow-2xl relative aspect-[4/5] md:aspect-auto md:h-[600px]">
+            <div className="relative group animate-in slide-in-from-right duration-700 h-[400px] md:h-[600px] w-full">
+              <div className="rounded-[48px] overflow-hidden shadow-2xl relative h-full w-full">
                 <img 
-                  src="/nosotros1.jpg" 
+                  src="/nosotros1.jpg?v=1.1" 
                   alt="Diseño de Interiores Practiiko" 
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
               </div>
               {/* Adorno decorativo */}
               <div className="absolute -z-10 -bottom-6 -left-6 w-32 h-32 bg-secondary/10 rounded-full blur-2xl"></div>
@@ -51,15 +51,15 @@ export default function NosotrosPage() {
         </section>
 
         {/* SECCIÓN MISIÓN */}
-        <section className="relative py-32 md:py-48 flex items-center justify-center overflow-hidden">
-          {/* Background Image with Parallax effect simulation */}
+        <section className="relative py-32 md:py-48 flex items-center justify-center overflow-hidden min-h-[500px]">
+          {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="/nosotros2.jpg" 
+              src="/nosotros2.jpg?v=1.1" 
               alt="Nuestra Misión" 
-              className="w-full h-full object-cover grayscale opacity-60"
+              className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-primary/70 mix-blend-multiply"></div>
+            <div className="absolute inset-0 bg-primary/80"></div>
           </div>
 
           <div className="relative z-10 max-w-[1000px] mx-auto px-6 text-center">
