@@ -117,7 +117,7 @@ export default function NosotrosPage() {
               href="/catalogo"
               className="inline-flex items-center px-12 py-5 bg-[#F28705] text-white font-button rounded-2xl hover:bg-[#D67604] hover:-translate-y-1 transition-all duration-300 shadow-xl shadow-[#F28705]/20 text-lg"
             >
-              Ver nuestra colección
+              Ver nuestro Catálogo
             </Link>
           </div>
         </section>
