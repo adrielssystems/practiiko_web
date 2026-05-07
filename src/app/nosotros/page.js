@@ -38,7 +38,7 @@ export default function NosotrosPage() {
             <div className="relative group animate-in slide-in-from-right duration-700">
               <div className="rounded-[48px] overflow-hidden shadow-2xl relative aspect-[4/5] md:aspect-auto md:h-[600px]">
                 <img 
-                  src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80\u0026w=2000" 
+                  src="/nosotros1.jpg" 
                   alt="Diseño de Interiores Practiiko" 
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
@@ -55,7 +55,7 @@ export default function NosotrosPage() {
           {/* Background Image with Parallax effect simulation */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000" 
+              src="/nosotros2.jpg" 
               alt="Nuestra Misión" 
               className="w-full h-full object-cover grayscale opacity-60"
             />
