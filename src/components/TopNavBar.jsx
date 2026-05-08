@@ -13,6 +13,7 @@ export default function TopNavBar() {
         </Link>
         <div className="hidden md:flex items-center gap-8">
           <Link className="text-slate-600 font-medium hover:text-[#F28705] transition-all duration-200 text-[16px] hover:-translate-y-0.5 inline-block" href="/">Inicio</Link>
+          <Link className="text-slate-600 font-medium hover:text-[#F28705] transition-all duration-200 text-[16px] hover:-translate-y-0.5 inline-block" href="/#nosotros">Nosotros</Link>
           <Link className="text-slate-600 font-medium hover:text-[#F28705] transition-all duration-200 text-[16px] hover:-translate-y-0.5 inline-block" href="/catalogo">Catálogo</Link>
         </div>
         <button className="bg-[#F28705] text-white px-6 py-3 rounded-xl font-button active:scale-95 transition-all duration-300 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 hover:-translate-y-1">

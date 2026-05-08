@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutUsSection() {
   return (
-    <section className="py-24 md:py-32 bg-white overflow-hidden">
+    <section id="nosotros" className="py-24 md:py-32 bg-white overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
         <div className="animate-in slide-in-from-left duration-700">
           <span className="text-primary font-bold tracking-[0.3em] text-xs mb-4 uppercase block">Acerca de</span>
