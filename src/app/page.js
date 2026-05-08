@@ -10,6 +10,7 @@ import MattressSection from "@/components/MattressSection";
 import LogisticsSection from "@/components/LogisticsSection";
 import ErgonomicsSection from "@/components/ErgonomicsSection";
 import Footer from "@/components/Footer";
+import TeamSection from "@/components/TeamSection";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const dynamic = 'force-dynamic';
@@ -44,6 +45,7 @@ export default async function Home() {
         <MattressSection />
         <LogisticsSection />
         <ErgonomicsSection />
+        <TeamSection />
       </main>
 
       <Footer />
