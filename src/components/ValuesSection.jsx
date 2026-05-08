@@ -3,9 +3,14 @@ export default function ValuesSection() {
     <section className="py-24 bg-surface">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-headline-lg text-4xl text-on-surface mb-4">Nuestros Valores</h2>
+          <h2 className="font-headline-lg text-4xl text-on-surface mb-4">Nuestra misión y Valores</h2>
           <div className="w-16 h-1 bg-secondary mx-auto rounded-full mb-8"></div>
-          <p className="text-on-surface-variant max-w-2xl mx-auto">La base de todo lo que creamos para transformar tu hogar.</p>
+          <div className="max-w-4xl mx-auto mb-16 px-6">
+            <p className="text-on-surface-variant text-xl md:text-2xl leading-relaxed font-medium italic">
+              "Nuestra misión es transformar cada rincón en un espacio de bienestar, ofreciendo muebles de alta gama listos para disfrutar. <span className="text-primary font-bold">Desempaca y ¡Listo!</span> Es lujo, es simple, es Practiiko."
+            </p>
+          </div>
+          <p className="text-on-surface-variant max-w-2xl mx-auto uppercase tracking-widest text-xs font-bold opacity-60">Nuestros pilares fundamentales</p>
         </div>
         <div className="grid md:grid-cols-3 gap-16">
           <div className="text-center group">
