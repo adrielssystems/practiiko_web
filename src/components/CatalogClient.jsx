@@ -180,6 +180,7 @@ export default function CatalogClient({ initialProducts, categories }) {
           perspective: 1500px;
         }
       `}</style>
+      </div>
     </div>
   );
 }
