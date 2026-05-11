@@ -10,9 +10,9 @@ async function getGalleryData() {
     return [
       { 
         id: 1, 
-        name: "Sofá Abrazo Mamá Verde", 
+        name: "Sofá Abrazo de Mamá | Confort Premium Verde", 
         price_cash: 1200, 
-        description: "Sofá individual, modelo Abrazo de Mamá, color Verde Claro. Diseño ergonómico y materiales de alta durabilidad.",
+        description: "Experimenta la máxima relajación con nuestro sofá individual de alta gama. Diseño ergonómico con espumas de alta densidad, ideal para salas modernas en Margarita. Calidad superior que llega en caja.",
         main_image: "/hero-sofa.png", 
         category_name: "Salas",
         is_featured: true,
@@ -20,9 +20,9 @@ async function getGalleryData() {
       },
       { 
         id: 2, 
-        name: "Sofá Cama Beige Rectos", 
+        name: "Sofá Cama Versátil Beige | Estilo y Funcionalidad", 
         price_cash: 685, 
-        description: "Sofá cama versátil con diseño de líneas rectas en color beige. Ideal para optimizar espacios sin sacrificar estilo.",
+        description: "Optimiza tu espacio con este sofá cama premium de líneas rectas. Perfecto para apartamentos en la Isla de Margarita. Tapicería resistente y ensamble intuitivo sin herramientas.",
         main_image: "/hero-sofa.png", 
         category_name: "Sofá Cama",
         is_featured: true,
@@ -30,9 +30,9 @@ async function getGalleryData() {
       },
       { 
         id: 3, 
-        name: "Colchón Individual 100x190", 
+        name: "Colchón Practiiko Premium 100x190 | Descanso Avanzado", 
         price_cash: 325, 
-        description: "Colchón de espuma comprimida con soporte reforzado y cubierta premium. Dimensiones: 100*190*35 cm.",
+        description: "Colchón ortopédico de espuma comprimida al vacío. Tecnología de soporte reforzado y textiles frescos. El mejor descanso en Margarita, entregado directamente en tu puerta.",
         main_image: "/hero-sofa.png", 
         category_name: "Colchón",
         is_featured: true,

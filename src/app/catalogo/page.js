@@ -47,15 +47,14 @@ async function getCatalogData() {
 function getMockData() {
   return { 
     products: [
-      { id: 1, name: "Sofá Cloud", price_cash: 1200, category_id: 1, category_name: "Salas", description: "Comodidad absoluta.", main_image: "/carrusel1.avif" },
-      { id: 2, name: "Mesa Loft", price_cash: 250, category_id: 2, category_name: "Comedor", description: "Estilo industrial.", main_image: "/carrusel2.avif" },
-      { id: 3, name: "Silla Nordic", price_cash: 150, category_id: 2, category_name: "Comedor", description: "Minimalismo puro.", main_image: "/carrusel3.avif" },
-      { id: 4, name: "Cama Zen", price_cash: 950, category_id: 3, category_name: "Dormitorio", description: "Descanso profundo.", main_image: "/carrusel4.avif" }
+      { id: 1, name: "Sofá Abrazo de Mamá | Confort Premium Verde", price_cash: 1200, category_id: 1, category_name: "Salas", description: "Experimenta la máxima relajación con nuestro sofá individual de alta gama. Diseño ergonómico con espumas de alta densidad, ideal para salas modernas en Margarita.", main_image: "/hero-sofa.png" },
+      { id: 2, name: "Sofá Cama Versátil Beige | Estilo y Funcionalidad", price_cash: 685, category_id: 2, category_name: "Sofá Cama", description: "Optimiza tu espacio con este sofá cama premium de líneas rectas. Perfecto para apartamentos en la Isla de Margarita. Tapicería resistente.", main_image: "/hero-sofa.png" },
+      { id: 3, name: "Colchón Practiiko Premium 100x190 | Descanso Avanzado", price_cash: 325, category_id: 3, category_name: "Colchón", description: "Colchón ortopédico de espuma comprimida al vacío. Tecnología de soporte reforzado y textiles frescos.", main_image: "/hero-sofa.png" }
     ], 
     categories: [
       { id: 1, name: "Salas" },
-      { id: 2, name: "Comedor" },
-      { id: 3, name: "Dormitorio" }
+      { id: 2, name: "Sofá Cama" },
+      { id: 3, name: "Colchón" }
     ] 
   };
 }
