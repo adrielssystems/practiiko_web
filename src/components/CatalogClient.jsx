@@ -97,11 +97,6 @@ export default function CatalogClient({ initialProducts, categories }) {
       <div className="catalog-header mb-20 text-left">
         <h1 className="font-headline-lg text-6xl md:text-7xl text-on-surface mb-8 leading-[0.9] flex flex-wrap items-center gap-x-4">
           Explora la <br /> <span className="text-primary italic">Nueva Colección Practiiko</span>
-          <img 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsCG7EaiBjMSrU-0q_ojcRnLs63GXDXeZDjK6pPAKmgRCv1lZaYwDO3unNHbpEYrSJjrSQMuiyOuxvMPQnaSxQ6kFSK6jMFWwxfgCp9U84S_XlPGv26uJS0qQzyVfH0H6Fh87uiDyoLrDsBC10T2DxqMrs19UEnxS6qMhTQO92nAl4yid8nXre_bC7k5x2e4vPz_X7jKdm89KjnacidXhCSfb14PHKk0WQzKGNA4yGXLcLG1nOmQ7fc20zZuEHSbErg9wK_PQ-fvgp" 
-            alt="Practiiko" 
-            className="h-12 md:h-16 w-auto inline-block object-contain"
-          />
         </h1>
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
