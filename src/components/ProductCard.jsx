@@ -87,7 +87,7 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
                   onClick={(e) => e.stopPropagation()}
                   className="bg-[#F28705] text-white px-10 py-3 rounded-full font-bold text-sm shadow-xl hover:bg-white hover:text-primary transition-all duration-300 inline-block mb-4"
                 >
-                  Ver Galeria
+                  Comprar Ahora
                 </Link>
                 <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold">Haz clic para volver</p>
               </div>
