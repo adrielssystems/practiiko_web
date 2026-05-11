@@ -1,7 +1,15 @@
 export default function ValuesSection() {
   return (
-    <section className="py-24 bg-surface">
-      <div className="max-w-[1280px] mx-auto px-6">
+    <section className="py-24 bg-surface relative overflow-hidden">
+      {/* Background SVG Pattern */}
+      <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
+        <img 
+          src="/fondo practiiko.svg" 
+          alt="Practiiko Pattern" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="max-w-[1280px] mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-headline-lg text-4xl text-on-surface mb-4">Nuestra misión y Valores</h2>
           <div className="w-16 h-1 bg-secondary mx-auto rounded-full mb-8"></div>

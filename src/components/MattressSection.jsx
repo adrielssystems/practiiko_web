@@ -2,8 +2,16 @@ import Link from "next/link";
 
 export default function MattressSection() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-[1280px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    <section className="py-24 bg-white relative overflow-hidden">
+      {/* Background SVG Pattern */}
+      <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
+        <img 
+          src="/fondo practiiko.svg" 
+          alt="Practiiko Pattern" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="max-w-[1280px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
         {/* Columna Izquierda: Contenido */}
         <div className="animate-in slide-in-from-left duration-700">
           <h2 className="font-headline-lg text-headline-lg mb-4">

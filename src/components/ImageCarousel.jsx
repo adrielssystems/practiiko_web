@@ -20,8 +20,16 @@ export default function ImageCarousel() {
 
   return (
     <>
-      <section className="py-12 bg-white overflow-hidden">
-        <div className="relative w-full">
+      <section className="py-12 bg-white relative overflow-hidden">
+        {/* Background SVG Pattern */}
+        <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
+          <img 
+            src="/fondo practiiko.svg" 
+            alt="Practiiko Pattern" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="relative w-full z-10">
           {/* Infinite scroll wrapper */}
           <div 
             className="flex w-fit animate-infinite-scroll"

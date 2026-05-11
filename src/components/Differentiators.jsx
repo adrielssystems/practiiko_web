@@ -1,7 +1,15 @@
 export default function Differentiators() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-[1280px] mx-auto px-6">
+    <section className="py-24 bg-white relative overflow-hidden">
+      {/* Background SVG Pattern */}
+      <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
+        <img 
+          src="/fondo practiiko.svg" 
+          alt="Practiiko Pattern" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="max-w-[1280px] mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">¿Por qué elegir Muebles Practiiko?</h2>
           <p className="text-on-surface-variant max-w-2xl mx-auto">Reinventamos la experiencia de amueblar tu espacio con soluciones modulares y entrega eficiente.</p>
