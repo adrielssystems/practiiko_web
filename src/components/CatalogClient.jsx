@@ -94,7 +94,7 @@ export default function CatalogClient({ initialProducts, categories }) {
     <div ref={containerRef} className="w-full">
       
       {/* HEADER SECTION - FULL WIDTH HERO */}
-      <section className="relative overflow-hidden min-h-[500px] md:min-h-[650px] flex items-center mt-[-160px] pt-[160px] mb-16">
+      <section className="relative overflow-hidden min-h-[400px] md:min-h-[500px] flex items-center mt-[-160px] pt-[160px] mb-12">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -107,18 +107,18 @@ export default function CatalogClient({ initialProducts, categories }) {
         </div>
 
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 w-full">
-          <div className="max-w-3xl py-12 md:py-20">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white font-black text-[10px] mb-6 uppercase tracking-widest backdrop-blur-md border border-white/30">
+          <div className="max-w-3xl py-8 md:py-12">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white font-black text-[10px] mb-4 uppercase tracking-widest backdrop-blur-md border border-white/30">
               NUEVA COLECCIÓN
             </span>
-            <h1 className="font-headline-lg text-5xl md:text-8xl text-white mb-6 leading-[0.9] drop-shadow-2xl">
+            <h1 className="font-headline-lg text-5xl md:text-7xl text-white mb-4 leading-[0.9] drop-shadow-2xl">
               Explora la <br /> <span className="text-[#F28705] italic">Nueva Colección Practiiko</span>
             </h1>
             <div className="max-w-xl">
-              <p className="text-white text-xl md:text-2xl font-bold leading-tight mb-3 drop-shadow-lg">
+              <p className="text-white text-lg md:text-xl font-bold leading-tight mb-2 drop-shadow-lg">
                 El sofá de moda que llega en caja y cobra vida en tu casa.
               </p>
-              <p className="text-white/80 text-lg md:text-xl font-medium drop-shadow-md">
+              <p className="text-white/80 text-base md:text-lg font-medium drop-shadow-md">
                 ¡Dale un toque de tendencia a tu hogar!
               </p>
             </div>
@@ -128,7 +128,7 @@ export default function CatalogClient({ initialProducts, categories }) {
 
       {/* FILTER AND CONTENT SECTION - CONSTRAINED */}
       <div className="max-w-[1440px] mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
             <div className="flex-1">
               <h2 className="text-gray-400 font-black text-xs uppercase tracking-[0.3em] mb-2">Filtrar por categoría</h2>
               <div className="h-1 w-12 bg-[#F28705] rounded-full"></div>
