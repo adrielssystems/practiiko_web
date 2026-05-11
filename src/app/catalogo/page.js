@@ -8,6 +8,14 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 async function getCatalogData() {
+  const isDev = process.env.NODE_ENV === 'development';
+  const hasDb = !!process.env.DATABASE_URL;
+
+  if (isDev && !hasDb) {
+    console.log("Local development: No DATABASE_URL found, using mock data.");
+    return getMockData();
+  }
+
   try {
     const productsRes = await query(`
       SELECT p.*, c.name as category_name,
@@ -21,22 +29,29 @@ async function getCatalogData() {
     const categoriesRes = await query("SELECT * FROM categories ORDER BY name ASC");
 
     return {
-      products: productsRes.rows,
-      categories: categoriesRes.rows
+      products: productsRes.rows || [],
+      categories: categoriesRes.rows || []
     };
   } catch (e) {
-    console.error("Error fetching catalog data, using mock data:", e);
-    return { 
-      products: [
-        { id: 1, name: "Sofá Cloud", price_cash: 1200, category_name: "Salas", description: "Comodidad absoluta." },
-        { id: 2, name: "Mesa Loft", price_cash: 250, category_name: "Comedor", description: "Estilo industrial." }
-      ], 
-      categories: [
-        { id: 1, name: "Salas" },
-        { id: 2, name: "Comedor" }
-      ] 
-    };
+    console.error("Database query failed:", e.message);
+    return getMockData();
   }
+}
+
+function getMockData() {
+  return { 
+    products: [
+      { id: 1, name: "Sofá Cloud", price_cash: 1200, category_id: 1, category_name: "Salas", description: "Comodidad absoluta.", main_image: "/carrusel1.avif" },
+      { id: 2, name: "Mesa Loft", price_cash: 250, category_id: 2, category_name: "Comedor", description: "Estilo industrial.", main_image: "/carrusel2.avif" },
+      { id: 3, name: "Silla Nordic", price_cash: 150, category_id: 2, category_name: "Comedor", description: "Minimalismo puro.", main_image: "/carrusel3.avif" },
+      { id: 4, name: "Cama Zen", price_cash: 950, category_id: 3, category_name: "Dormitorio", description: "Descanso profundo.", main_image: "/carrusel4.avif" }
+    ], 
+    categories: [
+      { id: 1, name: "Salas" },
+      { id: 2, name: "Comedor" },
+      { id: 3, name: "Dormitorio" }
+    ] 
+  };
 }
 
 export default async function CatalogoPage() {
