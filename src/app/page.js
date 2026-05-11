@@ -11,7 +11,7 @@ import LogisticsSection from "@/components/LogisticsSection";
 import ErgonomicsSection from "@/components/ErgonomicsSection";
 import PromoBanner from "@/components/PromoBanner";
 import Footer from "@/components/Footer";
-import TeamSection from "@/components/TeamSection";
+
 import AboutUsSection from "@/components/AboutUsSection";
 import ValuesSection from "@/components/ValuesSection";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -51,7 +51,7 @@ export default async function Home() {
         <PromoBanner compact={true} />
         <AboutUsSection />
         <ValuesSection />
-        <TeamSection />
+
         <PromoBanner 
           title="Desempaca el lujo. Transforma tu espacio hoy!"
           description="Diseño de vanguardia con envío GRATIS exclusivo en Margarita. Es lujo, es simple, es Practiiko"
