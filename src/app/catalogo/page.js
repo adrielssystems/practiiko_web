@@ -43,7 +43,18 @@ export default async function CatalogoPage() {
   const { products, categories } = await getCatalogData();
 
   return (
-    <div className="bg-[#FFFFFF] font-body-md text-on-surface antialiased min-h-screen flex flex-col">
+    <div className="relative font-body-md text-on-surface antialiased min-h-screen flex flex-col">
+      {/* Background Image Layer */}
+      <div 
+        className="fixed inset-0 z-[-1] opacity-50 pointer-events-none"
+        style={{ 
+          backgroundImage: 'url("/fondo%20practiiko.svg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed'
+        }}
+      />
       <TopNavBar />
 
       <main className="pt-40 pb-32 flex-grow">
