@@ -52,6 +52,10 @@ export default async function Home() {
         <AboutUsSection />
         <ValuesSection />
         <TeamSection />
+        <PromoBanner 
+          title="Desempaca el lujo. Transforma tu espacio hoy!"
+          description="Diseño de vanguardia con envío GRATIS exclusivo en Margarita. Es lujo, es simple, es Practiiko"
+        />
       </main>
 
       <Footer />
