@@ -94,32 +94,38 @@ export default function CatalogClient({ initialProducts, categories }) {
     <div ref={containerRef} className="max-w-[1440px] mx-auto px-6">
       
       {/* HEADER SECTION */}
-      <div className="catalog-header mb-20 text-left">
-        {/* New Hero Image */}
-        <div className="mb-12 rounded-[40px] overflow-hidden shadow-2xl">
+      {/* HEADER SECTION */}
+      <div className="catalog-header mb-16 text-left">
+        {/* New Hero Image with Text Overlay */}
+        <div className="relative mb-12 rounded-[40px] overflow-hidden shadow-2xl h-[400px] md:h-[500px]">
           <img 
             src="/hero-catalogo-practiiko.svg" 
             alt="Nueva Colección Practiiko" 
-            className="w-full h-auto object-cover max-h-[400px]"
+            className="w-full h-full object-cover"
           />
-        </div>
-
-        <h1 className="font-headline-lg text-6xl md:text-7xl text-on-surface mb-8 leading-[0.9] flex flex-wrap items-center gap-x-4">
-          Explora la <br /> <span className="text-primary italic">Nueva Colección Practiiko</span>
-        </h1>
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+          {/* Text Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex flex-col justify-center px-12 md:px-20">
+            <h1 className="font-headline-lg text-5xl md:text-7xl text-white mb-6 leading-[0.9] max-w-3xl">
+              Explora la <br /> <span className="text-primary italic">Nueva Colección Practiiko</span>
+            </h1>
             <div className="max-w-xl">
-              <p className="text-on-surface text-xl font-bold leading-tight mb-2">
+              <p className="text-white text-xl md:text-2xl font-bold leading-tight mb-2 drop-shadow-lg">
                 El sofá de moda que llega en caja y cobra vida en tu casa.
               </p>
-              <p className="text-on-surface-variant text-lg">
+              <p className="text-white/80 text-lg md:text-xl drop-shadow-md">
                 ¡Dale un toque de tendencia a tu hogar!
               </p>
             </div>
+          </div>
+        </div>
+        
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="flex-1">
+              {/* Optional: Add some space or a small intro here if needed */}
+            </div>
             
             {/* Filter Pills */}
-            <div className="flex flex-wrap gap-2 p-1.5 bg-gray-50 rounded-3xl border border-gray-100">
+            <div className="flex flex-wrap gap-2 p-1.5 bg-gray-50/50 backdrop-blur-sm rounded-3xl border border-gray-100 shadow-sm">
               <button 
                 onClick={() => setActiveCategory("all")}
                 className={`px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-[#F28705] text-white shadow-xl scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
