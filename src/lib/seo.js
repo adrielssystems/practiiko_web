@@ -43,5 +43,10 @@ export function generateSEO({
       index: !noIndex,
       follow: !noIndex,
     },
+    icons: {
+      icon: "/favicon Practiiko.png",
+      shortcut: "/favicon Practiiko.png",
+      apple: "/favicon Practiiko.png",
+    },
   };
 }
