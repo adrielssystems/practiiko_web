@@ -118,7 +118,7 @@ export default function CatalogClient({ initialProducts, categories }) {
             <div className="flex flex-wrap gap-2 p-1.5 bg-gray-50 rounded-3xl border border-gray-100">
               <button 
                 onClick={() => setActiveCategory("all")}
-                className={`px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-primary text-white shadow-xl scale-105' : 'text-gray-400 hover:text-primary'}`}
+                className={`px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-[#F28705] text-white shadow-xl scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
               >
                 Todos
               </button>
@@ -126,7 +126,7 @@ export default function CatalogClient({ initialProducts, categories }) {
                 <button 
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id.toString())}
-                  className={`px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.id.toString() ? 'bg-primary text-white shadow-xl scale-105' : 'text-gray-400 hover:text-primary'}`}
+                  className={`px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.id.toString() ? 'bg-[#F28705] text-white shadow-xl scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
                 >
                   {cat.name}
                 </button>
