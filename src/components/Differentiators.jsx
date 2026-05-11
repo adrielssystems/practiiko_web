@@ -1,6 +1,6 @@
 export default function Differentiators() {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-transparent relative overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">¿Por qué elegir Muebles Practiiko?</h2>

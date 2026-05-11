@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function MattressSection() {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-transparent relative overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
         {/* Columna Izquierda: Contenido */}
         <div className="animate-in slide-in-from-left duration-700">

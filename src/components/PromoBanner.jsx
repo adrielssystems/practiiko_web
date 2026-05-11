@@ -6,7 +6,7 @@ export default function PromoBanner({
   compact = false
 }) {
   return (
-    <section className={`${compact ? 'py-6' : 'py-12'} bg-white relative overflow-hidden`}>
+    <section className={`${compact ? 'py-6' : 'py-12'} bg-transparent relative overflow-hidden`}>
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
         <div className={`relative overflow-hidden bg-[#F28705] rounded-[32px] ${compact ? 'p-6 md:p-8' : 'p-8 md:p-12'} shadow-xl shadow-orange-500/20`}>
           {/* Decorative Background Elements */}

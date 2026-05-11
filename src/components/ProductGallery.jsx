@@ -101,7 +101,7 @@ export default async function ProductGallery() {
   if (!products || products.length === 0) return null;
 
   return (
-    <section id="productos" className="py-32 bg-[#F9FBFC] overflow-hidden">
+    <section id="productos" className="py-32 bg-transparent relative overflow-hidden">
       <ProductGalleryClient 
         initialProducts={products} 
       />
