@@ -11,13 +11,10 @@ export default function AboutUsSection() {
           </h2>
           <div className="space-y-6 text-on-surface-variant text-lg leading-relaxed">
             <p>
-              En <strong>Practiiko</strong>, nacimos con la visión de revolucionar la forma en que las personas amueblan sus hogares. Entendemos que el diseño de vanguardia no debería ser un lujo inaccesible, sino una solución inteligente al alcance de todos.
+              En <strong>Practiiko</strong> redefinimos el interiorismo contemporáneo al fusionar diseño de vanguardia con una ingeniería logística revolucionaria. Nos especializamos en mobiliario de alta gama para hogares, hoteles y oficinas, democratizando el lujo funcional a través de nuestro innovador sistema de empaque comprimido al vacío; una solución inteligente que garantiza una entrega ágil, sostenible y sin complicaciones.
             </p>
             <p>
-              Nuestra trayectoria se basa en la innovación constante y el compromiso con la calidad. Nos especializamos en mobiliario que combina estética contemporánea con una funcionalidad excepcional, diseñados específicamente para adaptarse al ritmo de vida moderno y a los retos de los espacios actuales.
-            </p>
-            <p>
-              Cada pieza de Practiiko es el resultado de una búsqueda incansable de soluciones que respondan a las necesidades de hogares, hoteles y oficinas, garantizando durabilidad y un estilo que trasciende las tendencias.
+              Cada pieza es un manifiesto de durabilidad y estilo, diseñada meticulosamente para quienes buscan transformar sus espacios con la eficiencia y el carácter que el ritmo de vida moderno exige.
             </p>
           </div>
         </div>
