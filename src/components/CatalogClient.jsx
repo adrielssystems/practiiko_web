@@ -95,6 +95,15 @@ export default function CatalogClient({ initialProducts, categories }) {
       
       {/* HEADER SECTION */}
       <div className="catalog-header mb-20 text-left">
+        {/* New Hero Image */}
+        <div className="mb-12 rounded-[40px] overflow-hidden shadow-2xl">
+          <img 
+            src="/hero-catalogo-practiiko.svg" 
+            alt="Nueva Colección Practiiko" 
+            className="w-full h-auto object-cover max-h-[400px]"
+          />
+        </div>
+
         <h1 className="font-headline-lg text-6xl md:text-7xl text-on-surface mb-8 leading-[0.9] flex flex-wrap items-center gap-x-4">
           Explora la <br /> <span className="text-primary italic">Nueva Colección Practiiko</span>
         </h1>
