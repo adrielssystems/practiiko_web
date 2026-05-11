@@ -12,7 +12,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 z-0">
           <img 
             src="/hero-bg.jpg" 
-            alt="Practiiko Hero Background" 
+            alt="Muebles Premium Practiiko en Venezuela y Margarita" 
             className="w-full h-full object-cover object-center"
           />
           {/* Overlay for text readability */}
@@ -22,10 +22,10 @@ export default function HeroSection() {
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 w-full">
           <div className="max-w-2xl transition-all duration-700 transform translate-y-0 opacity-100 py-20">
             <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white font-label-bold text-xs mb-6 uppercase tracking-wider backdrop-blur-md border border-white/30">
-              DISEÑO INTELIGENTE
+              MOBILIARIO DE VANGUARDIA
             </span>
             <h1 className="font-display-xl text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-xl">
-              Diseño de vanguardia que llega en una caja.
+              Practiiko: Diseño de vanguardia que llega en una caja.
             </h1>
             <p className="font-body-lg text-lg text-white/90 mb-10 max-w-lg drop-shadow-md">
               Revolucionamos el mobiliario premium con tecnología de empaque al vacío. Recibe piezas de alta gama en formato compacto, diseñadas para expandirse en tu hogar con un ensamble intuitivo y sofisticación inmediata.

@@ -8,12 +8,12 @@ export function generateSEO({
   image = "/og-image.jpg",
   noIndex = false,
 }) {
-  const baseUrl = "https://practiiko.com"; // Replace with actual domain
-  const fullTitle = title ? `${title} | Practiiko` : "Practiiko - Gestión Inteligente";
+  const baseUrl = "https://practiiko.com";
+  const fullTitle = title ? `${title} | Practiiko` : "Practiiko | Muebles Premium en Caja en Venezuela y Margarita";
   
   return {
     title: fullTitle,
-    description: description || "Practiiko es la plataforma líder para la autogestión de servicios web con enfoque en eficiencia y diseño premium.",
+    description: description || "Descubre Practiiko: Muebles de diseño de alta gama que llegan en caja a toda Venezuela. Especialistas en sofás y colchones premium con envío exclusivo en la Isla de Margarita.",
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: path,

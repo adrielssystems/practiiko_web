@@ -3,6 +3,12 @@ import TopNavBar from "@/components/TopNavBar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CatalogClient from "@/components/CatalogClient";
+import { generateSEO } from "@/lib/seo";
+
+export const metadata = generateSEO({
+  title: "Catálogo de Muebles Premium | Sofás y Colchones en Margarita",
+  description: "Explora nuestra colección exclusiva de muebles de vanguardia. Sofás, sofás cama y colchones premium con entrega inmediata en la Isla de Margarita y envíos a toda Venezuela.",
+});
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;

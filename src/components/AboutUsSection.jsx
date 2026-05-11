@@ -7,7 +7,7 @@ export default function AboutUsSection() {
         <div className="animate-in slide-in-from-left duration-700">
           <span className="text-primary font-bold tracking-[0.3em] text-xs mb-4 uppercase block">Acerca de</span>
           <h2 className="font-headline-lg text-3xl md:text-5xl text-on-surface mb-8 leading-tight">
-            Nosotros
+            Muebles Premium Practiiko en Margarita y Venezuela
           </h2>
           <div className="space-y-6 text-on-surface-variant text-lg leading-relaxed">
             <p>
