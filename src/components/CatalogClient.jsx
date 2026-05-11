@@ -91,44 +91,54 @@ export default function CatalogClient({ initialProducts, categories }) {
   };
 
   return (
-    <div ref={containerRef} className="max-w-[1440px] mx-auto px-6">
+    <div ref={containerRef} className="w-full">
       
-      {/* HEADER SECTION */}
-      {/* HEADER SECTION */}
-      <div className="catalog-header mb-16 text-left">
-        {/* New Hero Image with Text Overlay */}
-        <div className="relative mb-12 rounded-[40px] overflow-hidden shadow-2xl h-[400px] md:h-[500px]">
+      {/* HEADER SECTION - FULL WIDTH HERO */}
+      <section className="relative overflow-hidden min-h-[500px] md:min-h-[650px] flex items-center mt-[-160px] pt-[160px] mb-16">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
           <img 
             src="/hero-catalogo-practiiko.svg" 
             alt="Nueva Colección Practiiko" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
-          {/* Text Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex flex-col justify-center px-12 md:px-20">
-            <h1 className="font-headline-lg text-5xl md:text-7xl text-white mb-6 leading-[0.9] max-w-3xl">
-              Explora la <br /> <span className="text-primary italic">Nueva Colección Practiiko</span>
+          {/* Overlay for text readability - Consistent with landing page */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 max-w-[1280px] mx-auto px-6 w-full">
+          <div className="max-w-3xl py-12 md:py-20">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white font-black text-[10px] mb-6 uppercase tracking-widest backdrop-blur-md border border-white/30">
+              NUEVA COLECCIÓN
+            </span>
+            <h1 className="font-headline-lg text-5xl md:text-8xl text-white mb-6 leading-[0.9] drop-shadow-2xl">
+              Explora la <br /> <span className="text-[#F28705] italic">Nueva Colección Practiiko</span>
             </h1>
             <div className="max-w-xl">
-              <p className="text-white text-xl md:text-2xl font-bold leading-tight mb-2 drop-shadow-lg">
+              <p className="text-white text-xl md:text-2xl font-bold leading-tight mb-3 drop-shadow-lg">
                 El sofá de moda que llega en caja y cobra vida en tu casa.
               </p>
-              <p className="text-white/80 text-lg md:text-xl drop-shadow-md">
+              <p className="text-white/80 text-lg md:text-xl font-medium drop-shadow-md">
                 ¡Dale un toque de tendencia a tu hogar!
               </p>
             </div>
           </div>
         </div>
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+      </section>
+
+      {/* FILTER AND CONTENT SECTION - CONSTRAINED */}
+      <div className="max-w-[1440px] mx-auto px-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
             <div className="flex-1">
-              {/* Optional: Add some space or a small intro here if needed */}
+              <h2 className="text-gray-400 font-black text-xs uppercase tracking-[0.3em] mb-2">Filtrar por categoría</h2>
+              <div className="h-1 w-12 bg-[#F28705] rounded-full"></div>
             </div>
             
             {/* Filter Pills */}
-            <div className="flex flex-wrap gap-2 p-1.5 bg-gray-50/50 backdrop-blur-sm rounded-3xl border border-gray-100 shadow-sm">
+            <div className="flex flex-wrap gap-2 p-2 bg-white/50 backdrop-blur-md rounded-[28px] border border-gray-100 shadow-xl shadow-gray-200/20">
               <button 
                 onClick={() => setActiveCategory("all")}
-                className={`px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-[#F28705] text-white shadow-xl scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
+                className={`px-8 py-3.5 rounded-[20px] text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-[#F28705] text-white shadow-xl shadow-orange-500/30 scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
               >
                 Todos
               </button>
@@ -136,14 +146,13 @@ export default function CatalogClient({ initialProducts, categories }) {
                 <button 
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id.toString())}
-                  className={`px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.id.toString() ? 'bg-[#F28705] text-white shadow-xl scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
+                  className={`px-8 py-3.5 rounded-[20px] text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.id.toString() ? 'bg-[#F28705] text-white shadow-xl shadow-orange-500/30 scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
                 >
                   {cat.name}
                 </button>
               ))}
             </div>
         </div>
-      </div>
 
       {/* PRODUCTS GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
