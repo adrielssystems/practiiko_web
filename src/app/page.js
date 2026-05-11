@@ -48,7 +48,7 @@ export default async function Home() {
         <MattressSection />
         <LogisticsSection />
         <ErgonomicsSection />
-        <PromoBanner />
+        <PromoBanner compact={true} />
         <AboutUsSection />
         <ValuesSection />
         <TeamSection />
