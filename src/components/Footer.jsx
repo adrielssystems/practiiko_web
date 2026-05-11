@@ -3,7 +3,8 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="w-full border-t border-gray-200 bg-[#F2F2F2] font-body-md text-sm">
-      <div className="max-w-[1280px] mx-auto px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+      <div className="max-w-[1280px] mx-auto px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 items-start">
+        {/* Columna 1: Practiiko */}
         <div>
           <Link href="/">
             <img 
@@ -12,17 +13,29 @@ export default function Footer() {
               src="/logo.webp" 
             />
           </Link>
-          <p className="text-slate-500 mb-6 max-w-xs">Transformando hogares con muebles de diseño inteligente, accesibles y listos para disfrutar.</p>
+          <p className="text-slate-500 mb-6 leading-relaxed">Transformando hogares con muebles de diseño inteligente, accesibles y listos para disfrutar.</p>
         </div>
-        <div className="md:justify-self-center">
-          <h4 className="font-bold text-[#0477BF] mb-6">Explorar</h4>
-          <nav className="flex flex-col gap-4">
-            <a className="text-slate-500 hover:text-[#F28705] hover:translate-x-1 transition-all inline-block" href="/terminos">Términos y Condiciones</a>
-            <a className="text-slate-500 hover:text-[#F28705] hover:translate-x-1 transition-all inline-block" href="/privacidad">Aviso de Privacidad</a>
-          </nav>
+
+        {/* Columna 2: Nuestra Ubicación */}
+        <div>
+          <h4 className="font-bold text-[#0477BF] mb-6">Nuestra Ubicación</h4>
+          <div className="w-full h-40 rounded-xl overflow-hidden shadow-sm border border-gray-200">
+            <iframe 
+              src="https://maps.google.com/maps?q=10.969919,-63.8512784&hl=es&z=17&output=embed" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen="" 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Ubicación Practiiko"
+            ></iframe>
+          </div>
         </div>
-        <div className="md:justify-self-end">
-          <h4 className="font-bold text-[#0477BF] mb-6">Conéctate con nosotros</h4>
+
+        {/* Columna 3: Conéctate con nosotros */}
+        <div>
+          <h4 className="font-bold text-[#0477BF] mb-6">Síguenos</h4>
           <div className="flex gap-4">
             <a href="https://www.instagram.com/practiiko?igsh=dWtqaGUxbW80M3E2" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="bg-white text-[#0477BF] h-10 w-10 rounded-full flex items-center justify-center hover:bg-[#F28705] hover:text-white hover:-translate-y-1 transition-all shadow-sm">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -41,22 +54,14 @@ export default function Footer() {
             </a>
           </div>
         </div>
-      </div>
-      
-      {/* Ubicación / Mapa */}
-      <div className="max-w-[1280px] mx-auto px-8 pb-12">
-        <h4 className="font-bold text-[#0477BF] mb-6 text-center">Nuestra Ubicación</h4>
-        <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-gray-200" style={{ height: '300px' }}>
-          <iframe 
-            src="https://maps.google.com/maps?q=10.969919,-63.8512784&hl=es&z=17&output=embed" 
-            width="100%" 
-            height="100%" 
-            style={{ border: 0 }} 
-            allowFullScreen="" 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Ubicación Practiiko"
-          ></iframe>
+
+        {/* Columna 4: Explorar */}
+        <div>
+          <h4 className="font-bold text-[#0477BF] mb-6">Explorar</h4>
+          <nav className="flex flex-col gap-4">
+            <a className="text-slate-500 hover:text-[#F28705] hover:translate-x-1 transition-all inline-block" href="/terminos">Términos y Condiciones</a>
+            <a className="text-slate-500 hover:text-[#F28705] hover:translate-x-1 transition-all inline-block" href="/privacidad">Aviso de Privacidad</a>
+          </nav>
         </div>
       </div>
 
