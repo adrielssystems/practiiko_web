@@ -10,8 +10,8 @@ export default function LogisticsSection() {
     <section className="bg-[#F2F2F2] py-24 overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-headline-lg text-headline-lg text-[#0477BF] mb-4">Logística Inteligente: Tu hogar en una caja</h2>
-          <p className="text-on-surface-variant max-w-2xl mx-auto">Tecnología aplicada al transporte de mobiliario para una experiencia sin complicaciones.</p>
+          <h2 className="font-headline-lg text-headline-lg text-[#0477BF] mb-4">Logística de Mobiliario Premium: Tu hogar en una caja</h2>
+          <p className="text-on-surface-variant max-w-2xl mx-auto">Nuestra tecnología de empaque comprimido revoluciona la entrega de muebles de alta gama en Venezuela.</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {steps.map((item, idx) => (
@@ -19,7 +19,7 @@ export default function LogisticsSection() {
               <div className="w-16 h-16 rounded-2xl bg-[#0477BF]/10 flex items-center justify-center text-[#0477BF] mb-6 group-hover:bg-[#0477BF] group-hover:text-white transition-colors duration-300">
                 <span className="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform duration-300">{item.icon}</span>
               </div>
-              <h4 className="font-headline-md text-lg mb-3 group-hover:text-[#0477BF] transition-colors duration-300">{item.step}</h4>
+              <h3 className="font-headline-md text-lg mb-3 group-hover:text-[#0477BF] transition-colors duration-300">{item.step}</h3>
               <p className="text-sm text-on-surface-variant leading-relaxed font-body-md">{item.desc}</p>
             </div>
           ))}

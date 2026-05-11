@@ -3,7 +3,7 @@ export default function ErgonomicsSection() {
     <section className="py-20 bg-surface-container-low">
       <div className="max-w-[1280px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
         <div className="group">
-          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-6">Ergonomía que se adapta a ti</h2>
+          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-6">Diseño Ergonómico Premium: Confort que se adapta a ti</h2>
           <p className="text-on-surface-variant mb-10">Nuestros muebles no solo son bellos; están diseñados bajo estrictos estándares de soporte corporal para asegurar que cada momento de descanso sea reparador.</p>
           <div className="space-y-8">
             <div className="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">

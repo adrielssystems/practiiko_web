@@ -3,7 +3,7 @@ export default function ValuesSection() {
     <section className="py-24 bg-transparent relative overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="font-headline-lg text-4xl text-on-surface mb-4">Nuestra misión y Valores</h2>
+          <h2 className="font-headline-lg text-4xl text-on-surface mb-4">Misión y Valores de Practiiko: Mobiliario de Lujo en Venezuela</h2>
           <div className="w-16 h-1 bg-secondary mx-auto rounded-full mb-8"></div>
           <div className="max-w-4xl mx-auto mb-16 px-6">
             <p className="text-on-surface-variant text-xl md:text-2xl leading-relaxed font-medium italic">

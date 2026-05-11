@@ -7,8 +7,8 @@ export default function MattressSection() {
         {/* Columna Izquierda: Contenido */}
         <div className="animate-in slide-in-from-left duration-700">
           <h2 className="font-headline-lg text-headline-lg mb-4">
-            <span className="text-on-surface">Colchones Practiiko</span>{" "}
-            <span className="text-[#0477BF]">El descanso perfecto</span>
+            <span className="text-on-surface">Colchones Premium Practiiko:</span>{" "}
+            <span className="text-[#0477BF]">El descanso perfecto en Margarita</span>
           </h2>
           <p className="text-[#F28705] font-label-bold mb-6 text-lg uppercase tracking-wide">
             ¡El descanso que soñaste llegó a la Isla de Margarita, en caja!

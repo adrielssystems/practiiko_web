@@ -3,7 +3,7 @@ export default function Differentiators() {
     <section className="py-24 bg-transparent relative overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">¿Por qué elegir Muebles Practiiko?</h2>
+          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">¿Por qué elegir los Muebles Premium de Practiiko?</h2>
           <p className="text-on-surface-variant max-w-2xl mx-auto">Reinventamos la experiencia de amueblar tu espacio con soluciones modulares y entrega eficiente.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-12">
