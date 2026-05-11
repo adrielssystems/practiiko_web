@@ -2,6 +2,45 @@ import { query } from "@/lib/db";
 import ProductGalleryClient from "./ProductGalleryClient";
 
 async function getGalleryData() {
+  const isDev = process.env.NODE_ENV === 'development';
+  const hasDb = process.env.DATABASE_URL;
+
+  // Defensive check for local development without DB
+  if (isDev && !hasDb) {
+    return [
+      { 
+        id: 1, 
+        name: "Sofá Abrazo Mamá Verde", 
+        price_cash: 1200, 
+        description: "Sofá individual, modelo Abrazo de Mamá, color Verde Claro. Diseño ergonómico y materiales de alta durabilidad.",
+        main_image: "/hero-sofa.png", 
+        category_name: "Salas",
+        is_featured: true,
+        code: "PR-001"
+      },
+      { 
+        id: 2, 
+        name: "Sofá Cama Beige Rectos", 
+        price_cash: 685, 
+        description: "Sofá cama versátil con diseño de líneas rectas en color beige. Ideal para optimizar espacios sin sacrificar estilo.",
+        main_image: "/hero-sofa.png", 
+        category_name: "Sofá Cama",
+        is_featured: true,
+        code: "PR-002"
+      },
+      { 
+        id: 3, 
+        name: "Colchón Individual 100x190", 
+        price_cash: 325, 
+        description: "Colchón de espuma comprimida con soporte reforzado y cubierta premium. Dimensiones: 100*190*35 cm.",
+        main_image: "/hero-sofa.png", 
+        category_name: "Colchón",
+        is_featured: true,
+        code: "PR-003"
+      }
+    ];
+  }
+
   try {
     const productsRes = await query(`
       SELECT p.*, c.name as category_name, 
@@ -18,7 +57,7 @@ async function getGalleryData() {
     }
     throw new Error("No data returned from DB");
   } catch (e) {
-    console.error("Database connection failed, using mock data for gallery:", e.message);
+    console.warn("Database connection failed, using fallback data for gallery:", e.message);
     
     // Mock data for local development
     return [
