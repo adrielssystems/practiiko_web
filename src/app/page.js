@@ -9,6 +9,7 @@ import ProductGallery from "@/components/ProductGallery";
 import MattressSection from "@/components/MattressSection";
 import LogisticsSection from "@/components/LogisticsSection";
 import ErgonomicsSection from "@/components/ErgonomicsSection";
+import PromoBanner from "@/components/PromoBanner";
 import Footer from "@/components/Footer";
 import TeamSection from "@/components/TeamSection";
 import AboutUsSection from "@/components/AboutUsSection";
@@ -47,6 +48,7 @@ export default async function Home() {
         <MattressSection />
         <LogisticsSection />
         <ErgonomicsSection />
+        <PromoBanner />
         <AboutUsSection />
         <ValuesSection />
         <TeamSection />
