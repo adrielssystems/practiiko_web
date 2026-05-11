@@ -7,14 +7,6 @@ export default function PromoBanner({
 }) {
   return (
     <section className={`${compact ? 'py-6' : 'py-12'} bg-white relative overflow-hidden`}>
-      {/* Background SVG Pattern */}
-      <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
-        <img 
-          src="/fondo practiiko.svg" 
-          alt="Practiiko Pattern" 
-          className="w-full h-full object-cover"
-        />
-      </div>
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
         <div className={`relative overflow-hidden bg-[#F28705] rounded-[32px] ${compact ? 'p-6 md:p-8' : 'p-8 md:p-12'} shadow-xl shadow-orange-500/20`}>
           {/* Decorative Background Elements */}

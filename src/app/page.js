@@ -36,7 +36,16 @@ export default async function Home() {
   }
 
   return (
-    <div className="bg-surface font-body-md text-on-surface antialiased">
+    <div className="bg-surface font-body-md text-on-surface antialiased relative">
+      {/* Global Background SVG Pattern */}
+      <div className="fixed inset-0 z-0 opacity-[0.15] pointer-events-none">
+        <img 
+          src="/fondo practiiko.svg" 
+          alt="Practiiko Pattern" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+
       <TopNavBar />
 
       <main className="pt-20">
