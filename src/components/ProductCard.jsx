@@ -27,17 +27,17 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
             {/* Badges Section */}
             <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
               {product.is_new && (
-                <span className="bg-[#0477BF] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-blue-500/30 uppercase tracking-widest">
+                <span className="animate-badge-pop bg-[#0477BF] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-blue-500/30 uppercase tracking-widest" style={{ animationDelay: '0.6s' }}>
                   Nuevo
                 </span>
               )}
               {product.is_promotion && (
-                <span className="bg-[#ef4444] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-red-500/30 uppercase tracking-widest">
+                <span className="animate-badge-pop bg-[#ef4444] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-red-500/30 uppercase tracking-widest" style={{ animationDelay: '0.8s' }}>
                   Promoción
                 </span>
               )}
               {product.is_clearance && (
-                <span className="bg-[#1e293b] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-black/20 uppercase tracking-widest">
+                <span className="animate-badge-pop bg-[#1e293b] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-black/20 uppercase tracking-widest" style={{ animationDelay: '1s' }}>
                   Liquidación
                 </span>
               )}
@@ -141,6 +141,22 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
         }
         .product-card-container:hover .product-card-inner {
            ${!isFlipped ? 'transform: rotateY(10deg);' : ''}
+        }
+
+        .animate-badge-pop {
+          opacity: 0;
+          animation: badge-pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes badge-pop-in {
+          0% {
+            transform: scale(0.5) translateY(10px);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+          }
         }
       `}</style>
     </div>
