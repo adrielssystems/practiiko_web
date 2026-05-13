@@ -11,7 +11,8 @@ async function getGalleryData() {
       { 
         id: 1, 
         name: "Sofá Abrazo de Mamá | Confort Premium Verde", 
-        price_cash: 1200, 
+        price_bcv: 630,
+        price_cash: 630, 
         description: "Experimenta la máxima relajación con nuestro sofá individual de alta gama. Diseño ergonómico con espumas de alta densidad, ideal para salas modernas en Margarita. Calidad superior que llega en caja.",
         main_image: "/hero-sofa.png", 
         category_name: "Salas",
@@ -21,6 +22,7 @@ async function getGalleryData() {
       { 
         id: 2, 
         name: "Sofá Cama Versátil Beige | Estilo y Funcionalidad", 
+        price_bcv: 685,
         price_cash: 685, 
         description: "Optimiza tu espacio con este sofá cama premium de líneas rectas. Perfecto para apartamentos en la Isla de Margarita. Tapicería resistente y ensamble intuitivo sin herramientas.",
         main_image: "/hero-sofa.png", 
@@ -31,6 +33,7 @@ async function getGalleryData() {
       { 
         id: 3, 
         name: "Colchón Practiiko Premium 100x190 | Descanso Avanzado", 
+        price_bcv: 325,
         price_cash: 325, 
         description: "Colchón ortopédico de espuma comprimida al vacío. Tecnología de soporte reforzado y textiles frescos. El mejor descanso en Margarita, entregado directamente en tu puerta.",
         main_image: "/hero-sofa.png", 
@@ -64,7 +67,8 @@ async function getGalleryData() {
       { 
         id: 1, 
         name: "Sofá Abrazo Mamá Verde", 
-        price_cash: 1200, 
+        price_bcv: 630,
+        price_cash: 630, 
         description: "Sofá individual, modelo Abrazo de Mamá, color Verde Claro. Diseño ergonómico y materiales de alta durabilidad.",
         main_image: "/hero-sofa.png", 
         category_name: "Salas",
@@ -74,6 +78,7 @@ async function getGalleryData() {
       { 
         id: 2, 
         name: "Sofá Cama Beige Rectos", 
+        price_bcv: 685,
         price_cash: 685, 
         description: "Sofá cama versátil con diseño de líneas rectas en color beige. Ideal para optimizar espacios sin sacrificar estilo.",
         main_image: "/hero-sofa.png", 
@@ -84,6 +89,7 @@ async function getGalleryData() {
       { 
         id: 3, 
         name: "Colchón Individual 100x190", 
+        price_bcv: 325,
         price_cash: 325, 
         description: "Colchón de espuma comprimida con soporte reforzado y cubierta premium. Dimensiones: 100*190*35 cm.",
         main_image: "/hero-sofa.png", 

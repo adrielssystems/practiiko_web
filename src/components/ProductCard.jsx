@@ -21,9 +21,9 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
       <div className="product-card-inner relative w-full h-full transition-transform duration-700 transform-style-3d shadow-xl rounded-[40px]">
         
         {/* CARA FRONTAL (DISEÑO OXARELLYS) */}
-        <div className="product-card-front absolute inset-0 backface-hidden bg-white rounded-[40px] p-6 flex flex-col border border-gray-100 overflow-hidden">
+        <div className="product-card-front absolute inset-0 backface-hidden bg-[#F28705] rounded-[40px] p-6 flex flex-col border border-white/10 overflow-hidden">
           {/* Contenedor de Imagen */}
-          <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-gray-50 mb-6 group">
+          <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-white mb-6 group shadow-inner">
             <img 
               alt={product.name} 
               className="w-full h-full object-contain p-4 scale-90 group-hover:scale-100 transition-transform duration-700" 
@@ -34,24 +34,24 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
           {/* Información del Producto */}
           <div className="flex flex-col flex-1 px-2">
             <div className="flex justify-between items-start mb-1">
-              <span className="text-[10px] text-primary font-black uppercase tracking-[0.2em]">{product.category_name || 'Muebles'}</span>
+              <span className="text-[10px] text-white font-black uppercase tracking-[0.2em]">{product.category_name || 'Muebles'}</span>
             </div>
-            <h3 className="font-headline-md text-xl text-on-surface mb-4 leading-tight">
+            <h3 className="font-headline-md text-xl text-white mb-4 leading-tight">
               {product.name || "Nombre del Producto"}
             </h3>
             
             <div className="flex items-center justify-between mt-auto mb-4">
               <div className="flex flex-col">
-                <span className="text-2xl font-black text-primary">
-                  ${parseFloat(product.price_cash || product.price_bcv || 0).toLocaleString()}
+                <span className="text-2xl font-black text-white">
+                  ${parseFloat(product.price_bcv || product.price_cash || 0).toLocaleString()}
                 </span>
-                <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Inversión única</span>
+                <span className="text-[9px] text-white/70 font-bold uppercase tracking-widest">Inversión única</span>
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-gray-50 mb-2">
-               <span className="text-[10px] text-gray-400 font-black uppercase tracking-widest">Ver Características</span>
-               <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
+            <div className="flex items-center justify-between pt-4 border-t border-white/20 mb-2">
+               <span className="text-[10px] text-white/70 font-black uppercase tracking-widest">Ver Características</span>
+               <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#F28705] transition-all duration-500">
                 <span className="material-symbols-outlined text-lg">sync_alt</span>
               </div>
             </div>

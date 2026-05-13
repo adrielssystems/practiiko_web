@@ -47,9 +47,9 @@ async function getCatalogData() {
 function getMockData() {
   return { 
     products: [
-      { id: 1, name: "Sofá Abrazo de Mamá | Confort Premium Verde", price_cash: 1200, category_id: 1, category_name: "Salas", description: "Experimenta la máxima relajación con nuestro sofá individual de alta gama. Diseño ergonómico con espumas de alta densidad, ideal para salas modernas en Margarita.", main_image: "/hero-sofa.png" },
-      { id: 2, name: "Sofá Cama Versátil Beige | Estilo y Funcionalidad", price_cash: 685, category_id: 2, category_name: "Sofá Cama", description: "Optimiza tu espacio con este sofá cama premium de líneas rectas. Perfecto para apartamentos en la Isla de Margarita. Tapicería resistente.", main_image: "/hero-sofa.png" },
-      { id: 3, name: "Colchón Practiiko Premium 100x190 | Descanso Avanzado", price_cash: 325, category_id: 3, category_name: "Colchón", description: "Colchón ortopédico de espuma comprimida al vacío. Tecnología de soporte reforzado y textiles frescos.", main_image: "/hero-sofa.png" }
+      { id: 1, name: "Sofá Abrazo de Mamá | Confort Premium Verde", price_bcv: 630, price_cash: 630, category_id: 1, category_name: "Salas", description: "Experimenta la máxima relajación con nuestro sofá individual de alta gama. Diseño ergonómico con espumas de alta densidad, ideal para salas modernas en Margarita.", main_image: "/hero-sofa.png" },
+      { id: 2, name: "Sofá Cama Versátil Beige | Estilo y Funcionalidad", price_bcv: 685, price_cash: 685, category_id: 2, category_name: "Sofá Cama", description: "Optimiza tu espacio con este sofá cama premium de líneas rectas. Perfecto para apartamentos en la Isla de Margarita. Tapicería resistente.", main_image: "/hero-sofa.png" },
+      { id: 3, name: "Colchón Practiiko Premium 100x190 | Descanso Avanzado", price_bcv: 325, price_cash: 325, category_id: 3, category_name: "Colchón", description: "Colchón ortopédico de espuma comprimida al vacío. Tecnología de soporte reforzado y textiles frescos.", main_image: "/hero-sofa.png" }
     ], 
     categories: [
       { id: 1, name: "Salas" },
