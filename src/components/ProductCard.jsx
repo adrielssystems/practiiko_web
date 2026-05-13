@@ -45,7 +45,7 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
                 <span className="text-2xl font-black text-white">
                   ${parseFloat(product.price_bcv || product.price_cash || 0).toLocaleString()}
                 </span>
-                <span className="text-[9px] text-white/70 font-bold uppercase tracking-widest">Inversión única</span>
+                <span className="text-[9px] text-white/70 font-bold uppercase tracking-widest">Ref.</span>
               </div>
             </div>
 
