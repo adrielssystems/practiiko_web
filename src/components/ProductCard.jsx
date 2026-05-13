@@ -24,6 +24,25 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
         <div className="product-card-front absolute inset-0 backface-hidden bg-[#F28705] rounded-[40px] p-6 flex flex-col border border-white/10 overflow-hidden">
           {/* Contenedor de Imagen */}
           <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-white mb-6 group shadow-inner">
+            {/* Badges Section */}
+            <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
+              {product.is_new && (
+                <span className="bg-[#0477BF] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-blue-500/30 uppercase tracking-widest">
+                  Nuevo
+                </span>
+              )}
+              {product.is_promotion && (
+                <span className="bg-[#ef4444] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-red-500/30 uppercase tracking-widest">
+                  Promoción
+                </span>
+              )}
+              {product.is_clearance && (
+                <span className="bg-[#1e293b] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-black/20 uppercase tracking-widest">
+                  Liquidación
+                </span>
+              )}
+            </div>
+            
             <img 
               alt={product.name} 
               className="w-full h-full object-contain p-4 scale-90 group-hover:scale-100 transition-transform duration-700" 

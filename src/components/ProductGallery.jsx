@@ -17,6 +17,7 @@ async function getGalleryData() {
         main_image: "/hero-sofa.png", 
         category_name: "Salas",
         is_featured: true,
+        is_new: true,
         code: "PR-001"
       },
       { 
@@ -28,6 +29,7 @@ async function getGalleryData() {
         main_image: "/hero-sofa.png", 
         category_name: "Sofá Cama",
         is_featured: true,
+        is_promotion: true,
         code: "PR-002"
       },
       { 
@@ -39,6 +41,7 @@ async function getGalleryData() {
         main_image: "/hero-sofa.png", 
         category_name: "Colchón",
         is_featured: true,
+        is_clearance: true,
         code: "PR-003"
       }
     ];
@@ -50,7 +53,7 @@ async function getGalleryData() {
              (SELECT url FROM product_images WHERE product_id = p.id AND is_main = true LIMIT 1) as main_image
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
-      WHERE p.status = 'active'
+      WHERE p.status = 'active' AND (p.is_featured = true OR p.is_promotion = true OR p.is_new = true OR p.is_clearance = true)
       ORDER BY p.created_at DESC
       LIMIT 8
     `);
@@ -73,6 +76,7 @@ async function getGalleryData() {
         main_image: "/hero-sofa.png", 
         category_name: "Salas",
         is_featured: true,
+        is_new: true,
         code: "PR-001"
       },
       { 
@@ -84,6 +88,7 @@ async function getGalleryData() {
         main_image: "/hero-sofa.png", 
         category_name: "Sofá Cama",
         is_featured: true,
+        is_promotion: true,
         code: "PR-002"
       },
       { 
@@ -95,6 +100,7 @@ async function getGalleryData() {
         main_image: "/hero-sofa.png", 
         category_name: "Colchón",
         is_featured: true,
+        is_clearance: true,
         code: "PR-003"
       }
     ];
