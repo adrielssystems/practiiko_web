@@ -24,7 +24,7 @@ export default function HeroSection() {
             <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white font-label-bold text-xs mb-6 uppercase tracking-wider backdrop-blur-md border border-white/30">
               MOBILIARIO DE VANGUARDIA
             </span>
-            <h1 className="font-display-xl text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-xl">
+            <h1 className="font-display-xl text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-xl animate-blur-reveal opacity-0">
               Practiiko: Diseño de vanguardia que llega en una caja.
             </h1>
             <p className="font-body-lg text-lg text-white/90 mb-10 max-w-lg drop-shadow-md">
@@ -42,7 +42,7 @@ export default function HeroSection() {
                 Cómo funciona
               </button>
             </div>
-            <p className="text-white/60 text-sm mt-6 font-medium italic">
+            <p className="text-white/90 text-base mt-6 font-semibold italic tracking-wide drop-shadow-md">
               Es lujo, es simple, es Practiiko.
             </p>
           </div>
@@ -62,6 +62,7 @@ export default function HeroSection() {
             <video 
               controls 
               autoPlay 
+              onEnded={() => setIsVideoOpen(false)}
               className="w-full h-auto aspect-video object-contain"
               src="/revelacion-mueble.mp4"
             >

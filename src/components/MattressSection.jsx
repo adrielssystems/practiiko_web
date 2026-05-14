@@ -46,7 +46,7 @@ export default function MattressSection() {
             {/* Imagen del Colchón */}
             <div className="relative z-10 w-full transform group-hover:scale-105 transition-transform duration-700">
               <img 
-                src="/colchon-premium.png" 
+                src="/colchon-premium.png?v=2" 
                 alt="Colchón Premium Practiiko" 
                 className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
               />
