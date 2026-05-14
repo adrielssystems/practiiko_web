@@ -23,17 +23,8 @@ export default async function Home() {
   const headersList = await headers();
   const host = headersList.get('host') || '';
 
-  const comingSoonVar = process.env.COMING_SOON || process.env.NEXT_PUBLIC_COMING_SOON;
-  let isComingSoon = comingSoonVar?.trim().toLowerCase() === 'true';
-
-  // Omitir Coming Soon si estamos en el subdominio landing
-  if (host.includes('landing.practiiko.com') || host.includes('localhost')) {
-    isComingSoon = false;
-  }
-
-  if (isComingSoon) {
-    return <ComingSoon />;
-  }
+  // La lógica de 'Coming Soon' ha sido desactivada para el lanzamiento a producción
+  // a pesar de que la variable de entorno NEXT_PUBLIC_COMING_SOON pueda ser true.
 
   return (
     <div className="bg-surface font-body-md text-on-surface antialiased relative">
