@@ -66,7 +66,10 @@ export default function Footer() {
       </div>
 
       <div className="max-w-[1280px] mx-auto px-8 py-6 border-t border-gray-300 text-center">
-        <p className="text-slate-500">© 2024 Practiiko. Muebles de diseño, entregados en una caja.</p>
+        <p className="text-slate-500 leading-relaxed">
+          © 2026 Lume1 C.A.. All rights reserved<br/>
+          Developed by <a href="https://adrielssystems.com/" target="_blank" rel="noopener noreferrer" className="font-medium text-slate-500 hover:text-[#F28705] hover:underline transition-all duration-300">Adriel's Systems</a>.
+        </p>
       </div>
     </footer>
   );

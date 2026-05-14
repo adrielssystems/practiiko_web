@@ -1,6 +1,7 @@
 import { Noto_Serif, Manrope, Plus_Jakarta_Sans, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { generateSEO } from "@/lib/seo";
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const notoSerif = Noto_Serif({
   variable: "--font-noto-serif",
@@ -130,6 +131,7 @@ export default function RootLayout({ children }) {
         <main className="animate-fade-in">
           {children}
         </main>
+        <GoogleTagManager gtmId="GTM-MX6BZTQJ" />
       </body>
     </html>
   );
