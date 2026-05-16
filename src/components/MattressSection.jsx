@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export default function MattressSection() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-[1280px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    <section className="py-24 bg-transparent relative overflow-hidden">
+      <div className="max-w-[1280px] mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
         {/* Columna Izquierda: Contenido */}
         <div className="animate-in slide-in-from-left duration-700">
           <h2 className="font-headline-lg text-headline-lg mb-4">
-            <span className="text-on-surface">Colchones Practiiko</span>{" "}
-            <span className="text-[#0477BF]">El descanso perfecto</span>
+            <span className="text-on-surface">Colchones Premium Practiiko:</span>{" "}
+            <span className="text-[#0477BF]">El descanso perfecto en Margarita</span>
           </h2>
           <p className="text-[#F28705] font-label-bold mb-6 text-lg uppercase tracking-wide">
             ¡El descanso que soñaste llegó a la Isla de Margarita, en caja!
@@ -46,7 +46,7 @@ export default function MattressSection() {
             {/* Imagen del Colchón */}
             <div className="relative z-10 w-full transform group-hover:scale-105 transition-transform duration-700">
               <img 
-                src="/colchon-premium.png" 
+                src="/colchon-premium.png?v=2" 
                 alt="Colchón Premium Practiiko" 
                 className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
               />

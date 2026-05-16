@@ -6,8 +6,8 @@ export default function OfferBanner() {
       <div className="max-w-[1280px] mx-auto bg-gradient-to-r from-[#F28705] to-[#F2A341] rounded-[32px] p-12 relative overflow-hidden group">
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="text-white">
-            <h2 className="font-headline-lg text-headline-lg mb-2">¡Rediseña tu sala hoy!</h2>
-            <p className="text-lg opacity-90">Envío sin costo, disponible solo en la Isla de Margarita, en toda nuestra línea de muebles de diseño.</p>
+            <h2 className="font-headline-lg text-headline-lg mb-2">¡Muebles de Lujo con Envío GRATIS en Margarita!</h2>
+            <p className="text-lg opacity-90">Transforma tu hogar con nuestra exclusiva línea de mobiliario premium. Calidad de vanguardia entregada directamente en tu puerta en toda la Isla de Margarita.</p>
           </div>
           <Link href="/catalogo" className="bg-white text-[#F28705] px-10 py-4 rounded-xl font-button text-lg hover:bg-opacity-95 hover:scale-105 hover:shadow-2xl transition-all duration-300 shadow-lg inline-block text-center">
             Explorar Catálogo

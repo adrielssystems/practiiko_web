@@ -1,6 +1,7 @@
 import { Noto_Serif, Manrope, Plus_Jakarta_Sans, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { generateSEO } from "@/lib/seo";
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const notoSerif = Noto_Serif({
   variable: "--font-noto-serif",
@@ -24,8 +25,8 @@ const workSans = Work_Sans({
 });
 
 export const metadata = generateSEO({
-  title: "Practiiko | Muebles de diseño entregados en una caja",
-  description: "Transforma tu hogar con mobiliario premium que llega a tu puerta en formato compacto. Tecnología de ensamble intuitivo.",
+  title: "Muebles Premium y Sofás en Caja en Margarita y Venezuela",
+  description: "Compra muebles de lujo online en Practiiko. Recibe sofás de diseño y colchones premium en formato compacto con envío GRATIS en la Isla de Margarita. ¡Es lujo, es simple!",
 });
 
 export default function RootLayout({ children }) {
@@ -130,6 +131,7 @@ export default function RootLayout({ children }) {
         <main className="animate-fade-in">
           {children}
         </main>
+        <GoogleTagManager gtmId="GTM-MX6BZTQJ" />
       </body>
     </html>
   );

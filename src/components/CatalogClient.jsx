@@ -9,8 +9,13 @@ import ProductCard from "./ProductCard";
 export default function CatalogClient({ initialProducts, categories }) {
   const [activeCategory, setActiveCategory] = useState("all");
   const [filteredProducts, setFilteredProducts] = useState(initialProducts);
+  const [activeCardId, setActiveCardId] = useState(null);
   const containerRef = useRef(null);
   const cardsRef = useRef([]);
+
+  const handleFlip = (id) => {
+    setActiveCardId(prevId => prevId === id ? null : id);
+  };
 
   useEffect(() => {
     if (activeCategory === "all") {
@@ -86,34 +91,54 @@ export default function CatalogClient({ initialProducts, categories }) {
   };
 
   return (
-    <div ref={containerRef} className="max-w-[1440px] mx-auto px-6">
+    <div ref={containerRef} className="w-full">
       
-      {/* HEADER SECTION */}
-      <div className="catalog-header mb-20 text-left">
-        <h1 className="font-headline-lg text-6xl md:text-7xl text-on-surface mb-8 leading-[0.9] flex flex-wrap items-center gap-x-4">
-          Explora la <br /> <span className="text-primary italic">Nueva Colección Practiiko</span>
+      {/* HEADER SECTION - FULL WIDTH HERO */}
+      <section className="relative overflow-hidden min-h-[400px] md:min-h-[500px] flex items-center mt-[-160px] pt-[160px] mb-12">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
           <img 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsCG7EaiBjMSrU-0q_ojcRnLs63GXDXeZDjK6pPAKmgRCv1lZaYwDO3unNHbpEYrSJjrSQMuiyOuxvMPQnaSxQ6kFSK6jMFWwxfgCp9U84S_XlPGv26uJS0qQzyVfH0H6Fh87uiDyoLrDsBC10T2DxqMrs19UEnxS6qMhTQO92nAl4yid8nXre_bC7k5x2e4vPz_X7jKdm89KjnacidXhCSfb14PHKk0WQzKGNA4yGXLcLG1nOmQ7fc20zZuEHSbErg9wK_PQ-fvgp" 
-            alt="Practiiko" 
-            className="h-12 md:h-16 w-auto inline-block object-contain"
+            src="/hero-catalogo-practiiko.svg" 
+            alt="Nueva Colección Practiiko" 
+            className="w-full h-full object-cover object-center"
           />
-        </h1>
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+          {/* Overlay for text readability - Consistent with landing page */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 max-w-[1280px] mx-auto px-6 w-full">
+          <div className="max-w-3xl py-8 md:py-12">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white font-black text-[10px] mb-4 uppercase tracking-widest backdrop-blur-md border border-white/30">
+              NUEVA COLECCIÓN
+            </span>
+            <h1 className="font-headline-lg text-5xl md:text-7xl text-white mb-4 leading-[0.9] drop-shadow-2xl">
+              Explora la <br /> <span className="text-[#F28705] italic">Nueva Colección Practiiko</span>
+            </h1>
             <div className="max-w-xl">
-              <p className="text-on-surface text-xl font-bold leading-tight mb-2">
+              <p className="text-white text-lg md:text-xl font-bold leading-tight mb-2 drop-shadow-lg">
                 El sofá de moda que llega en caja y cobra vida en tu casa.
               </p>
-              <p className="text-on-surface-variant text-lg">
+              <p className="text-white/80 text-base md:text-lg font-medium drop-shadow-md">
                 ¡Dale un toque de tendencia a tu hogar!
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FILTER AND CONTENT SECTION - CONSTRAINED */}
+      <div className="max-w-[1440px] mx-auto px-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+            <div className="flex-1">
+              <h2 className="text-gray-400 font-black text-xs uppercase tracking-[0.3em] mb-2">Filtrar por categoría</h2>
+              <div className="h-1 w-12 bg-[#F28705] rounded-full"></div>
+            </div>
             
             {/* Filter Pills */}
-            <div className="flex flex-wrap gap-2 p-1.5 bg-gray-50 rounded-3xl border border-gray-100">
+            <div className="flex flex-wrap gap-2 p-2 bg-white/50 backdrop-blur-md rounded-[28px] border border-gray-100 shadow-xl shadow-gray-200/20">
               <button 
                 onClick={() => setActiveCategory("all")}
-                className={`px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-primary text-white shadow-xl scale-105' : 'text-gray-400 hover:text-primary'}`}
+                className={`px-8 py-3.5 rounded-[20px] text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-[#F28705] text-white shadow-xl shadow-orange-500/30 scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
               >
                 Todos
               </button>
@@ -121,19 +146,23 @@ export default function CatalogClient({ initialProducts, categories }) {
                 <button 
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id.toString())}
-                  className={`px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.id.toString() ? 'bg-primary text-white shadow-xl scale-105' : 'text-gray-400 hover:text-primary'}`}
+                  className={`px-8 py-3.5 rounded-[20px] text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.id.toString() ? 'bg-[#F28705] text-white shadow-xl shadow-orange-500/30 scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
                 >
                   {cat.name}
                 </button>
               ))}
             </div>
         </div>
-      </div>
 
       {/* PRODUCTS GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
         {filteredProducts.map((prod, idx) => (
-          <ProductCard key={prod.id} product={prod} />
+          <ProductCard 
+            key={prod.id} 
+            product={prod} 
+            isFlipped={activeCardId === prod.id}
+            onFlip={() => handleFlip(prod.id)}
+          />
         ))}
       </div>
 
@@ -151,6 +180,7 @@ export default function CatalogClient({ initialProducts, categories }) {
           perspective: 1500px;
         }
       `}</style>
+      </div>
     </div>
   );
 }

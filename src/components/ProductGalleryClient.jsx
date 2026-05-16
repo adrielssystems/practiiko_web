@@ -1,11 +1,12 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import ProductCard from "./ProductCard";
 
 export default function ProductGalleryClient({ initialProducts }) {
   const containerRef = useRef(null);
+  const [activeCardId, setActiveCardId] = useState(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -31,6 +32,10 @@ export default function ProductGalleryClient({ initialProducts }) {
     return () => ctx.revert();
   }, []);
 
+  const handleFlip = (id) => {
+    setActiveCardId(prevId => prevId === id ? null : id);
+  };
+
   return (
     <div ref={containerRef} className="max-w-[1400px] mx-auto px-6">
       
@@ -47,7 +52,11 @@ export default function ProductGalleryClient({ initialProducts }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
         {initialProducts.map((prod) => (
           <div key={prod.id} className="product-card-wrapper">
-            <ProductCard product={prod} />
+            <ProductCard 
+              product={prod} 
+              isFlipped={activeCardId === prod.id}
+              onFlip={() => handleFlip(prod.id)}
+            />
           </div>
         ))}
       </div>

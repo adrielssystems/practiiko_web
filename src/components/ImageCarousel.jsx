@@ -20,8 +20,8 @@ export default function ImageCarousel() {
 
   return (
     <>
-      <section className="py-12 bg-white overflow-hidden">
-        <div className="relative w-full">
+      <section className="py-12 bg-transparent relative overflow-hidden">
+        <div className="relative w-full z-10">
           {/* Infinite scroll wrapper */}
           <div 
             className="flex w-fit animate-infinite-scroll"

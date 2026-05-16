@@ -5,43 +5,51 @@ export function generateSEO({
   title,
   description,
   path = "",
-  image = "/og-image.jpg",
+  image = "/hero-bg.jpg",
   noIndex = false,
 }) {
-  const baseUrl = "https://practiiko.com"; // Replace with actual domain
-  const fullTitle = title ? `${title} | Practiiko` : "Practiiko - Gestión Inteligente";
+  const baseUrl = "https://practiiko.com"; // User should update this when live
+  const fullTitle = title ? `${title} | Practiiko` : "Practiiko | Muebles Premium en Caja en Venezuela y Margarita";
+  const fullDescription = description || "Descubre Practiiko: Muebles de diseño de alta gama que llegan en caja a toda Venezuela. Especialistas en sofás y colchones premium con envío exclusivo en la Isla de Margarita.";
+  const absoluteImageUrl = `${baseUrl}${image}`;
   
   return {
     title: fullTitle,
-    description: description || "Practiiko es la plataforma líder para la autogestión de servicios web con enfoque en eficiencia y diseño premium.",
+    description: fullDescription,
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: path,
     },
     openGraph: {
       title: fullTitle,
-      description: description,
+      description: fullDescription,
       url: `${baseUrl}${path}`,
       siteName: "Practiiko",
       images: [
         {
-          url: image,
+          url: absoluteImageUrl,
           width: 1200,
           height: 630,
+          alt: "Practiiko Premium Furniture",
         },
       ],
-      locale: "es_ES",
+      locale: "es_VE",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
-      description: description,
-      images: [image],
+      description: fullDescription,
+      images: [absoluteImageUrl],
     },
     robots: {
       index: !noIndex,
       follow: !noIndex,
+    },
+    icons: {
+      icon: "/favicon Practiiko.png",
+      shortcut: "/favicon Practiiko.png",
+      apple: "/favicon Practiiko.png",
     },
   };
 }
