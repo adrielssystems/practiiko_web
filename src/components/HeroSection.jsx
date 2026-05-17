@@ -20,29 +20,29 @@ export default function HeroSection() {
         </div>
 
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 w-full">
-          <div className="max-w-2xl transition-all duration-700 transform translate-y-0 opacity-100 py-20">
+          <div className="max-w-2xl transition-all duration-700 transform translate-y-0 opacity-100 py-12 md:py-20">
             <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white font-label-bold text-xs mb-6 uppercase tracking-wider backdrop-blur-md border border-white/30">
               MOBILIARIO DE VANGUARDIA
             </span>
-            <h1 className="font-display-xl text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-xl animate-blur-reveal opacity-0">
+            <h1 className="font-display-xl text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight drop-shadow-xl animate-blur-reveal opacity-0">
               Practiiko: Diseño de vanguardia que llega en una caja.
             </h1>
-            <p className="font-body-lg text-lg text-white/90 mb-10 max-w-lg drop-shadow-md">
+            <p className="font-body-lg text-sm sm:text-base md:text-lg text-white/90 mb-8 max-w-lg drop-shadow-md">
               Revolucionamos el mobiliario premium con tecnología de empaque al vacío. Recibe piezas de alta gama en formato compacto, diseñadas para expandirse en tu hogar con un ensamble intuitivo y sofisticación inmediata.
             </p>
-            <div className="flex flex-wrap gap-4 items-center">
-              <Link href="/catalogo" className="bg-[#F28705] text-white px-8 py-4 rounded-xl font-button text-lg hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 shadow-xl shadow-orange-500/30 inline-block text-center uppercase tracking-wider">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center">
+              <Link href="/catalogo" className="bg-[#F28705] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-button text-sm sm:text-base md:text-lg hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 shadow-xl shadow-orange-500/30 inline-block text-center uppercase tracking-wider w-full sm:w-auto">
                 Explorar Colección
               </Link>
               <button 
                 onClick={() => setIsVideoOpen(true)}
-                className="border-2 border-white text-white px-8 py-4 rounded-xl font-button text-lg hover:bg-white hover:text-primary transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm bg-white/10 flex items-center gap-2"
+                className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-button text-sm sm:text-base md:text-lg hover:bg-white hover:text-primary transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm bg-white/10 flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 <span className="material-symbols-outlined">play_circle</span>
                 Cómo funciona
               </button>
             </div>
-            <p className="text-white/90 text-base mt-6 font-semibold italic tracking-wide drop-shadow-md">
+            <p className="text-white/90 text-sm sm:text-base mt-6 font-semibold italic tracking-wide drop-shadow-md">
               Es lujo, es simple, es Practiiko.
             </p>
           </div>
