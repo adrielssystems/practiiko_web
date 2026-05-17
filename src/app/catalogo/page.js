@@ -25,7 +25,12 @@ async function getCatalogData() {
   try {
     const productsRes = await query(`
       SELECT p.*, c.name as category_name,
-             (SELECT url FROM product_images WHERE product_id = p.id AND is_main = true LIMIT 1) as main_image
+             (SELECT url FROM product_images WHERE product_id = p.id AND is_main = true LIMIT 1) as main_image,
+             COALESCE((
+               SELECT json_agg(url ORDER BY sort_order ASC) 
+               FROM product_images 
+               WHERE product_id = p.id
+             ), '[]'::json) as images
       FROM products p 
       LEFT JOIN categories c ON p.category_id = c.id 
       WHERE p.status = 'active'
