@@ -13,40 +13,82 @@ export const metadata = generateSEO({
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+function getCategoryOrderIndex(categoryName) {
+  const name = (categoryName || "").toLowerCase().trim();
+  
+  if (name.includes("sofá cama") || name.includes("sofa cama") || name.includes("salas cama")) {
+    return 1; // 2) Sofas Cama
+  }
+  if (name.includes("sofá") || name.includes("sofa") || name.includes("sala")) {
+    return 0; // 1) Sofas
+  }
+  if (name.includes("colchón") || name.includes("colchon") || name.includes("colchones")) {
+    return 2; // 3) Colchones
+  }
+  if (name.includes("accesorio") || name.includes("hogar") || name.includes("home")) {
+    return 3; // 4) Accesorios para el Hogar
+  }
+  return 99; // Fallback
+}
+
 async function getCatalogData() {
   const isDev = process.env.NODE_ENV === 'development';
   const hasDb = !!process.env.DATABASE_URL;
 
+  let products = [];
+  let categories = [];
+
   if (isDev && !hasDb) {
     console.log("Local development: No DATABASE_URL found, using mock data.");
-    return getMockData();
+    const mock = getMockData();
+    products = mock.products;
+    categories = mock.categories;
+  } else {
+    try {
+      const productsRes = await query(`
+        SELECT p.*, c.name as category_name,
+               (SELECT url FROM product_images WHERE product_id = p.id AND is_main = true LIMIT 1) as main_image,
+               COALESCE((
+                 SELECT json_agg(url ORDER BY sort_order ASC) 
+                 FROM product_images 
+                 WHERE product_id = p.id
+               ), '[]'::json) as images
+        FROM products p 
+        LEFT JOIN categories c ON p.category_id = c.id 
+        WHERE p.status = 'active'
+        ORDER BY p.created_at DESC
+      `);
+      
+      const categoriesRes = await query("SELECT * FROM categories ORDER BY name ASC");
+
+      products = productsRes.rows || [];
+      categories = categoriesRes.rows || [];
+    } catch (e) {
+      console.error("Database query failed:", e.message);
+      const mock = getMockData();
+      products = mock.products;
+      categories = mock.categories;
+    }
   }
 
-  try {
-    const productsRes = await query(`
-      SELECT p.*, c.name as category_name,
-             (SELECT url FROM product_images WHERE product_id = p.id AND is_main = true LIMIT 1) as main_image,
-             COALESCE((
-               SELECT json_agg(url ORDER BY sort_order ASC) 
-               FROM product_images 
-               WHERE product_id = p.id
-             ), '[]'::json) as images
-      FROM products p 
-      LEFT JOIN categories c ON p.category_id = c.id 
-      WHERE p.status = 'active'
-      ORDER BY p.created_at DESC
-    `);
-    
-    const categoriesRes = await query("SELECT * FROM categories ORDER BY name ASC");
+  // Sort products by category order index, preserving original relative order for items in the same category
+  const sortedProducts = [...products].sort((a, b) => {
+    const orderA = getCategoryOrderIndex(a.category_name);
+    const orderB = getCategoryOrderIndex(b.category_name);
+    return orderA - orderB;
+  });
 
-    return {
-      products: productsRes.rows || [],
-      categories: categoriesRes.rows || []
-    };
-  } catch (e) {
-    console.error("Database query failed:", e.message);
-    return getMockData();
-  }
+  // Sort categories by category order index
+  const sortedCategories = [...categories].sort((a, b) => {
+    const orderA = getCategoryOrderIndex(a.name);
+    const orderB = getCategoryOrderIndex(b.name);
+    return orderA - orderB;
+  });
+
+  return {
+    products: sortedProducts,
+    categories: sortedCategories
+  };
 }
 
 function getMockData() {

@@ -64,15 +64,15 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
  
   return (
     <div 
-      className={`product-card-container group h-[540px] w-full cursor-pointer perspective-1000 ${isFlipped ? 'is-flipped' : ''}`}
+      className={`product-card-container group w-full cursor-pointer perspective-1000 transition-[height] duration-500 ease-in-out ${isFlipped ? 'is-flipped h-[600px]' : 'h-[540px]'}`}
       onClick={handleFlip}
     >
       <div className="product-card-inner relative w-full h-full transition-transform duration-700 transform-style-3d shadow-xl rounded-[40px]">
         
         {/* CARA FRONTAL (DISEÑO OXARELLYS) */}
-        <div className="product-card-front absolute inset-0 backface-hidden bg-[#F28705] rounded-[40px] p-6 flex flex-col border border-white/10 overflow-hidden">
+        <div className="product-card-front absolute inset-0 backface-hidden bg-white rounded-[40px] p-6 flex flex-col border-2 border-[#F28705]/20 shadow-[0_15px_40px_rgba(242,135,5,0.04)] overflow-hidden">
           {/* Contenedor de Imagen */}
-          <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-white mb-6 group/media shadow-inner">
+          <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-gray-50 mb-6 group/media shadow-inner border border-gray-100">
             {/* Badges Section */}
             <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
               {product.is_new && (
@@ -161,24 +161,24 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
           {/* Información del Producto */}
           <div className="flex flex-col flex-1 px-2">
             <div className="flex justify-between items-start mb-1">
-              <span className="text-[10px] text-white font-black uppercase tracking-[0.2em]">{product.category_name || 'Muebles'}</span>
+              <span className="text-[10px] text-[#0477BF] font-black uppercase tracking-[0.2em]">{product.category_name || 'Muebles'}</span>
             </div>
-            <h3 className="font-headline-md text-xl text-white mb-4 leading-tight">
+            <h3 className="font-headline-md text-xl text-gray-900 mb-4 leading-tight">
               {product.name || "Nombre del Producto"}
             </h3>
             
             <div className="flex items-center justify-between mt-auto mb-4">
               <div className="flex flex-col">
-                <span className="text-2xl font-black text-white">
+                <span className="text-2xl font-black text-[#0477BF]">
                   ${parseFloat(product.price_bcv || product.price_cash || 0).toLocaleString()}
                 </span>
-                <span className="text-[9px] text-white/70 font-bold uppercase tracking-widest">Ref.</span>
+                <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Ref.</span>
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-white/20 mb-2">
-               <span className="text-[10px] text-white/70 font-black uppercase tracking-widest">Ver Características</span>
-               <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#F28705] transition-all duration-500">
+            <div className="flex items-center justify-between pt-4 border-t border-[#F28705]/10 mb-2">
+               <span className="text-[10px] text-gray-500 font-black uppercase tracking-widest">Ver Características</span>
+               <div className="w-8 h-8 rounded-full bg-[#F28705]/10 flex items-center justify-center text-[#F28705] group-hover:bg-[#F28705] group-hover:text-white transition-all duration-500">
                 <span className="material-symbols-outlined text-lg">sync_alt</span>
               </div>
             </div>
@@ -186,46 +186,55 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
         </div>
 
         {/* CARA TRASERA (DISEÑO OXARELLYS) */}
-        <div className="product-card-back absolute inset-0 backface-hidden bg-primary text-white rounded-[40px] p-10 flex flex-col rotate-y-180 shadow-2xl overflow-hidden">
-          <div className="flex flex-col h-full justify-center items-center text-center">
+        <div className="product-card-back absolute inset-0 backface-hidden bg-primary text-white rounded-[40px] p-6 sm:p-8 flex flex-col rotate-y-180 shadow-2xl overflow-hidden">
+          <div className="flex flex-col h-full justify-between items-center text-center">
             {/* Decoración superior: Logo Practiiko */}
-            <div className="mb-6 relative">
+            <div className="mt-2 mb-4 relative flex-shrink-0">
               <div className="absolute inset-0 bg-white/20 blur-2xl rounded-full scale-150"></div>
               <img 
                 src="/logo-p.jpeg" 
                 alt="Practiiko Logo" 
-                className="w-16 h-16 object-contain relative z-10 drop-shadow-lg"
+                className="w-12 h-12 sm:w-16 sm:h-16 object-contain relative z-10 drop-shadow-lg"
               />
             </div>
             
-            <h4 className="text-white/60 font-black text-[10px] uppercase tracking-[0.3em] mb-2">Más información</h4>
-            <h3 className="text-2xl font-bold mb-6 leading-tight">{product.name}</h3>
+            <div className="flex-shrink-0">
+              <h4 className="text-white/60 font-black text-[10px] uppercase tracking-[0.3em] mb-1">Más información</h4>
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-tight">{product.name}</h3>
+            </div>
 
-            <div className="flex-1 flex items-center">
-              <p className="text-white/90 text-base leading-relaxed line-clamp-[6]">
+            {/* Contenedor de descripción con scroll elegante y tamaño de letra responsivo/adaptable */}
+            <div className="flex-1 w-full my-3 overflow-y-auto pr-1 description-scroll flex items-center justify-center">
+              <p className={`text-white/90 leading-relaxed text-center ${
+                (product.description || "").length > 250 
+                  ? "text-xs sm:text-[13px]" 
+                  : (product.description || "").length > 120 
+                    ? "text-[13px] sm:text-sm" 
+                    : "text-sm sm:text-base"
+              }`}>
                 {product.description || "Esta pieza exclusiva de Practiiko combina ergonomía de vanguardia con un diseño minimalista pensado para espacios modernos."}
               </p>
             </div>
 
             {!isPreview && (
-              <div className="mt-8 pt-6 border-t border-white/10 w-full relative z-10">
+              <div className="mt-4 pt-4 border-t border-white/10 w-full relative z-10 flex-shrink-0">
                 <a 
                   href={`https://wa.me/584248948664?text=${encodeURIComponent(`Hola, vengo de la pagina web y quiero comprar este producto: ${product.name}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="bg-[#F28705] text-white px-10 py-3 rounded-full font-bold text-sm shadow-xl hover:bg-white hover:text-primary transition-all duration-300 inline-block mb-4"
+                  className="bg-[#F28705] text-white px-8 py-2.5 sm:px-10 sm:py-3 rounded-full font-bold text-xs sm:text-sm shadow-xl hover:bg-white hover:text-primary transition-all duration-300 inline-block mb-3"
                 >
                   Comprar Ahora
                 </a>
-                <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold">Haz clic para volver</p>
+                <p className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold">Haz clic para volver</p>
               </div>
             )}
           </div>
           
           {/* Slogan Decorativo */}
-          <div className="absolute bottom-8 right-8 opacity-10 pointer-events-none">
-            <img src="/logo-white.png" alt="" className="h-12 w-auto grayscale" />
+          <div className="absolute bottom-6 right-6 opacity-10 pointer-events-none">
+            <img src="/logo-white.png" alt="" className="h-10 w-auto grayscale" />
           </div>
         </div>
 
@@ -254,6 +263,24 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
         .animate-badge-pop {
           opacity: 0;
           animation: badge-pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .description-scroll {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+        }
+        .description-scroll::-webkit-scrollbar {
+          width: 4px;
+        }
+        .description-scroll::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .description-scroll::-webkit-scrollbar-thumb {
+          background-color: rgba(255, 255, 255, 0.25);
+          border-radius: 4px;
+        }
+        .description-scroll::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(255, 255, 255, 0.4);
         }
 
         @keyframes badge-pop-in {
