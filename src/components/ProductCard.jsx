@@ -90,6 +90,11 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
                   Liquidación
                 </span>
               )}
+              {product.is_coming_soon && (
+                <span className="animate-badge-pop bg-[#7c3aed] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-purple-500/30 uppercase tracking-widest" style={{ animationDelay: '1.2s' }}>
+                  Próximamente
+                </span>
+              )}
             </div>
             
             {/* Renderizado de Media (Imágenes / Video) */}
