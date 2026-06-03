@@ -43,7 +43,7 @@ export default function ProductGalleryClient({ initialProducts }) {
       <div className="gallery-header flex flex-col items-center text-center mb-20">
         <span className="text-primary font-bold tracking-[0.3em] text-xs mb-4 uppercase">Favoritos de la comunidad</span>
         <h2 className="font-headline-lg text-5xl md:text-6xl text-on-surface mb-6 max-w-3xl leading-tight">
-          Los más <span className="text-primary italic">vendidos</span>
+          Best <span className="text-primary italic">Sellers</span>
         </h2>
         <div className="w-20 h-1 bg-secondary rounded-full"></div>
       </div>
