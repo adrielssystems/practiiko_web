@@ -3,10 +3,12 @@
 import { useState, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import ProductCard from "./ProductCard";
+import ImageModal from "./ImageModal";
 
 export default function ProductGalleryClient({ initialProducts }) {
   const containerRef = useRef(null);
   const [activeCardId, setActiveCardId] = useState(null);
+  const [modalData, setModalData] = useState(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -36,6 +38,30 @@ export default function ProductGalleryClient({ initialProducts }) {
     setActiveCardId(prevId => prevId === id ? null : id);
   };
 
+  const handleOpenModal = (product, initialIndex) => {
+    const mediaList = [];
+    const rawImages = product.images || [];
+    
+    if (rawImages.length > 0) {
+      rawImages.forEach(img => mediaList.push({ type: "image", url: img }));
+    } else if (product.main_image) {
+      mediaList.push({ type: "image", url: product.main_image });
+    }
+    if (product.video_url) {
+      mediaList.push({ type: "video", url: product.video_url });
+    }
+    if (mediaList.length === 0) {
+      mediaList.push({ type: "image", url: "/hero-sofa.png" });
+    }
+
+    setModalData({
+      isOpen: true,
+      mediaList,
+      initialIndex,
+      title: product.name
+    });
+  };
+
   return (
     <div ref={containerRef} className="max-w-[1400px] mx-auto px-6">
       
@@ -56,6 +82,7 @@ export default function ProductGalleryClient({ initialProducts }) {
               product={prod} 
               isFlipped={activeCardId === prod.id}
               onFlip={() => handleFlip(prod.id)}
+              onOpenModal={(index) => handleOpenModal(prod, index)}
             />
           </div>
         ))}
@@ -70,6 +97,16 @@ export default function ProductGalleryClient({ initialProducts }) {
           <h3 className="text-xl font-bold text-on-surface-variant">Sin diseños en esta categoría</h3>
           <p className="text-gray-400 mt-2">Estamos curando nuevas piezas para ti.</p>
         </div>
+      )}
+
+      {modalData && (
+        <ImageModal 
+          isOpen={modalData.isOpen}
+          mediaList={modalData.mediaList}
+          initialIndex={modalData.initialIndex}
+          title={modalData.title}
+          onClose={() => setModalData(null)}
+        />
       )}
     </div>
   );

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { getImageUrl } from "@/lib/utils";
  
-export default function ProductCard({ product, isFlipped, onFlip, isPreview = false }) {
+export default function ProductCard({ product, isFlipped, onFlip, onOpenModal, isPreview = false }) {
   // 1. Unificar imágenes y video en una sola lista
   const mediaList = [];
   const rawImages = product.images || [];
@@ -57,22 +57,20 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
   };
 
   const handleFlip = (e) => {
-    // Si es un link dentro de la tarjeta, o controles del carrusel, no girar
-    if (e.target.tagName === 'A' || e.target.closest('a') || e.target.closest('button')) return;
+    e.stopPropagation();
     onFlip();
   };
  
   return (
     <div 
-      className={`product-card-container group w-full cursor-pointer perspective-1000 transition-[height] duration-500 ease-in-out ${isFlipped ? 'is-flipped h-[620px]' : 'h-[540px]'}`}
-      onClick={handleFlip}
+      className={`product-card-container group w-full perspective-1000 transition-[height] duration-500 ease-in-out ${isFlipped ? 'is-flipped h-[620px]' : 'h-[540px]'}`}
     >
       <div className="product-card-inner relative w-full h-full transition-transform duration-700 transform-style-3d shadow-xl rounded-[40px]">
         
         {/* CARA FRONTAL (DISEÑO OXARELLYS) */}
         <div className="product-card-front absolute inset-0 backface-hidden bg-white rounded-[40px] p-6 flex flex-col border-2 border-[#F28705]/20 shadow-[0_15px_40px_rgba(242,135,5,0.04)] overflow-hidden">
           {/* Contenedor de Imagen */}
-          <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-gray-50 mb-6 group/media shadow-inner border border-gray-100">
+          <div className="relative w-full flex-1 rounded-[32px] overflow-hidden bg-gray-50 mb-6 group/media shadow-inner border border-gray-100 min-h-[200px]">
             {/* Badges Section */}
             <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
               {product.is_new && (
@@ -98,7 +96,10 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
             </div>
             
             {/* Renderizado de Media (Imágenes / Video) */}
-            <div className="w-full h-full relative">
+            <div 
+              className="w-full h-full relative cursor-pointer"
+              onClick={() => onOpenModal && onOpenModal(activeIndex)}
+            >
               {mediaList.map((item, idx) => (
                 <div 
                   key={idx} 
@@ -111,12 +112,14 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
                       muted 
                       playsInline
                       loop
-                      className="w-full h-full object-cover rounded-[32px]"
+                      className="w-full h-full rounded-[32px]"
+                      style={{ objectFit: 'cover' }}
                     />
                   ) : (
                     <img 
                       alt={`${product.name} - ${idx + 1}`}
-                      className="w-full h-full object-cover rounded-[32px]"
+                      className="w-full h-full rounded-[32px]"
+                      style={{ objectFit: 'cover' }}
                       src={getImageUrl(item.url)} 
                     />
                   )}
@@ -183,7 +186,10 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
 
             <div className="flex items-center justify-between pt-4 border-t border-[#F28705]/10 mb-2">
                <span className="text-[10px] text-gray-500 font-black uppercase tracking-widest">Ver Características</span>
-               <div className="w-8 h-8 rounded-full bg-[#F28705]/10 flex items-center justify-center text-[#F28705] group-hover:bg-[#F28705] group-hover:text-white transition-all duration-500">
+               <div 
+                 onClick={handleFlip}
+                 className="w-8 h-8 rounded-full bg-[#F28705]/10 flex items-center justify-center text-[#F28705] hover:bg-[#F28705] hover:text-white transition-all duration-500 cursor-pointer"
+               >
                 <span className="material-symbols-outlined text-lg">sync_alt</span>
               </div>
             </div>
@@ -224,7 +230,10 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
             </div>
 
             {!isPreview && (
-              <div className="mt-2 pt-3 border-t border-white/10 w-full relative z-10 flex-shrink-0">
+              <div 
+                className="mt-2 pt-3 border-t border-white/10 w-full relative z-10 flex-shrink-0 cursor-pointer"
+                onClick={handleFlip}
+              >
                 <a 
                   href={`https://wa.me/584248948664?text=${encodeURIComponent(`Hola, vengo de la pagina web y quiero comprar este producto: ${product.name}`)}`}
                   target="_blank"
@@ -234,7 +243,7 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
                 >
                   Comprar Ahora
                 </a>
-                <p className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold">Haz clic para volver</p>
+                <p className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold mt-1">Haz clic para volver</p>
               </div>
             )}
           </div>
