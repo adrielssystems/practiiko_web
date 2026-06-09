@@ -63,7 +63,7 @@ export default function ProductCard({ product, isFlipped, onFlip, onOpenModal, i
  
   return (
     <div 
-      className={`product-card-container group w-full perspective-1000 transition-[height] duration-500 ease-in-out ${isFlipped ? 'is-flipped h-[620px]' : 'h-[540px]'}`}
+      className={`product-card-container group w-full perspective-1000 transition-[height] duration-500 ease-in-out ${isFlipped ? 'is-flipped h-[540px]' : 'h-[460px]'}`}
     >
       <div className="product-card-inner relative w-full h-full transition-transform duration-700 transform-style-3d shadow-xl rounded-[40px]">
         
@@ -167,7 +167,7 @@ export default function ProductCard({ product, isFlipped, onFlip, onOpenModal, i
           </div>
 
           {/* Información del Producto */}
-          <div className="flex flex-col flex-none px-6 pt-5 pb-6 h-[170px]">
+          <div className="flex flex-col flex-none px-6 pt-5 pb-5">
             <div className="flex justify-between items-start mb-1">
               <span className="text-[10px] text-[#0477BF] font-black uppercase tracking-[0.2em]">{product.category_name || 'Muebles'}</span>
             </div>
