@@ -97,7 +97,7 @@ export default function ProductCard({ product, isFlipped, onFlip, onOpenModal, i
             
             {/* Renderizado de Media (Imágenes / Video) */}
             <div 
-              className="w-full h-full relative cursor-pointer"
+              className="absolute inset-0 w-full h-full cursor-pointer z-10"
               onClick={() => onOpenModal && onOpenModal(activeIndex)}
             >
               {mediaList.map((item, idx) => (

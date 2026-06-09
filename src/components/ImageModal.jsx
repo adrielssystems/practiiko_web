@@ -29,16 +29,16 @@ export default function ImageModal({ isOpen, onClose, mediaList, initialIndex, t
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md"
       onClick={onClose}
     >
-      <div className="absolute top-4 right-4 z-50">
+      <div className="absolute top-4 right-4 z-[101]">
         <button onClick={onClose} className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/30 text-white flex items-center justify-center transition-all cursor-pointer">
           <span className="material-symbols-outlined text-2xl">close</span>
         </button>
       </div>
 
-      <div className="absolute top-6 left-6 z-50 text-white max-w-[70%]">
+      <div className="absolute top-6 left-6 z-[101] text-white max-w-[70%]">
         <h3 className="font-headline-md text-xl md:text-3xl drop-shadow-md">{title}</h3>
       </div>
 
