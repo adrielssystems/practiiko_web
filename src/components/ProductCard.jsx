@@ -64,7 +64,7 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
  
   return (
     <div 
-      className={`product-card-container group w-full cursor-pointer perspective-1000 transition-[height] duration-500 ease-in-out ${isFlipped ? 'is-flipped h-[600px]' : 'h-[540px]'}`}
+      className={`product-card-container group w-full cursor-pointer perspective-1000 transition-[height] duration-500 ease-in-out ${isFlipped ? 'is-flipped h-[620px]' : 'h-[540px]'}`}
       onClick={handleFlip}
     >
       <div className="product-card-inner relative w-full h-full transition-transform duration-700 transform-style-3d shadow-xl rounded-[40px]">
@@ -191,44 +191,46 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
         </div>
 
         {/* CARA TRASERA (DISEÑO OXARELLYS) */}
-        <div className="product-card-back absolute inset-0 backface-hidden bg-primary text-white rounded-[40px] p-6 sm:p-8 flex flex-col rotate-y-180 shadow-2xl overflow-hidden">
+        <div className="product-card-back absolute inset-0 backface-hidden bg-primary text-white rounded-[40px] p-5 sm:p-6 flex flex-col rotate-y-180 shadow-2xl overflow-hidden">
           <div className="flex flex-col h-full justify-between items-center text-center">
             {/* Decoración superior: Logo Practiiko */}
-            <div className="mt-2 mb-4 relative flex-shrink-0">
+            <div className="mt-1 mb-2 relative flex-shrink-0">
               <div className="absolute inset-0 bg-white/20 blur-2xl rounded-full scale-150"></div>
               <img 
                 src="/logo-p.jpeg" 
                 alt="Practiiko Logo" 
-                className="w-12 h-12 sm:w-16 sm:h-16 object-contain relative z-10 drop-shadow-lg"
+                className="w-10 h-10 sm:w-12 sm:h-12 object-contain relative z-10 drop-shadow-lg"
               />
             </div>
             
             <div className="flex-shrink-0">
-              <h4 className="text-white/60 font-black text-[10px] uppercase tracking-[0.3em] mb-1">Más información</h4>
-              <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-tight">{product.name}</h3>
+              <h4 className="text-white/60 font-black text-[9px] sm:text-[10px] uppercase tracking-[0.3em] mb-1">Más información</h4>
+              <h3 className="text-lg sm:text-xl font-bold mb-2 leading-tight">{product.name}</h3>
             </div>
 
             {/* Contenedor de descripción con scroll elegante y tamaño de letra responsivo/adaptable */}
-            <div className="flex-1 w-full my-3 overflow-y-auto pr-1 description-scroll flex items-center justify-center">
-              <p className={`text-white/90 leading-relaxed text-center ${
-                (product.description || "").length > 250 
-                  ? "text-xs sm:text-[13px]" 
-                  : (product.description || "").length > 120 
-                    ? "text-[13px] sm:text-sm" 
-                    : "text-sm sm:text-base"
+            <div className="flex-1 w-full my-1 overflow-y-auto pr-1 description-scroll flex items-center justify-center">
+              <p className={`text-white/90 text-center ${
+                (product.description || "").length > 350
+                  ? "text-[11px] sm:text-xs leading-snug"
+                  : (product.description || "").length > 250 
+                    ? "text-xs sm:text-[13px] leading-relaxed" 
+                    : (product.description || "").length > 120 
+                      ? "text-[13px] sm:text-sm leading-relaxed" 
+                      : "text-sm sm:text-base leading-relaxed"
               }`}>
                 {product.description || "Esta pieza exclusiva de Practiiko combina ergonomía de vanguardia con un diseño minimalista pensado para espacios modernos."}
               </p>
             </div>
 
             {!isPreview && (
-              <div className="mt-4 pt-4 border-t border-white/10 w-full relative z-10 flex-shrink-0">
+              <div className="mt-2 pt-3 border-t border-white/10 w-full relative z-10 flex-shrink-0">
                 <a 
                   href={`https://wa.me/584248948664?text=${encodeURIComponent(`Hola, vengo de la pagina web y quiero comprar este producto: ${product.name}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="bg-[#F28705] text-white px-8 py-2.5 sm:px-10 sm:py-3 rounded-full font-bold text-xs sm:text-sm shadow-xl hover:bg-white hover:text-primary transition-all duration-300 inline-block mb-3"
+                  className="bg-[#F28705] text-white px-8 py-2 sm:px-10 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm shadow-xl hover:bg-white hover:text-primary transition-all duration-300 inline-block mb-2"
                 >
                   Comprar Ahora
                 </a>
