@@ -178,7 +178,7 @@ export default function ProductCard({ product, isFlipped, onFlip, onOpenModal, i
             <div className="flex items-center justify-between mt-auto mb-4">
               <div className="flex flex-col">
                 <span className="text-2xl font-black text-[#0477BF]">
-                  ${parseFloat(product.price_bcv || product.price_cash || 0).toLocaleString()}
+                  ${parseFloat(product.price_bcv || product.price_cash || 0).toLocaleString('es-VE')}
                 </span>
                 <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Ref.</span>
               </div>
