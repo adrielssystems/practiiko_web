@@ -70,7 +70,7 @@ export default function ProductCard({ product, isFlipped, onFlip, onOpenModal, i
         {/* CARA FRONTAL (DISEÑO OXARELLYS) */}
         <div className="product-card-front absolute inset-0 backface-hidden bg-white rounded-[40px] flex flex-col border-2 border-[#F28705]/20 shadow-[0_15px_40px_rgba(242,135,5,0.04)] overflow-hidden">
           {/* Contenedor de Imagen */}
-          <div className="relative w-full flex-1 overflow-hidden bg-gray-50 group/media border-b border-gray-100 min-h-[200px]">
+          <div className="relative w-full flex-1 overflow-hidden bg-white group/media border-b border-gray-100 min-h-[200px]">
             {/* Badges Section */}
             <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
               {product.is_new && (
@@ -113,13 +113,13 @@ export default function ProductCard({ product, isFlipped, onFlip, onOpenModal, i
                       playsInline
                       loop
                       className="w-full h-full"
-                      style={{ objectFit: 'cover' }}
+                      style={{ objectFit: 'contain' }}
                     />
                   ) : (
                     <img 
                       alt={`${product.name} - ${idx + 1}`}
                       className="w-full h-full"
-                      style={{ objectFit: 'cover' }}
+                      style={{ objectFit: 'contain' }}
                       src={getImageUrl(item.url)} 
                     />
                   )}
