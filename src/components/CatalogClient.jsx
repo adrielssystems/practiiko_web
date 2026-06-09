@@ -5,16 +5,42 @@ import Link from "next/link";
 import gsap from "gsap";
 import { getImageUrl } from "@/lib/utils";
 import ProductCard from "./ProductCard";
+import ImageModal from "./ImageModal";
 
 export default function CatalogClient({ initialProducts, categories }) {
   const [activeCategory, setActiveCategory] = useState("all");
   const [filteredProducts, setFilteredProducts] = useState(initialProducts);
   const [activeCardId, setActiveCardId] = useState(null);
+  const [modalData, setModalData] = useState(null);
   const containerRef = useRef(null);
   const cardsRef = useRef([]);
 
   const handleFlip = (id) => {
     setActiveCardId(prevId => prevId === id ? null : id);
+  };
+
+  const handleOpenModal = (product, initialIndex) => {
+    const mediaList = [];
+    const rawImages = product.images || [];
+    
+    if (rawImages.length > 0) {
+      rawImages.forEach(img => mediaList.push({ type: "image", url: img }));
+    } else if (product.main_image) {
+      mediaList.push({ type: "image", url: product.main_image });
+    }
+    if (product.video_url) {
+      mediaList.push({ type: "video", url: product.video_url });
+    }
+    if (mediaList.length === 0) {
+      mediaList.push({ type: "image", url: "/hero-sofa.png" });
+    }
+
+    setModalData({
+      isOpen: true,
+      mediaList,
+      initialIndex,
+      title: product.name
+    });
   };
 
   useEffect(() => {
@@ -162,6 +188,7 @@ export default function CatalogClient({ initialProducts, categories }) {
             product={prod} 
             isFlipped={activeCardId === prod.id}
             onFlip={() => handleFlip(prod.id)}
+            onOpenModal={(index) => handleOpenModal(prod, index)}
           />
         ))}
       </div>
@@ -180,6 +207,16 @@ export default function CatalogClient({ initialProducts, categories }) {
           perspective: 1500px;
         }
       `}</style>
+
+      {modalData && (
+        <ImageModal 
+          isOpen={modalData.isOpen}
+          mediaList={modalData.mediaList}
+          initialIndex={modalData.initialIndex}
+          title={modalData.title}
+          onClose={() => setModalData(null)}
+        />
+      )}
       </div>
     </div>
   );
