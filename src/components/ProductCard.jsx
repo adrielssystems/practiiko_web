@@ -116,7 +116,7 @@ export default function ProductCard({ product, isFlipped, onFlip, isPreview = fa
                   ) : (
                     <img 
                       alt={`${product.name} - ${idx + 1}`}
-                      className="w-full h-full object-contain p-4 scale-90"
+                      className="w-full h-full object-cover rounded-[32px]"
                       src={getImageUrl(item.url)} 
                     />
                   )}
