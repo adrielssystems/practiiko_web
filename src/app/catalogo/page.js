@@ -55,7 +55,7 @@ async function getCatalogData() {
                ), '[]'::json) as images
         FROM products p 
         LEFT JOIN categories c ON p.category_id = c.id 
-        WHERE p.status = 'active'
+        WHERE p.status = 'active' AND (p.stock > 0 OR p.is_coming_soon = true)
         ORDER BY p.created_at DESC
       `);
       

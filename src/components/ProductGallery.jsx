@@ -58,14 +58,15 @@ async function getGalleryData() {
              ), '[]'::json) as images
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
-      WHERE p.status = 'active' AND (p.is_featured = true OR p.is_promotion = true OR p.is_new = true OR p.is_clearance = true)
+      WHERE p.status = 'active' AND (p.stock > 0 OR p.is_coming_soon = true) AND (p.is_featured = true OR p.is_promotion = true OR p.is_new = true OR p.is_clearance = true OR p.is_coming_soon = true)
       ORDER BY 
          (CASE 
           WHEN p.is_new = true THEN 1
           WHEN p.is_clearance = true THEN 2
           WHEN p.is_promotion = true THEN 3
           WHEN p.is_featured = true THEN 4
-          ELSE 5
+          WHEN p.is_coming_soon = true THEN 5
+          ELSE 6
         END) ASC,
         p.created_at DESC
       LIMIT 8
