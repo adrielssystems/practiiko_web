@@ -1,0 +1,4 @@
+# Security contact information for Practiiko
+Contact: mailto:adriels.systems@gmail.com
+Expires: 2027-06-15T10:00:00.000Z
+Preferred-Languages: es, en
