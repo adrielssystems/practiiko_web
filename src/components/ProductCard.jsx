@@ -224,9 +224,38 @@ export default function ProductCard({ product }) {
                   )}
                 </div>
                 
-                {/* Imagen Principal */}
-                <div className="flex-1 bg-slate-50 rounded-xl overflow-hidden aspect-square md:aspect-[4/3] relative">
-                  <img src={rawImages.length > 0 ? getImageUrl(rawImages[modalImageIdx] || rawImages[0]) : mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain mix-blend-multiply" />
+                {/* Imagen Principal y Colores */}
+                <div className="flex-1 flex flex-col gap-5">
+                  <div className="w-full bg-slate-50 rounded-xl overflow-hidden aspect-square md:aspect-[4/3] relative">
+                    <img src={rawImages.length > 0 ? getImageUrl(rawImages[modalImageIdx] || rawImages[0]) : mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain mix-blend-multiply" />
+                  </div>
+                  
+                  {/* COLORES (Si existen) */}
+                  {Array.isArray(product?.colors) && product.colors.length > 0 && (
+                    <div className="flex gap-4 items-center">
+                      {product.colors.map((color, idx) => {
+                        let linkedIdx = null;
+                        if (color.image_url) {
+                           const exactIdx = rawImages.findIndex(img => img === color.image_url || getImageUrl(img) === color.image_url);
+                           if (exactIdx !== -1) linkedIdx = exactIdx;
+                        }
+                        
+                        return (
+                          <div key={idx} className="relative group cursor-pointer" onClick={() => linkedIdx !== null ? setModalImageIdx(linkedIdx) : null}>
+                            <div 
+                              className="w-9 h-9 rounded-full border-2 transition-transform hover:scale-110 flex items-center justify-center"
+                              style={{ backgroundColor: color.hex, borderColor: 'white', boxShadow: '0 0 0 2px #cbd5e1, 0 4px 6px -1px rgba(0,0,0,0.1)' }}
+                            />
+                            {/* Tooltip Hover */}
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-slate-900 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl">
+                              {color.name}
+                              <div className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-slate-900" />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               </div>
 
