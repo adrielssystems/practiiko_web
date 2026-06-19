@@ -1,315 +1,142 @@
 "use client";
- 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { getImageUrl } from "@/lib/utils";
- 
-export default function ProductCard({ product, isFlipped, onFlip, onOpenModal, isPreview = false }) {
-  // 1. Unificar imágenes y video en una sola lista
-  const mediaList = [];
-  const rawImages = product.images || [];
+
+export default function ProductCard({ product }) {
+  const [activeBadge, setActiveBadge] = useState(null);
+
+  const name = product?.name || "SOFÁ MODULAR ZEN";
   
-  if (rawImages.length > 0) {
-    rawImages.forEach(img => mediaList.push({ type: "image", url: img }));
-  } else if (product.main_image) {
-    mediaList.push({ type: "image", url: product.main_image });
+  // Use first image or main image
+  const rawImages = product?.images || [];
+  let mainImage = product?.main_image || "/hero-sofa.png";
+  if (rawImages.length > 0 && !product?.main_image) {
+    mainImage = rawImages[0];
   }
+  mainImage = getImageUrl(mainImage);
 
-  if (product.video_url) {
-    mediaList.push({ type: "video", url: product.video_url });
-  }
+  const price = product?.price_cash || 0;
+  const technicalSummary = product?.technical_summary || "Espuma de alta densidad / Tela premium antimanchas";
+  const badgeText = product?.badge_text || "Diseño Inteligente: Llega a tu puerta";
+  const likes = product?.likes_count || 124;
+  const views = product?.views_count || 1580;
+  const sales = product?.sales_count || 42;
+  
+  const interactiveBadges = product?.interactive_badges || [
+    { title: "Garantía", text: "5 años de garantía sobre defectos estructurales." },
+    { title: "Cuidado", text: "Fundas lavables en máquina con agua fría." }
+  ];
 
-  // Fallback seguro si no hay multimedia
-  if (mediaList.length === 0) {
-    mediaList.push({ type: "image", url: "/hero-sofa.png" });
-  }
-
-  const [activeIndex, setActiveIndex] = useState(0);
-  const videoRef = useRef(null);
-
-  // Auto-play/Pause al cambiar de slide
-  useEffect(() => {
-    if (mediaList[activeIndex]?.type === "video") {
-      if (videoRef.current) {
-        videoRef.current.currentTime = 0;
-        videoRef.current.play().catch(err => console.log("Video auto-play blocked/failed:", err));
-      }
-    } else {
-      if (videoRef.current) {
-        videoRef.current.pause();
-      }
-    }
-  }, [activeIndex]);
-
-  const handleNext = (e) => {
-    e.stopPropagation(); // Evitar que la tarjeta gire
-    setActiveIndex(prev => (prev + 1) % mediaList.length);
-  };
-
-  const handlePrev = (e) => {
-    e.stopPropagation(); // Evitar que la tarjeta gire
-    setActiveIndex(prev => (prev - 1 + mediaList.length) % mediaList.length);
-  };
-
-  const handleDotClick = (e, index) => {
-    e.stopPropagation(); // Evitar que la tarjeta gire
-    setActiveIndex(index);
-  };
-
-  const handleFlip = (e) => {
-    e.stopPropagation();
-    onFlip();
-  };
- 
   return (
-    <div 
-      className={`product-card-container group w-full perspective-1000 transition-[height] duration-500 ease-in-out ${isFlipped ? 'is-flipped h-[540px]' : 'h-[460px]'}`}
-    >
-      <div className="product-card-inner relative w-full h-full transition-transform duration-700 transform-style-3d shadow-xl rounded-[40px]">
+    <div className="w-full max-w-[380px] mx-auto bg-white rounded-[24px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.05)] font-sans relative transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.05)]">
+      
+      {/* HEADER IMAGE SECTION (1x1) */}
+      <div className="relative w-full aspect-square bg-slate-50 overflow-hidden group/media">
+        <img 
+          src={mainImage} 
+          alt={name} 
+          className="w-full h-full object-cover"
+        />
         
-        {/* CARA FRONTAL (DISEÑO OXARELLYS) */}
-        <div className="product-card-front absolute inset-0 backface-hidden bg-white rounded-[40px] flex flex-col border-2 border-[#F28705]/20 shadow-[0_15px_40px_rgba(242,135,5,0.04)] overflow-hidden">
-          {/* Contenedor de Imagen */}
-          <div className="relative w-full flex-1 overflow-hidden bg-white group/media border-b border-gray-100 min-h-[200px]">
-            {/* Badges Section */}
-            <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
-              {product.is_new && (
-                <span className="animate-badge-pop bg-[#0477BF] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-blue-500/30 uppercase tracking-widest" style={{ animationDelay: '0.6s' }}>
-                  Nuevo
-                </span>
-              )}
-              {product.is_promotion && (
-                <span className="animate-badge-pop bg-[#ef4444] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-red-500/30 uppercase tracking-widest" style={{ animationDelay: '0.8s' }}>
-                  Promoción
-                </span>
-              )}
-              {product.is_clearance && (
-                <span className="animate-badge-pop bg-[#1e293b] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-black/20 uppercase tracking-widest" style={{ animationDelay: '1s' }}>
-                  Liquidación
-                </span>
-              )}
-              {product.is_coming_soon && (
-                <span className="animate-badge-pop bg-[#7c3aed] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg shadow-purple-500/30 uppercase tracking-widest" style={{ animationDelay: '1.2s' }}>
-                  Próximamente
-                </span>
-              )}
-            </div>
-            
-            {/* Renderizado de Media (Imágenes / Video) */}
-            <div 
-              className="absolute inset-0 w-full h-full cursor-pointer z-10"
-              onClick={() => onOpenModal && onOpenModal(activeIndex)}
-            >
-              {mediaList.map((item, idx) => (
-                <div 
-                  key={idx} 
-                  className={`absolute inset-0 transition-opacity duration-500 flex items-center justify-center ${idx === activeIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}
-                >
-                  {item.type === 'video' ? (
-                    <video 
-                      ref={videoRef}
-                      src={getImageUrl(item.url)}
-                      muted 
-                      playsInline
-                      loop
-                      className="w-full h-full"
-                      style={{ objectFit: 'contain' }}
-                    />
-                  ) : (
-                    <img 
-                      alt={`${product.name} - ${idx + 1}`}
-                      className="w-full h-full"
-                      style={{ objectFit: 'contain' }}
-                      src={getImageUrl(item.url)} 
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Flechas de Navegación (Visibles en Hover cuando hay más de 1 item) */}
-            {mediaList.length > 1 && (
-              <>
-                <button 
-                  onClick={handlePrev}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center z-30 opacity-0 group-hover/media:opacity-100 transition-opacity duration-300 backdrop-blur-sm"
-                  title="Anterior"
-                >
-                  <span className="material-symbols-outlined text-base">chevron_left</span>
-                </button>
-                <button 
-                  onClick={handleNext}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center z-30 opacity-0 group-hover/media:opacity-100 transition-opacity duration-300 backdrop-blur-sm"
-                  title="Siguiente"
-                >
-                  <span className="material-symbols-outlined text-base">chevron_right</span>
-                </button>
-              </>
-            )}
-
-            {/* Puntos de Navegación (Dots) */}
-            {mediaList.length > 1 && (
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-30 bg-black/35 px-2.5 py-1 rounded-full backdrop-blur-sm">
-                {mediaList.map((item, idx) => (
-                  <button 
-                    key={idx}
-                    onClick={(e) => handleDotClick(e, idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 flex items-center justify-center relative ${idx === activeIndex ? 'w-4 bg-[#F28705]' : 'w-1.5 bg-white/60 hover:bg-white'}`}
-                    title={item.type === 'video' ? 'Ver Video' : `Ver Imagen ${idx + 1}`}
-                  >
-                    {item.type === 'video' && idx === activeIndex && (
-                      <span className="absolute text-[6px] font-black text-white">▶</span>
-                    )}
-                  </button>
-                ))}
-              </div>
-            )}
+        {/* LIFESTYLE BADGE */}
+        {badgeText && (
+          <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm text-slate-900 px-3.5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex items-center gap-1.5 z-20">
+            <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+            {badgeText}
           </div>
+        )}
 
-          {/* Información del Producto */}
-          <div className="flex flex-col flex-none px-6 pt-5 pb-5">
-            <div className="flex justify-between items-start mb-1">
-              <span className="text-[10px] text-[#0477BF] font-black uppercase tracking-[0.2em]">{product.category_name || 'Muebles'}</span>
-            </div>
-            <h3 className="font-headline-md text-xl text-gray-900 mb-4 leading-tight">
-              {product.name || "Nombre del Producto"}
-            </h3>
-            
-            <div className="flex items-center justify-between mt-auto mb-4">
-              <div className="flex flex-col">
-                <span className="text-2xl font-black text-[#0477BF]">
-                  ${parseFloat(product.price_bcv || product.price_cash || 0).toLocaleString('es-VE')}
-                </span>
-                <span className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">Ref.</span>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between pt-4 border-t border-[#F28705]/10 mb-2">
-               <span className="text-[10px] text-gray-500 font-black uppercase tracking-widest">Ver Características</span>
-               <div 
-                 onClick={handleFlip}
-                 className="w-8 h-8 rounded-full bg-[#F28705]/10 flex items-center justify-center text-[#F28705] hover:bg-[#F28705] hover:text-white transition-all duration-500 cursor-pointer"
-               >
-                <span className="material-symbols-outlined text-lg">sync_alt</span>
-              </div>
-            </div>
+        {/* SOCIAL STATS OVERLAY (Bottom of image) */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent pt-8 pb-3 px-4 flex justify-between items-center text-white z-20">
+          <div className="flex gap-3 text-[11px] font-bold tracking-wide">
+            <span className="flex items-center gap-1">
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+               {views}
+            </span>
+            <span className="flex items-center gap-1">
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+               {sales}
+            </span>
           </div>
+          <button className="bg-white/20 backdrop-blur-sm border-none rounded-full w-8 h-8 flex items-center justify-center text-white cursor-pointer transition-colors hover:bg-white/40">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      {/* CONTENT SECTION */}
+      <div className="p-6 flex flex-col gap-4">
+        
+        {/* TITLE & DESC */}
+        <div>
+          <h2 className="text-xl font-black uppercase tracking-tight text-slate-900 m-0 leading-[1.2] mb-1">
+            {name}
+          </h2>
+          <p className="text-xs text-slate-500 m-0 font-medium">
+            {technicalSummary}
+          </p>
         </div>
 
-        {/* CARA TRASERA (DISEÑO OXARELLYS) */}
-        <div className="product-card-back absolute inset-0 backface-hidden bg-primary text-white rounded-[40px] p-5 sm:p-6 flex flex-col rotate-y-180 shadow-2xl overflow-hidden">
-          <div className="flex flex-col h-full justify-between items-center text-center">
-            {/* Decoración superior: Logo Practiiko */}
-            <div className="mt-1 mb-2 relative flex-shrink-0">
-              <div className="absolute inset-0 bg-white/20 blur-2xl rounded-full scale-150"></div>
-              <img 
-                src="/logo-p.jpeg" 
-                alt="Practiiko Logo" 
-                className="w-10 h-10 sm:w-12 sm:h-12 object-contain relative z-10 drop-shadow-lg"
-              />
-            </div>
-            
-            <div className="flex-shrink-0">
-              <h4 className="text-white/60 font-black text-[9px] sm:text-[10px] uppercase tracking-[0.3em] mb-1">Más información</h4>
-              <h3 className="text-lg sm:text-xl font-bold mb-2 leading-tight">{product.name}</h3>
-            </div>
+        {/* PRICE */}
+        <div className="flex items-start mt-1">
+          <span className="text-3xl font-black text-[#d97706] leading-none [text-shadow:2px_2px_4px_rgba(0,0,0,0.25)]">
+            <small className="text-base align-top opacity-80 mr-1 [text-shadow:none]">Ref</small>
+            {parseFloat(price).toLocaleString('es-VE')}
+          </span>
+        </div>
 
-            {/* Contenedor de descripción con scroll elegante y tamaño de letra responsivo/adaptable */}
-            <div className="flex-1 w-full my-1 overflow-y-auto pr-1 description-scroll flex items-center justify-center">
-              <p className={`text-white/90 text-center ${
-                (product.description || "").length > 350
-                  ? "text-[11px] sm:text-xs leading-snug"
-                  : (product.description || "").length > 250 
-                    ? "text-xs sm:text-[13px] leading-relaxed" 
-                    : (product.description || "").length > 120 
-                      ? "text-[13px] sm:text-sm leading-relaxed" 
-                      : "text-sm sm:text-base leading-relaxed"
-              }`}>
-                {product.description || "Esta pieza exclusiva de Practiiko combina ergonomía de vanguardia con un diseño minimalista pensado para espacios modernos."}
-              </p>
-            </div>
+        {/* INTERACTIVE BADGES */}
+        <div className="flex gap-2 flex-wrap mt-1">
+          {interactiveBadges.map((badge, idx) => (
+            <button 
+              key={idx}
+              onClick={() => setActiveBadge(activeBadge === idx ? null : idx)}
+              className={`border-none px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase flex items-center gap-1 cursor-pointer transition-colors ${activeBadge === idx ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-600'}`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              {badge.title}
+            </button>
+          ))}
+        </div>
 
-            {!isPreview && (
-              <div 
-                className="mt-2 pt-3 border-t border-white/10 w-full relative z-10 flex-shrink-0 cursor-pointer"
-                onClick={handleFlip}
-              >
-                <a 
-                  href={`https://wa.me/584248948664?text=${encodeURIComponent(`Hola, vengo de la pagina web y quiero comprar este producto: ${product.name}`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="bg-[#F28705] text-white px-8 py-2 sm:px-10 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm shadow-xl hover:bg-white hover:text-primary transition-all duration-300 inline-block mb-2"
-                >
-                  Comprar Ahora
-                </a>
-                <p className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold mt-1">Haz clic para volver</p>
-              </div>
-            )}
+        {/* POPOVER TOOLTIP */}
+        {activeBadge !== null && (
+          <div className="bg-slate-900 text-white p-3 rounded-xl text-xs relative animate-in fade-in zoom-in duration-200">
+            <div className="flex justify-between mb-1">
+              <strong className="uppercase tracking-widest">{interactiveBadges[activeBadge].title}</strong>
+              <button onClick={() => setActiveBadge(null)} className="text-white/70 hover:text-white bg-transparent border-none cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              </button>
+            </div>
+            <p className="m-0 opacity-90 leading-relaxed">{interactiveBadges[activeBadge].text}</p>
           </div>
+        )}
+
+        {/* CTAs */}
+        <div className="grid grid-cols-[1fr_1.5fr] gap-3 mt-2">
+          {/* CTA SECUNDARIO: WHATSAPP */}
+          <a 
+            href={`https://wa.me/584248948664?text=${encodeURIComponent(`Hola, vengo de la pagina web y me interesa el modelo: ${product?.name}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white border-2 border-slate-900 text-slate-900 py-3.5 px-2 rounded-xl font-black text-xs uppercase text-center flex items-center justify-center transition-colors hover:bg-slate-50 no-underline"
+          >
+            Comprar
+          </a>
           
-          {/* Slogan Decorativo */}
-          <div className="absolute bottom-6 right-6 opacity-10 pointer-events-none">
-            <img src="/logo-white.png" alt="" className="h-10 w-auto grayscale" />
-          </div>
+          {/* CTA PRIMARIO: DETALLES */}
+          {/* Suponiendo que el slug o ID apuntan a la página de detalle */}
+          <Link 
+            href={`/producto/${product?.slug || product?.id}`}
+            className="bg-slate-900 border-none text-white py-3.5 px-2 rounded-xl font-bold text-xs flex justify-center items-center gap-1.5 transition-all shadow-[0_8px_16px_rgba(15,23,42,0.2)] hover:-translate-y-0.5 hover:shadow-[0_12px_20px_rgba(15,23,42,0.3)] no-underline"
+          >
+            Transformar mi espacio 
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </Link>
         </div>
 
       </div>
-
-      <style jsx>{`
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        .transform-style-3d {
-          transform-style: preserve-3d;
-        }
-        .backface-hidden {
-          backface-visibility: hidden;
-        }
-        .rotate-y-180 {
-          transform: rotateY(180deg);
-        }
-        .is-flipped .product-card-inner {
-          transform: rotateY(180deg);
-        }
-        .product-card-container:hover .product-card-inner {
-           ${!isFlipped ? 'transform: rotateY(10deg);' : ''}
-        }
-
-        .animate-badge-pop {
-          opacity: 0;
-          animation: badge-pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        .description-scroll {
-          scrollbar-width: thin;
-          scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
-        }
-        .description-scroll::-webkit-scrollbar {
-          width: 4px;
-        }
-        .description-scroll::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .description-scroll::-webkit-scrollbar-thumb {
-          background-color: rgba(255, 255, 255, 0.25);
-          border-radius: 4px;
-        }
-        .description-scroll::-webkit-scrollbar-thumb:hover {
-          background-color: rgba(255, 255, 255, 0.4);
-        }
-
-        @keyframes badge-pop-in {
-          0% {
-            transform: scale(0.5) translateY(10px);
-            opacity: 0;
-          }
-          100% {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-          }
-        }
-      `}</style>
     </div>
   );
 }
