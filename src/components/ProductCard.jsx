@@ -69,6 +69,13 @@ export default function ProductCard({ product }) {
     { title: "Cuidado", text: "Fundas lavables en máquina con agua fría." }
   ];
 
+  let parsedColors = [];
+  if (Array.isArray(product?.colors)) {
+    parsedColors = product.colors;
+  } else if (typeof product?.colors === 'string') {
+    try { parsedColors = JSON.parse(product.colors); } catch(e) { parsedColors = []; }
+  }
+
   return (
     <div className="w-full max-w-[380px] mx-auto bg-white rounded-[24px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.05)] font-sans relative transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.05)]">
       
@@ -231,9 +238,9 @@ export default function ProductCard({ product }) {
                   </div>
                   
                   {/* COLORES (Si existen) */}
-                  {Array.isArray(product?.colors) && product.colors.length > 0 && (
+                  {parsedColors.length > 0 && (
                     <div className="flex gap-4 items-center">
-                      {product.colors.map((color, idx) => {
+                      {parsedColors.map((color, idx) => {
                         let linkedIdx = null;
                         if (color.image_url) {
                            const exactIdx = rawImages.findIndex(img => img === color.image_url || getImageUrl(img) === color.image_url);
