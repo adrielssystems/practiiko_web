@@ -41,7 +41,7 @@ export default function ProductCard({ product }) {
         <img 
           src={mainImage} 
           alt={name} 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain mix-blend-multiply p-4"
         />
         
         {/* LIFESTYLE BADGE (MEDALLA DORADA) */}
