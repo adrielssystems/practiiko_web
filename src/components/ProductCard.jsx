@@ -11,6 +11,43 @@ export default function ProductCard({ product }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
+  const id = product?.id;
+  const initialLikes = product?.likes_count || 0;
+  const [localLikes, setLocalLikes] = useState(initialLikes);
+  const [hasLiked, setHasLiked] = useState(false);
+
+  useEffect(() => {
+    if (id && mounted) {
+      const likedProducts = JSON.parse(localStorage.getItem('practiiko_likes') || '{}');
+      if (likedProducts[id]) {
+        setHasLiked(true);
+      }
+    }
+  }, [id, mounted]);
+
+  const handleLike = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (hasLiked || !id) return;
+
+    setHasLiked(true);
+    setLocalLikes(prev => prev + 1);
+    
+    const likedProducts = JSON.parse(localStorage.getItem('practiiko_likes') || '{}');
+    likedProducts[id] = true;
+    localStorage.setItem('practiiko_likes', JSON.stringify(likedProducts));
+
+    try {
+      await fetch(`/api/products/${id}/like`, { method: 'POST' });
+    } catch (error) {
+      console.error('Failed to like product', error);
+      setHasLiked(false);
+      setLocalLikes(prev => prev - 1);
+      delete likedProducts[id];
+      localStorage.setItem('practiiko_likes', JSON.stringify(likedProducts));
+    }
+  };
+
   const name = product?.name || "SOFÁ MODULAR ZEN";
   
   // Use first image or main image
@@ -24,7 +61,6 @@ export default function ProductCard({ product }) {
   const price = product?.price_cash || 0;
   const technicalSummary = product?.technical_summary || "Espuma de alta densidad / Tela premium antimanchas";
   const badgeText = product?.badge_text || "Diseño Inteligente: Llega a tu puerta";
-  const likes = product?.likes_count || 0;
   const views = product?.views_count || 0;
   const sales = product?.sales_count || 0;
   
@@ -74,9 +110,12 @@ export default function ProductCard({ product }) {
                {sales}
             </span>
           </div>
-          <button className="bg-black/20 backdrop-blur-sm border-none rounded-full px-3 h-8 flex items-center justify-center gap-1.5 cursor-pointer transition-colors hover:bg-black/40 text-[#F28705] drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-            <span className="text-[12px] font-black">{likes}</span>
+          <button 
+            onClick={handleLike}
+            className="bg-black/20 backdrop-blur-sm border-none rounded-full px-3 h-8 flex items-center justify-center gap-1.5 cursor-pointer transition-colors hover:bg-black/40 text-[#F28705] drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill={hasLiked ? "#F28705" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <span className="text-[12px] font-black">{localLikes}</span>
           </button>
         </div>
       </div>
