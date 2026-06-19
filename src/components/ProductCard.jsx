@@ -28,7 +28,7 @@ export default function ProductCard({ product }) {
   const views = product?.views_count || 0;
   const sales = product?.sales_count || 0;
   
-  const interactiveBadges = product?.interactive_badges || [
+  const interactiveBadges = product?.interactive_badges !== undefined ? product.interactive_badges : [
     { title: "Garantía", text: "5 años de garantía sobre defectos estructurales." },
     { title: "Cuidado", text: "Fundas lavables en máquina con agua fría." }
   ];
@@ -45,7 +45,7 @@ export default function ProductCard({ product }) {
         />
         
         {/* LIFESTYLE BADGE (MEDALLA DORADA) */}
-        {badgeText && (
+        {product?.show_badge !== false && badgeText && (
           <div className="absolute top-4 left-4 w-[86px] h-[86px] rounded-full bg-gradient-to-br from-[#FFE77A] via-[#E5B13A] to-[#B88012] border-2 border-[#FFDF73] shadow-[0_6px_12px_rgba(0,0,0,0.3),inset_0_2px_4px_rgba(255,255,255,0.5)] flex items-center justify-center p-2 z-20">
             <span className="text-[10px] font-black text-[#3E2723] leading-[1.1] text-center [text-shadow:0_1px_1px_rgba(255,255,255,0.4)]">
               {badgeText}
@@ -57,16 +57,16 @@ export default function ProductCard({ product }) {
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent pt-8 pb-3 px-4 flex justify-between items-center text-white z-20">
           <div className="flex gap-3 text-[11px] font-bold tracking-wide">
             <span className="flex items-center gap-1">
-               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#F28705]"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                {views}
             </span>
             <span className="flex items-center gap-1">
-               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#F28705]"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                {sales}
             </span>
           </div>
           <button className="bg-white/20 backdrop-blur-sm border-none rounded-full px-3 h-8 flex items-center justify-center gap-1.5 text-white cursor-pointer transition-colors hover:bg-white/40">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#F28705]"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
             <span className="text-[11px] font-bold">{likes}</span>
           </button>
         </div>
@@ -199,14 +199,6 @@ export default function ProductCard({ product }) {
                 </div>
 
                 <div className="flex flex-col gap-4">
-                  {product?.aspirational_copy && (
-                    <div className="bg-emerald-50 rounded-xl p-4 border border-emerald-100">
-                      <p className="text-sm font-medium text-emerald-900 italic m-0">
-                        "{product.aspirational_copy}"
-                      </p>
-                    </div>
-                  )}
-
                   <div>
                     <h4 className="font-bold text-slate-900 mb-2 uppercase text-xs tracking-wider">Detalles Adicionales</h4>
                     <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap m-0">

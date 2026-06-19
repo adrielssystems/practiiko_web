@@ -65,6 +65,17 @@ export default function ProductGalleryClient({ initialProducts }) {
   return (
     <div ref={containerRef} className="max-w-[1400px] mx-auto px-6">
       
+      {/* EVOLUTION BANNER */}
+      <div className="bg-[#fff7ed] border border-[#ffedd5] rounded-2xl p-6 mb-12 text-center max-w-4xl mx-auto shadow-sm animate-in fade-in duration-500">
+        <h3 className="text-[#9a3412] font-bold text-lg mb-2 flex items-center justify-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#F28705]"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+          Estamos evolucionando para ti
+        </h3>
+        <p className="text-[#c2410c] text-sm md:text-base max-w-2xl mx-auto font-medium">
+          Actualmente nos encontramos actualizando nuestro catálogo para ofrecerte una experiencia visual mucho más atractiva, inmersiva y detallada. ¡Pronto verás nuestros productos como nunca antes!
+        </p>
+      </div>
+
       {/* HEADER: SIMPLE & ELEGANT */}
       <div className="gallery-header flex flex-col items-center text-center mb-20">
         <span className="text-primary font-bold tracking-[0.3em] text-xs mb-4 uppercase">Favoritos de la comunidad</span>
