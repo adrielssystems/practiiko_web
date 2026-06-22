@@ -58,7 +58,7 @@ export default function ProductCard({ product }) {
   }
   mainImage = getImageUrl(mainImage);
 
-  const price = product?.price_cash || 0;
+  const price = product?.price_bcv || 0;
   const technicalSummary = product?.technical_summary || "Espuma de alta densidad / Tela premium antimanchas";
   const badgeText = product?.badge_text || "Diseño Inteligente: Llega a tu puerta";
   const views = product?.views_count || 0;
