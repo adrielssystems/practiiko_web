@@ -80,11 +80,11 @@ export default function ProductCard({ product }) {
     <div className="w-full max-w-[380px] mx-auto bg-white rounded-[24px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.05)] font-sans relative transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.05)]">
       
       {/* HEADER IMAGE SECTION (1x1) */}
-      <div className="relative w-full aspect-square bg-slate-50 overflow-hidden group/media">
+      <div className="relative w-full aspect-square bg-white overflow-hidden group/media">
         <img 
           src={mainImage} 
           alt={name} 
-          className="w-full h-full object-contain mix-blend-multiply p-4"
+          className="w-full h-full object-cover"
         />
         
         {/* LIFESTYLE BADGE (MEDALLA DORADA) */}
@@ -233,8 +233,8 @@ export default function ProductCard({ product }) {
                 
                 {/* Imagen Principal y Colores */}
                 <div className="flex-1 flex flex-col gap-5">
-                  <div className="w-full bg-slate-50 rounded-xl overflow-hidden aspect-square md:aspect-[4/3] relative">
-                    <img src={rawImages.length > 0 ? getImageUrl(rawImages[modalImageIdx] || rawImages[0]) : mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain mix-blend-multiply" />
+                  <div className="w-full bg-white rounded-xl overflow-hidden aspect-square md:aspect-[4/3] relative">
+                    <img src={rawImages.length > 0 ? getImageUrl(rawImages[modalImageIdx] || rawImages[0]) : mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
                   </div>
                   
                   {/* COLORES (Si existen) */}
