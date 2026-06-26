@@ -9,6 +9,17 @@ body {
   color: var(--foreground);
 }
 
+/* Scrollbar utilities */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Fix background-attachment:fixed on iOS Safari (causes visual glitch) */
+@media (max-width: 768px) {
+  [style*="background-attachment"] {
+    background-attachment: scroll !important;
+  }
+}
+
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }

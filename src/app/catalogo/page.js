@@ -124,7 +124,7 @@ export default async function CatalogoPage() {
       />
       <TopNavBar />
 
-      <main className="pt-40 pb-32 flex-grow">
+      <main className="pt-24 md:pt-40 pb-32 flex-grow">
         <CatalogClient initialProducts={products} categories={categories} />
       </main>
 

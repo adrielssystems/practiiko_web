@@ -88,10 +88,10 @@ export default function ProductCard({ product }) {
   }
 
   return (
-    <div className="w-full max-w-[380px] mx-auto bg-white rounded-[24px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.05)] font-sans relative transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.05)]">
+    <div className="w-full max-w-[380px] mx-auto bg-white rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.05)] font-sans relative transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.05)]">
       
       {/* HEADER IMAGE SECTION (1x1) */}
-      <div className="relative w-full aspect-square bg-white overflow-hidden group/media">
+      <div className="relative w-full aspect-square bg-white overflow-hidden rounded-t-[24px] group/media">
         <img 
           src={mainImage} 
           alt={name} 
@@ -151,14 +151,6 @@ export default function ProductCard({ product }) {
           </p>
         </div>
 
-        {/* PRICE */}
-        <div className="flex items-start mt-1">
-          <span className="text-[2rem] font-black text-[#d97706] leading-none drop-shadow-sm">
-            <small className="text-base align-top opacity-80 mr-1 tracking-normal font-bold">Ref</small>
-            {parseFloat(price).toLocaleString('es-VE')}
-          </span>
-        </div>
-
         {/* INTERACTIVE BADGES */}
         <div className="flex gap-2 flex-wrap mt-2 relative">
           {interactiveBadges.map((badge, idx) => (
@@ -184,6 +176,14 @@ export default function ProductCard({ product }) {
               <p className="m-0 opacity-90 leading-relaxed">{interactiveBadges[activeBadge].text}</p>
             </div>
           )}
+        </div>
+
+        {/* PRICE */}
+        <div className="flex items-start mt-1">
+          <span className="text-[2rem] font-black text-[#d97706] leading-none drop-shadow-sm">
+            <small className="text-base align-top opacity-80 mr-1 tracking-normal font-bold">Ref</small>
+            {parseFloat(price).toLocaleString('es-VE')}
+          </span>
         </div>
 
         {/* CTAs */}
@@ -242,74 +242,60 @@ export default function ProductCard({ product }) {
             <div className="flex-1 overflow-y-auto p-4 md:p-8 flex flex-col md:flex-row gap-8">
               
               {/* Columna Izquierda: Galería */}
-              <div className="w-full md:w-[55%] flex gap-4 h-max">
-                {/* Thumbnails (verticales) */}
-                <div className="flex flex-col gap-2 w-16 md:w-20 shrink-0 max-h-[500px] overflow-y-auto pr-1">
-                  {rawImages.length > 0 ? rawImages.map((img, i) => (
-                    <img 
-                      key={i} 
-                      src={getImageUrl(img)} 
-                      alt={`${name} thumb ${i}`} 
-                      onClick={() => setModalImageIdx(i)}
-                      className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all ${modalImageIdx === i ? 'border-[#F28705]' : 'border-transparent hover:border-slate-300'}`} 
-                    />
-                  )) : (
-                    <img src={mainImage} alt={name} className="w-full aspect-square object-cover rounded-lg border-2 border-[#F28705]" />
-                  )}
+              <div className="w-full md:w-[55%] flex flex-col gap-4 h-max">
+                {/* Imagen Principal */}
+                <div className="w-full bg-white rounded-xl overflow-hidden aspect-square md:aspect-[4/3] relative border border-slate-100">
+                  <img 
+                    src={getImageUrl(rawImages[modalImageIdx] || mainImage)} 
+                    alt={name} 
+                    className="absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
+                    key={modalImageIdx}
+                  />
                 </div>
                 
-                {/* Imagen Principal y Colores */}
-                <div className="flex-1 flex flex-col gap-5">
-                  <div 
-                    ref={carouselRef}
-                    className="w-full bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex aspect-square md:aspect-[4/3] relative no-scrollbar"
-                    onScroll={(e) => {
-                      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-                      scrollTimeout.current = setTimeout(() => {
-                        const el = e.target;
-                        const idx = Math.round(el.scrollLeft / el.clientWidth);
-                        if (idx !== modalImageIdx) setModalImageIdx(idx);
-                      }, 50);
-                    }}
-                  >
-                    {rawImages.length > 0 ? rawImages.map((img, i) => (
-                      <div key={i} className="flex-none w-full h-full relative snap-center">
-                        <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
-                      </div>
-                    )) : (
-                      <div className="flex-none w-full h-full relative snap-center">
-                        <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
-                      </div>
-                    )}
-                  </div>
-                  
-                  {/* COLORES (Si existen) */}
-                  {parsedColors.length > 0 && (
-                    <div className="flex gap-4 items-center">
+                {/* COLORES (Si existen) - Debajo de la imagen principal */}
+                {parsedColors.length > 0 && (
+                  <div className="flex flex-col gap-3">
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider m-0">Elige tu color</p>
+                    <div className="flex gap-3 items-center flex-wrap">
                       {parsedColors.map((color, idx) => {
-                        let linkedIdx = null;
+                        // Buscar el índice de la imagen vinculada a este color
+                        let linkedIdx = 0; // Default a la primera imagen
                         if (color.image_url) {
-                           const exactIdx = rawImages.findIndex(img => img === color.image_url || getImageUrl(img) === color.image_url);
-                           if (exactIdx !== -1) linkedIdx = exactIdx;
+                          const exactIdx = rawImages.findIndex(img => img === color.image_url || getImageUrl(img) === color.image_url);
+                          if (exactIdx !== -1) linkedIdx = exactIdx;
                         }
+                        const isSelected = modalImageIdx === linkedIdx;
                         
                         return (
-                          <div key={idx} className="relative group cursor-pointer" onClick={() => linkedIdx !== null ? setModalImageIdx(linkedIdx) : null}>
+                          <div 
+                            key={idx} 
+                            className="relative group cursor-pointer flex flex-col items-center gap-1.5"
+                            onClick={() => setModalImageIdx(linkedIdx)}
+                          >
                             <div 
-                              className="w-9 h-9 rounded-full border-2 transition-transform hover:scale-110 flex items-center justify-center"
-                              style={{ backgroundColor: color.hex, borderColor: 'white', boxShadow: '0 0 0 2px #cbd5e1, 0 4px 6px -1px rgba(0,0,0,0.1)' }}
+                              className="transition-transform hover:scale-110"
+                              style={{ 
+                                width: '44px', 
+                                height: '44px', 
+                                borderRadius: '50%', 
+                                backgroundColor: color.hex, 
+                                border: isSelected ? '3px solid #F28705' : '3px solid white',
+                                boxShadow: isSelected 
+                                  ? '0 0 0 2px #F28705, 0 4px 8px rgba(0,0,0,0.15)' 
+                                  : '0 0 0 2px #cbd5e1, 0 4px 6px rgba(0,0,0,0.08)',
+                                transition: 'all 0.2s ease'
+                              }}
                             />
-                            {/* Tooltip Hover */}
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-slate-900 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl">
+                            <span className="text-[10px] font-bold text-slate-500 text-center max-w-[50px] leading-tight">
                               {color.name}
-                              <div className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-slate-900" />
-                            </div>
+                            </span>
                           </div>
                         );
                       })}
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
 
               {/* Columna Derecha: Detalles */}

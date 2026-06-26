@@ -137,7 +137,7 @@ export default function CatalogClient({ initialProducts, categories }) {
             <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white font-black text-[10px] mb-4 uppercase tracking-widest backdrop-blur-md border border-white/30">
               NUEVA COLECCIÓN
             </span>
-            <h1 className="font-headline-lg text-5xl md:text-7xl text-white mb-4 leading-[0.9] drop-shadow-2xl">
+            <h1 className="font-headline-lg text-3xl sm:text-5xl md:text-7xl text-white mb-4 leading-[0.95] drop-shadow-2xl">
               Explora la <br /> <span className="text-[#F28705] italic">Nueva Colección Practiiko</span>
             </h1>
             <div className="max-w-xl">
@@ -160,11 +160,11 @@ export default function CatalogClient({ initialProducts, categories }) {
               <div className="h-1 w-12 bg-[#F28705] rounded-full"></div>
             </div>
             
-            {/* Filter Pills */}
-            <div className="flex flex-wrap gap-2 p-2 bg-white/50 backdrop-blur-md rounded-[28px] border border-gray-100 shadow-xl shadow-gray-200/20">
+            {/* Filter Pills - scrollable on mobile */}
+            <div className="flex gap-2 p-1.5 bg-white/50 backdrop-blur-md rounded-[28px] border border-gray-100 shadow-xl shadow-gray-200/20 overflow-x-auto no-scrollbar flex-nowrap md:flex-wrap">
               <button 
                 onClick={() => setActiveCategory("all")}
-                className={`px-8 py-3.5 rounded-[20px] text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-[#F28705] text-white shadow-xl shadow-orange-500/30 scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
+                className={`flex-none px-5 py-2.5 md:px-8 md:py-3.5 rounded-[20px] text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === 'all' ? 'bg-[#F28705] text-white shadow-xl shadow-orange-500/30 scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
               >
                 Todos
               </button>
@@ -172,7 +172,7 @@ export default function CatalogClient({ initialProducts, categories }) {
                 <button 
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id.toString())}
-                  className={`px-8 py-3.5 rounded-[20px] text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.id.toString() ? 'bg-[#F28705] text-white shadow-xl shadow-orange-500/30 scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
+                  className={`flex-none px-5 py-2.5 md:px-8 md:py-3.5 rounded-[20px] text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCategory === cat.id.toString() ? 'bg-[#F28705] text-white shadow-xl shadow-orange-500/30 scale-105' : 'text-gray-400 hover:text-[#F28705]'}`}
                 >
                   {cat.name}
                 </button>
@@ -181,7 +181,7 @@ export default function CatalogClient({ initialProducts, categories }) {
         </div>
 
       {/* PRODUCTS GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12 md:gap-x-8 md:gap-y-16">
         {filteredProducts.map((prod, idx) => (
           <ProductCard 
             key={prod.id} 
