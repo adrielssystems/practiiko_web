@@ -244,11 +244,11 @@ export default function ProductCard({ product }) {
               {/* Columna Izquierda: Galería */}
               <div className="w-full md:w-[55%] flex flex-col gap-3 h-max">
 
-                {/* Galería: layout diferente en mobile vs desktop */}
-                <div className="flex gap-3">
-                  {/* Thumbnails verticales — solo en desktop (sm+) */}
+                {/* Thumbnails verticales + Imagen Principal */}
+                <div className="flex gap-2">
+                  {/* Thumbnails verticales — siempre visibles si hay más de 1 imagen */}
                   {rawImages.length > 1 && (
-                    <div className="hidden sm:flex flex-col gap-2 w-16 shrink-0 max-h-[400px] overflow-y-auto no-scrollbar pr-0.5">
+                    <div className="flex flex-col gap-1.5 w-12 sm:w-16 shrink-0 max-h-[360px] overflow-y-auto no-scrollbar">
                       {rawImages.map((img, i) => (
                         <img
                           key={i}
@@ -264,7 +264,7 @@ export default function ProductCard({ product }) {
                   {/* Imagen Principal — Carrusel deslizable */}
                   <div
                     ref={carouselRef}
-                    className="flex-1 bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar aspect-[3/2] sm:aspect-[4/3]"
+                    className="flex-1 bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar aspect-[4/3]"
                     onScroll={(e) => {
                       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
                       scrollTimeout.current = setTimeout(() => {
@@ -286,22 +286,7 @@ export default function ProductCard({ product }) {
                   </div>
                 </div>
 
-                {/* Thumbnails horizontales — solo en mobile */}
-                {rawImages.length > 1 && (
-                  <div className="flex sm:hidden gap-2 overflow-x-auto no-scrollbar pb-1">
-                    {rawImages.map((img, i) => (
-                      <img
-                        key={i}
-                        src={getImageUrl(img)}
-                        alt={`${name} thumb ${i}`}
-                        onClick={() => setModalImageIdx(i)}
-                        className={`w-14 h-14 shrink-0 object-cover rounded-lg cursor-pointer border-2 transition-all ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
-                      />
-                    ))}
-                  </div>
-                )}
-
-                {/* COLORES (Si existen) - Debajo de la imagen principal */}
+                {/* COLORES — Debajo de la imagen principal */}
                 {parsedColors.length > 0 && (
                   <div className="flex flex-col gap-2">
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-wider m-0">Elige tu color</p>
@@ -316,7 +301,7 @@ export default function ProductCard({ product }) {
                         return (
                           <div
                             key={idx}
-                            className="relative group cursor-pointer flex flex-col items-center gap-1"
+                            className="cursor-pointer flex flex-col items-center gap-1"
                             onClick={() => setModalImageIdx(linkedIdx)}
                           >
                             <div
