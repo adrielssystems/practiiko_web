@@ -243,46 +243,76 @@ export default function ProductCard({ product }) {
               
               {/* Columna Izquierda: Galería */}
               <div className="w-full md:w-[55%] flex flex-col gap-4 h-max">
-                {/* Imagen Principal */}
-                <div className="w-full bg-white rounded-xl overflow-hidden aspect-square md:aspect-[4/3] relative border border-slate-100">
-                  <img 
-                    src={getImageUrl(rawImages[modalImageIdx] || mainImage)} 
-                    alt={name} 
-                    className="absolute inset-0 w-full h-full object-contain transition-opacity duration-300"
-                    key={modalImageIdx}
-                  />
+                {/* Galería: Thumbnails + Imagen Principal */}
+                <div className="flex gap-3">
+                  {/* Thumbnails verticales */}
+                  {rawImages.length > 1 && (
+                    <div className="hidden sm:flex flex-col gap-2 w-16 shrink-0 max-h-[400px] overflow-y-auto no-scrollbar pr-0.5">
+                      {rawImages.map((img, i) => (
+                        <img
+                          key={i}
+                          src={getImageUrl(img)}
+                          alt={`${name} thumb ${i}`}
+                          onClick={() => setModalImageIdx(i)}
+                          className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Imagen Principal — Carrusel deslizable */}
+                  <div
+                    ref={carouselRef}
+                    className="flex-1 bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex aspect-square md:aspect-[4/3] relative no-scrollbar"
+                    onScroll={(e) => {
+                      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+                      scrollTimeout.current = setTimeout(() => {
+                        const el = e.target;
+                        const idx = Math.round(el.scrollLeft / el.clientWidth);
+                        if (idx !== modalImageIdx) setModalImageIdx(idx);
+                      }, 50);
+                    }}
+                  >
+                    {rawImages.length > 0 ? rawImages.map((img, i) => (
+                      <div key={i} className="flex-none w-full h-full relative snap-center">
+                        <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
+                      </div>
+                    )) : (
+                      <div className="flex-none w-full h-full relative snap-center">
+                        <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
+                      </div>
+                    )}
+                  </div>
                 </div>
-                
+
                 {/* COLORES (Si existen) - Debajo de la imagen principal */}
                 {parsedColors.length > 0 && (
                   <div className="flex flex-col gap-3">
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-wider m-0">Elige tu color</p>
                     <div className="flex gap-3 items-center flex-wrap">
                       {parsedColors.map((color, idx) => {
-                        // Buscar el índice de la imagen vinculada a este color
-                        let linkedIdx = 0; // Default a la primera imagen
+                        let linkedIdx = 0;
                         if (color.image_url) {
                           const exactIdx = rawImages.findIndex(img => img === color.image_url || getImageUrl(img) === color.image_url);
                           if (exactIdx !== -1) linkedIdx = exactIdx;
                         }
                         const isSelected = modalImageIdx === linkedIdx;
-                        
                         return (
-                          <div 
-                            key={idx} 
+                          <div
+                            key={idx}
                             className="relative group cursor-pointer flex flex-col items-center gap-1.5"
                             onClick={() => setModalImageIdx(linkedIdx)}
                           >
-                            <div 
+                            <div
                               className="transition-transform hover:scale-110"
-                              style={{ 
-                                width: '44px', 
-                                height: '44px', 
-                                borderRadius: '50%', 
-                                backgroundColor: color.hex, 
+                              style={{
+                                width: '44px',
+                                height: '44px',
+                                borderRadius: '50%',
+                                backgroundColor: color.hex,
                                 border: isSelected ? '3px solid #F28705' : '3px solid white',
-                                boxShadow: isSelected 
-                                  ? '0 0 0 2px #F28705, 0 4px 8px rgba(0,0,0,0.15)' 
+                                boxShadow: isSelected
+                                  ? '0 0 0 2px #F28705, 0 4px 8px rgba(0,0,0,0.15)'
                                   : '0 0 0 2px #cbd5e1, 0 4px 6px rgba(0,0,0,0.08)',
                                 transition: 'all 0.2s ease'
                               }}
