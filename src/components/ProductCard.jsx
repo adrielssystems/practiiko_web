@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { getImageUrl } from "@/lib/utils";
@@ -8,8 +8,19 @@ export default function ProductCard({ product }) {
   const [activeBadge, setActiveBadge] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImageIdx, setModalImageIdx] = useState(0);
+  const carouselRef = useRef(null);
+  const scrollTimeout = useRef(null);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    if (carouselRef.current) {
+      const targetScroll = modalImageIdx * carouselRef.current.clientWidth;
+      if (Math.abs(carouselRef.current.scrollLeft - targetScroll) > 10) {
+        carouselRef.current.scrollTo({ left: targetScroll, behavior: 'smooth' });
+      }
+    }
+  }, [modalImageIdx]);
 
   const id = product?.id;
   const initialLikes = product?.likes_count || 0;
@@ -211,6 +222,22 @@ export default function ProductCard({ product }) {
               </button>
             </div>
             
+            {/* Ocultar WhatsApp Button en Mobile */}
+            <style>{`
+              @media (max-width: 768px) {
+                a[aria-label="WhatsApp Support"] {
+                  display: none !important;
+                }
+              }
+              .no-scrollbar::-webkit-scrollbar {
+                display: none;
+              }
+              .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+            `}</style>
+            
             {/* Contenido (2 columnas) */}
             <div className="flex-1 overflow-y-auto p-4 md:p-8 flex flex-col md:flex-row gap-8">
               
@@ -233,8 +260,27 @@ export default function ProductCard({ product }) {
                 
                 {/* Imagen Principal y Colores */}
                 <div className="flex-1 flex flex-col gap-5">
-                  <div className="w-full bg-white rounded-xl overflow-hidden aspect-square md:aspect-[4/3] relative">
-                    <img src={rawImages.length > 0 ? getImageUrl(rawImages[modalImageIdx] || rawImages[0]) : mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
+                  <div 
+                    ref={carouselRef}
+                    className="w-full bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex aspect-square md:aspect-[4/3] relative no-scrollbar"
+                    onScroll={(e) => {
+                      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+                      scrollTimeout.current = setTimeout(() => {
+                        const el = e.target;
+                        const idx = Math.round(el.scrollLeft / el.clientWidth);
+                        if (idx !== modalImageIdx) setModalImageIdx(idx);
+                      }, 50);
+                    }}
+                  >
+                    {rawImages.length > 0 ? rawImages.map((img, i) => (
+                      <div key={i} className="flex-none w-full h-full relative snap-center">
+                        <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
+                      </div>
+                    )) : (
+                      <div className="flex-none w-full h-full relative snap-center">
+                        <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
+                      </div>
+                    )}
                   </div>
                   
                   {/* COLORES (Si existen) */}
