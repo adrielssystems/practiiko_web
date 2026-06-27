@@ -11,6 +11,7 @@ export default function ProductCard({ product }) {
   const carouselRef = useRef(null);
   const scrollTimeout = useRef(null);
   const [mounted, setMounted] = useState(false);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function ProductCard({ product }) {
     if (id && mounted) {
       const likedProducts = JSON.parse(localStorage.getItem('practiiko_likes') || '{}');
       if (likedProducts[id]) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setHasLiked(true);
       }
     }
@@ -215,6 +217,7 @@ export default function ProductCard({ product }) {
         </div>
 
       </div>
+    </div>
 
       {/* MODAL DEL PRODUCTO */}
       {isModalOpen && mounted && (
@@ -374,8 +377,6 @@ export default function ProductCard({ product }) {
                   <p className="text-center text-xs text-slate-400 mt-3 font-medium">Asesoramiento personalizado e inmediato</p>
                 </div>
               </div>
-            </div>
-          </div>
             </div>
           </div>
         </div>
