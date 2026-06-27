@@ -88,6 +88,7 @@ export default function ProductCard({ product }) {
   }
 
   return (
+    <>
     <div className="w-full max-w-[380px] mx-auto bg-white rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.05)] font-sans relative transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.05)]">
       
       {/* HEADER IMAGE SECTION (1x1) */}
@@ -201,6 +202,7 @@ export default function ProductCard({ product }) {
           
           {/* CTA PRIMARIO: DETALLES */}
           <button 
+            type="button"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -215,8 +217,8 @@ export default function ProductCard({ product }) {
       </div>
 
       {/* MODAL DEL PRODUCTO */}
-      {isModalOpen && mounted && createPortal(
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setIsModalOpen(false)}>
+      {isModalOpen && mounted && (
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setIsModalOpen(false)}>
           <div className="bg-white rounded-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-200" onClick={(e) => e.stopPropagation()}>
             
             {/* Header / Cerrar */}
@@ -374,8 +376,10 @@ export default function ProductCard({ product }) {
               </div>
             </div>
           </div>
+            </div>
+          </div>
         </div>
-      , document.body)}
-    </div>
+      )}
+    </>
   );
 }
