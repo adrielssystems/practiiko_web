@@ -201,10 +201,14 @@ export default function ProductCard({ product }) {
           
           {/* CTA PRIMARIO: DETALLES */}
           <button 
-            onClick={() => setIsModalOpen(true)}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsModalOpen(true);
+            }}
             className="bg-[#F28705] border-none text-white py-3.5 px-1 rounded-xl font-bold text-[11px] flex justify-center items-center transition-all shadow-[0_8px_16px_rgba(242,135,5,0.3)] hover:-translate-y-0.5 hover:shadow-[0_12px_20px_rgba(242,135,5,0.4)] cursor-pointer text-center w-full leading-tight"
           >
-            Transformar mi espacio
+            Galería de colores
           </button>
         </div>
 
