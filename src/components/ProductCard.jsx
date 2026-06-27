@@ -208,6 +208,7 @@ export default function ProductCard({ product }) {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
+              console.log("[DEBUG] Galería de colores clickeada. Abriendo modal...");
               setIsModalOpen(true);
             }}
             className="bg-[#F28705] border-none text-white py-3.5 px-1 rounded-xl font-bold text-[11px] flex justify-center items-center transition-all shadow-[0_8px_16px_rgba(242,135,5,0.3)] hover:-translate-y-0.5 hover:shadow-[0_12px_20px_rgba(242,135,5,0.4)] cursor-pointer text-center w-full leading-tight"
@@ -220,7 +221,7 @@ export default function ProductCard({ product }) {
     </div>
 
       {/* MODAL DEL PRODUCTO */}
-      {isModalOpen && mounted && (
+      {isModalOpen && mounted && typeof document !== 'undefined' && createPortal(
         <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setIsModalOpen(false)}>
           <div className="bg-white rounded-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-200" onClick={(e) => e.stopPropagation()}>
             
@@ -380,7 +381,7 @@ export default function ProductCard({ product }) {
             </div>
           </div>
         </div>
-      )}
+      , document.body)}
     </>
   );
 }
