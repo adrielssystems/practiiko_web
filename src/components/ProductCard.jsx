@@ -306,11 +306,11 @@ export default function ProductCard({ product }) {
                     >
                       {rawImages.length > 0 ? rawImages.map((img, i) => (
                         <div key={i} className="flex-none w-full h-full relative snap-center">
-                          <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
+                          <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-cover md:object-contain" />
                         </div>
                       )) : (
                         <div className="flex-none w-full h-full relative snap-center">
-                          <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
+                          <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-cover md:object-contain" />
                         </div>
                       )}
                     </div>
