@@ -276,7 +276,7 @@ export default function ProductCard({ product }) {
                     {/* Imagen Principal — Carrusel deslizable */}
                     <div
                       ref={carouselRef}
-                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar aspect-[16/10] max-h-[45vh]"
+                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar aspect-square self-center w-full max-w-[45vh] md:max-w-none md:h-auto max-h-[45vh]"
                       onScroll={(e) => {
                         if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
                         scrollTimeout.current = setTimeout(() => {
@@ -288,11 +288,11 @@ export default function ProductCard({ product }) {
                     >
                       {rawImages.length > 0 ? rawImages.map((img, i) => (
                         <div key={i} className="flex-none w-full h-full relative snap-center">
-                          <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-cover" />
+                          <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
                         </div>
                       )) : (
                         <div className="flex-none w-full h-full relative snap-center">
-                          <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-cover" />
+                          <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
                         </div>
                       )}
                     </div>
