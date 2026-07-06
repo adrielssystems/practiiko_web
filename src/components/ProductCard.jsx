@@ -250,7 +250,7 @@ export default function ProductCard({ product }) {
             `}</style>
             
             {/* Contenido (2 columnas) */}
-            <div className="flex-1 overflow-y-auto p-4 md:p-8 flex flex-col md:flex-row gap-8">
+            <div className="flex-1 overflow-y-auto p-4 md:p-8 flex flex-col md:flex-row gap-8 min-h-0">
               
               {/* Columna Izquierda: Galería */}
               <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col gap-3 h-max">
@@ -265,7 +265,20 @@ export default function ProductCard({ product }) {
                           key={i}
                           src={getImageUrl(img)}
                           alt={`${name} thumb ${i}`}
-                          onClick={() => setModalImageIdx(i)}
+                          onClick={() => {
+                            setModalImageIdx(i);
+                            let matchingColorIdx = parsedColors.findIndex(c => {
+                              if (!c.image_url) return false;
+                              const exactIdx = rawImages.findIndex(img => img === c.image_url || getImageUrl(img) === c.image_url);
+                              return exactIdx === i;
+                            });
+                            if (matchingColorIdx === -1 && i < parsedColors.length) {
+                              matchingColorIdx = i;
+                            }
+                            if (matchingColorIdx !== -1 && matchingColorIdx < parsedColors.length) {
+                              setSelectedColorIdx(matchingColorIdx);
+                            }
+                          }}
                           className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
                         />
                       ))}
@@ -312,7 +325,8 @@ export default function ProductCard({ product }) {
                         <p className="text-xs font-bold text-slate-400 uppercase tracking-wider m-0">Elige tu color</p>
                         <div className="flex gap-3 items-center flex-wrap">
                           {parsedColors.map((color, idx) => {
-                            let linkedIdx = 0;
+                            // Solo navegar a la imagen si el color tiene una URL de imagen asignada
+                            let linkedIdx = -1;
                             if (color.image_url) {
                               const exactIdx = rawImages.findIndex(img => img === color.image_url || getImageUrl(img) === color.image_url);
                               if (exactIdx !== -1) linkedIdx = exactIdx;
@@ -324,7 +338,7 @@ export default function ProductCard({ product }) {
                                 className="cursor-pointer flex flex-col items-center gap-1"
                                 onClick={() => {
                                   setSelectedColorIdx(idx);
-                                  setModalImageIdx(linkedIdx);
+                                  if (linkedIdx !== -1) setModalImageIdx(linkedIdx);
                                 }}
                               >
                                 <div
