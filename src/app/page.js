@@ -40,7 +40,11 @@ export default async function Home() {
         <MattressSection />
         <LogisticsSection />
         <ErgonomicsSection />
-        <PromoBanner compact={true} />
+        <PromoBanner 
+          title="¡Contamos con planes de financiamiento que se ajustan a sus POSIBILIDADES!"
+          description="Pregunta por nuestras cuotas y facilidades de pago para que lleves el mueble de tus sueños hoy mismo."
+          compact={true} 
+        />
         <AboutUsSection />
         <ValuesSection />
 
