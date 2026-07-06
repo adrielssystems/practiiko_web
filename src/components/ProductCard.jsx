@@ -255,11 +255,11 @@ export default function ProductCard({ product }) {
               {/* Columna Izquierda: Galería */}
               <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col gap-2 md:gap-3">
 
-                {/* Thumbnails verticales + Imagen Principal */}
-                <div className="flex gap-2">
-                  {/* Thumbnails verticales — izquierda en todos los tamaños */}
+                {/* Thumbnails verticales + Imagen Principal — fila con altura fija en móvil */}
+                <div className="flex gap-2 h-[36vh] md:h-auto">
+                  {/* Thumbnails verticales */}
                   {rawImages.length > 1 && (
-                    <div className="flex flex-col gap-1 w-8 sm:w-14 shrink-0 max-h-[38vh] md:max-h-[360px] overflow-y-auto no-scrollbar">
+                    <div className="flex flex-col gap-1 w-8 sm:w-14 shrink-0 h-full overflow-y-auto no-scrollbar">
                       {rawImages.map((img, i) => (
                         <img
                           key={i}
@@ -282,11 +282,11 @@ export default function ProductCard({ product }) {
                   )}
 
                   {/* Contenedor de Imagen y Colores */}
-                  <div className="flex-1 flex flex-col gap-3">
-                    {/* Imagen Principal — Carrusel deslizable */}
+                  <div className="flex-1 flex flex-col gap-3 min-w-0">
+                    {/* Imagen Principal — cuadrada, llena el espacio disponible */}
                     <div
                       ref={carouselRef}
-                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar w-full h-[38vh] md:h-auto md:aspect-square"
+                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar flex-1 md:flex-none md:w-full md:aspect-square"
                       onScroll={(e) => {
                         if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
                         scrollTimeout.current = setTimeout(() => {
