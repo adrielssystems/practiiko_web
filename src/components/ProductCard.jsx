@@ -271,76 +271,79 @@ export default function ProductCard({ product }) {
                     </div>
                   )}
 
-                  {/* Imagen Principal — Carrusel deslizable */}
-                  <div
-                    ref={carouselRef}
-                    className="flex-1 bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar aspect-[4/3]"
-                    onScroll={(e) => {
-                      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-                      scrollTimeout.current = setTimeout(() => {
-                        const el = e.target;
-                        const idx = Math.round(el.scrollLeft / el.clientWidth);
-                        if (idx !== modalImageIdx) setModalImageIdx(idx);
-                      }, 50);
-                    }}
-                  >
-                    {rawImages.length > 0 ? rawImages.map((img, i) => (
-                      <div key={i} className="flex-none w-full h-full relative snap-center">
-                        <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
-                      </div>
-                    )) : (
-                      <div className="flex-none w-full h-full relative snap-center">
-                        <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
+                  {/* Contenedor de Imagen y Colores */}
+                  <div className="flex-1 flex flex-col gap-4">
+                    {/* Imagen Principal — Carrusel deslizable */}
+                    <div
+                      ref={carouselRef}
+                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar aspect-[16/10] max-h-[45vh]"
+                      onScroll={(e) => {
+                        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+                        scrollTimeout.current = setTimeout(() => {
+                          const el = e.target;
+                          const idx = Math.round(el.scrollLeft / el.clientWidth);
+                          if (idx !== modalImageIdx) setModalImageIdx(idx);
+                        }, 50);
+                      }}
+                    >
+                      {rawImages.length > 0 ? rawImages.map((img, i) => (
+                        <div key={i} className="flex-none w-full h-full relative snap-center">
+                          <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
+                        </div>
+                      )) : (
+                        <div className="flex-none w-full h-full relative snap-center">
+                          <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* COLORES — Debajo de la imagen principal */}
+                    {parsedColors.length > 0 && (
+                      <div className="flex flex-col gap-2">
+                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider m-0">Elige tu color</p>
+                        <div className="flex gap-3 items-center flex-wrap">
+                          {parsedColors.map((color, idx) => {
+                            let linkedIdx = 0;
+                            if (color.image_url) {
+                              const exactIdx = rawImages.findIndex(img => img === color.image_url || getImageUrl(img) === color.image_url);
+                              if (exactIdx !== -1) linkedIdx = exactIdx;
+                            }
+                            const isSelected = modalImageIdx === linkedIdx;
+                            return (
+                              <div
+                                key={idx}
+                                className="cursor-pointer flex flex-col items-center gap-1"
+                                onClick={() => setModalImageIdx(linkedIdx)}
+                              >
+                                <div
+                                  className="transition-transform hover:scale-110"
+                                  style={{
+                                    width: '36px',
+                                    height: '36px',
+                                    borderRadius: '50%',
+                                    backgroundColor: color.hex,
+                                    border: isSelected ? '3px solid #F28705' : '3px solid white',
+                                    boxShadow: isSelected
+                                      ? '0 0 0 2px #F28705, 0 4px 8px rgba(0,0,0,0.15)'
+                                      : '0 0 0 2px #cbd5e1, 0 4px 6px rgba(0,0,0,0.08)',
+                                    transition: 'all 0.2s ease'
+                                  }}
+                                />
+                                <span className="text-[9px] font-bold text-slate-500 text-center max-w-[44px] leading-tight">
+                                  {color.name}
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
                     )}
                   </div>
                 </div>
-
-                {/* COLORES — Debajo de la imagen principal */}
-                {parsedColors.length > 0 && (
-                  <div className="flex flex-col gap-2">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider m-0">Elige tu color</p>
-                    <div className="flex gap-3 items-center flex-wrap">
-                      {parsedColors.map((color, idx) => {
-                        let linkedIdx = 0;
-                        if (color.image_url) {
-                          const exactIdx = rawImages.findIndex(img => img === color.image_url || getImageUrl(img) === color.image_url);
-                          if (exactIdx !== -1) linkedIdx = exactIdx;
-                        }
-                        const isSelected = modalImageIdx === linkedIdx;
-                        return (
-                          <div
-                            key={idx}
-                            className="cursor-pointer flex flex-col items-center gap-1"
-                            onClick={() => setModalImageIdx(linkedIdx)}
-                          >
-                            <div
-                              className="transition-transform hover:scale-110"
-                              style={{
-                                width: '36px',
-                                height: '36px',
-                                borderRadius: '50%',
-                                backgroundColor: color.hex,
-                                border: isSelected ? '3px solid #F28705' : '3px solid white',
-                                boxShadow: isSelected
-                                  ? '0 0 0 2px #F28705, 0 4px 8px rgba(0,0,0,0.15)'
-                                  : '0 0 0 2px #cbd5e1, 0 4px 6px rgba(0,0,0,0.08)',
-                                transition: 'all 0.2s ease'
-                              }}
-                            />
-                            <span className="text-[9px] font-bold text-slate-500 text-center max-w-[44px] leading-tight">
-                              {color.name}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
               </div>
 
               {/* Columna Derecha: Detalles */}
-              <div className="w-full md:w-[45%] flex flex-col gap-6 pb-4">
+              <div className="w-full md:w-[45%] flex flex-col gap-4 pb-0 flex-1 min-h-0">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-black text-slate-900 uppercase leading-tight mb-2">
                     {name}
@@ -350,12 +353,12 @@ export default function ProductCard({ product }) {
                   </p>
                 </div>
                 
-                <div className="text-4xl font-black text-[#F28705] border-b border-slate-100 pb-6">
+                <div className="text-4xl font-black text-[#F28705] border-b border-slate-100 pb-4">
                   <small className="text-xl align-top opacity-80 mr-1">Ref</small>
                   {parseFloat(price).toLocaleString('es-VE')}
                 </div>
 
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2 flex-1 overflow-y-auto pr-2 no-scrollbar min-h-[100px]">
                   <div>
                     <h4 className="font-bold text-slate-900 mb-2 uppercase text-xs tracking-wider">Detalles Adicionales</h4>
                     <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap m-0">
@@ -365,7 +368,7 @@ export default function ProductCard({ product }) {
                 </div>
 
                 {/* CTA */}
-                <div className="mt-auto pt-4">
+                <div className="mt-2 pt-2">
                   <a 
                     href={`https://wa.me/584248948664?text=${encodeURIComponent(`Hola, me encantó el modelo ${name} que vi en la web. ¡Quiero más detalles!`)}`}
                     target="_blank"
