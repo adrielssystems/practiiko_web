@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-export default function PromoBanner({ 
-  title = "¡Muebles de Lujo con Envío GRATIS a Todo el País!", 
+export default function PromoBanner({
+  title = "¡Muebles de lujo con envío GRATIS a todo el país!",
   description = "Transforma tu hogar con nuestra exclusiva línea de mobiliario premium. Calidad de vanguardia entregada directamente en tu puerta en toda Venezuela.",
   compact = false
 }) {
@@ -22,9 +22,9 @@ export default function PromoBanner({
                 {description}
               </p>
             </div>
-            
-            <Link 
-              href="/catalogo" 
+
+            <Link
+              href="/catalogo"
               className={`whitespace-nowrap bg-white text-[#F28705] ${compact ? 'px-8 py-3.5 text-base' : 'px-10 py-5 text-lg'} rounded-2xl font-bold hover:bg-slate-50 hover:scale-105 hover:shadow-2xl transition-all duration-300 active:scale-95 shadow-lg`}
             >
               Explorar Catálogo

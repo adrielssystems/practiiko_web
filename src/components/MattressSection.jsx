@@ -7,7 +7,6 @@ export default function MattressSection() {
         {/* Columna Izquierda: Contenido */}
         <div className="animate-in slide-in-from-left duration-700">
           <h2 className="font-headline-lg text-headline-lg mb-4">
-            <span className="text-on-surface">Colchones Premium Practiiko:</span>{" "}
             <span className="text-[#0477BF]">El descanso perfecto</span>
           </h2>
           <p className="text-[#F28705] font-label-bold mb-6 text-lg uppercase tracking-wide">
@@ -38,15 +37,15 @@ export default function MattressSection() {
             
             {/* Logo de Marca Flotante (Referencia Regal) */}
             <div className="w-full flex justify-end mb-4">
-              <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-white font-bold tracking-widest text-sm border border-white/20">
-                PRACTIIKO
+              <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-white font-bold tracking-wide text-sm border border-white/20">
+                Colchones Premium Practiiko
               </div>
             </div>
 
             {/* Imagen del Colchón */}
             <div className="relative z-10 w-full transform group-hover:scale-105 transition-transform duration-700">
               <img 
-                src="/colchon-premium.png?v=2" 
+                src="/Colchon-practiiko.png" 
                 alt="Colchón Premium Practiiko" 
                 className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
               />
