@@ -35,12 +35,7 @@ export default function MattressSection() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -ml-20 -mb-20 blur-3xl"></div>
             
-            {/* Logo de Marca Flotante (Referencia Regal) */}
-            <div className="w-full flex justify-end mb-4">
-              <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-white font-bold tracking-wide text-sm border border-white/20">
-                Colchones Premium Practiiko
-              </div>
-            </div>
+
 
             {/* Imagen del Colchón */}
             <div className="relative z-10 w-full transform group-hover:scale-105 transition-transform duration-700">
