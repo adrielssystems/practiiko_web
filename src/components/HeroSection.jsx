@@ -12,7 +12,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 z-0">
           <img 
             src="/hero-bg.jpg" 
-            alt="Muebles Premium Practiiko en Venezuela y Margarita" 
+            alt="Muebles Premium Practiiko en Venezuela" 
             className="w-full h-full object-cover object-center"
           />
           {/* Overlay for text readability */}

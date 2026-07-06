@@ -25,8 +25,8 @@ const workSans = Work_Sans({
 });
 
 export const metadata = generateSEO({
-  title: "Muebles Premium y Sofás en Caja en Margarita y Venezuela",
-  description: "Compra muebles de lujo online en Practiiko. Recibe sofás de diseño y colchones premium en formato compacto con envío GRATIS en la Isla de Margarita. ¡Es lujo, es simple!",
+  title: "Muebles Premium y Sofás en Caja en Venezuela",
+  description: "Compra muebles de lujo online en Practiiko. Recibe sofás de diseño y colchones premium en formato compacto con envío GRATIS a todo el país. ¡Es lujo, es simple!",
 });
 
 export default function RootLayout({ children }) {

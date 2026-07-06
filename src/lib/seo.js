@@ -9,8 +9,8 @@ export function generateSEO({
   noIndex = false,
 }) {
   const baseUrl = "https://practiiko.com"; // User should update this when live
-  const fullTitle = title ? `${title} | Practiiko` : "Practiiko | Muebles Premium en Caja en Venezuela y Margarita";
-  const fullDescription = description || "Descubre Practiiko: Muebles de diseño de alta gama que llegan en caja a toda Venezuela. Especialistas en sofás y colchones premium con envío exclusivo en la Isla de Margarita.";
+  const fullTitle = title ? `${title} | Practiiko` : "Practiiko | Muebles Premium en Caja en Venezuela";
+  const fullDescription = description || "Descubre Practiiko: Muebles de diseño de alta gama que llegan en caja a toda Venezuela. Especialistas en sofás y colchones premium con envío a todo el país.";
   const absoluteImageUrl = `${baseUrl}${image}`;
   
   return {

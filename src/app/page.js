@@ -45,8 +45,8 @@ export default async function Home() {
         <ValuesSection />
 
         <PromoBanner 
-          title="Desempaca el lujo. Transforma tu espacio hoy!"
-          description="Diseño de vanguardia con envío GRATIS exclusivo en Margarita. Es lujo, es simple, es Practiiko"
+          title="Resistencia máxima de hasta 600 kgs con garantía de 5 años"
+          description="Calidad insuperable diseñada para durar. Es lujo, es simple, es Practiiko"
           compact={true}
         />
       </main>

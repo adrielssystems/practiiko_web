@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export default function PromoBanner({ 
-  title = "¡Muebles de Lujo con Envío GRATIS en Margarita!", 
-  description = "Transforma tu hogar con nuestra exclusiva línea de mobiliario premium. Calidad de vanguardia entregada directamente en tu puerta en toda la Isla de Margarita.",
+  title = "¡Muebles de Lujo con Envío GRATIS a Todo el País!", 
+  description = "Transforma tu hogar con nuestra exclusiva línea de mobiliario premium. Calidad de vanguardia entregada directamente en tu puerta en toda Venezuela.",
   compact = false
 }) {
   return (

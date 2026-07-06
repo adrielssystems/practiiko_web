@@ -8,17 +8,17 @@ export default function MattressSection() {
         <div className="animate-in slide-in-from-left duration-700">
           <h2 className="font-headline-lg text-headline-lg mb-4">
             <span className="text-on-surface">Colchones Premium Practiiko:</span>{" "}
-            <span className="text-[#0477BF]">El descanso perfecto en Margarita</span>
+            <span className="text-[#0477BF]">El descanso perfecto</span>
           </h2>
           <p className="text-[#F28705] font-label-bold mb-6 text-lg uppercase tracking-wide">
-            ¡El descanso que soñaste llegó a la Isla de Margarita, en caja!
+            ¡El descanso que soñaste llegó a toda Venezuela, en caja!
           </p>
           <div className="space-y-4 text-on-surface-variant text-body-lg mb-10">
             <p>
               Nuestra línea de colchones incorpora tecnología de vanguardia para garantizar un amanecer feliz y placentero. Cada unidad está construida con materiales de calidad premium, integrando capas de confort diseñadas a medida que se adaptan a la ergonomía de tu cuerpo, brindando el soporte necesario para un sueño profundo y reparador.
             </p>
             <p>
-              Experimenta la mayor frescura del mercado gracias a nuestros textiles inteligentes de alta porosidad, todo esto al mejor precio del mercado y con la facilidad de entrega que solo Practiiko puede ofrecerte en toda la Isla de Margarita.
+              Experimenta la mayor frescura del mercado gracias a nuestros textiles inteligentes de alta porosidad, todo esto al mejor precio del mercado y con la facilidad de entrega que solo Practiiko puede ofrecerte en toda Venezuela.
             </p>
           </div>
           <Link 
