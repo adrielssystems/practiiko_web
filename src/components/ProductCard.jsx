@@ -224,7 +224,7 @@ export default function ProductCard({ product }) {
       {/* MODAL DEL PRODUCTO */}
       {isModalOpen && mounted && typeof document !== 'undefined' && createPortal(
         <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setIsModalOpen(false)}>
-          <div className="bg-white rounded-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-200" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded-2xl w-full max-w-5xl max-h-[95vh] overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-200" onClick={(e) => e.stopPropagation()}>
             
             {/* Header / Cerrar */}
             <div className="flex justify-end p-4 pb-0">
@@ -249,17 +249,34 @@ export default function ProductCard({ product }) {
               }
             `}</style>
             
-            {/* Contenido (2 columnas) */}
-            <div className="flex-1 overflow-y-auto p-4 md:p-8 flex flex-col md:flex-row gap-8 min-h-0">
+            {/* Contenido: apilado en móvil, 2 columnas en desktop */}
+            <div className="flex-1 overflow-y-auto p-3 md:p-8 flex flex-col md:flex-row gap-4 md:gap-8 min-h-0">
               
               {/* Columna Izquierda: Galería */}
-              <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col gap-3 h-max">
+              <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col gap-2 md:gap-3">
+
+                {/* MOBILE: Thumbnails horizontales arriba */}
+                {rawImages.length > 1 && (
+                  <div className="flex md:hidden gap-2 overflow-x-auto no-scrollbar pb-1">
+                    {rawImages.map((img, i) => (
+                      <img
+                        key={i}
+                        src={getImageUrl(img)}
+                        alt={`${name} thumb ${i}`}
+                        onClick={() => setModalImageIdx(i)}
+                        className={`flex-none w-12 h-12 object-cover rounded-lg cursor-pointer border-2 transition-all ${
+                          modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
 
                 {/* Thumbnails verticales + Imagen Principal */}
                 <div className="flex gap-2">
-                  {/* Thumbnails verticales — siempre visibles si hay más de 1 imagen */}
+                  {/* Thumbnails verticales — solo en desktop */}
                   {rawImages.length > 1 && (
-                    <div className="flex flex-col gap-1.5 w-12 sm:w-16 shrink-0 max-h-[360px] overflow-y-auto no-scrollbar">
+                    <div className="hidden md:flex flex-col gap-1.5 w-12 sm:w-16 shrink-0 max-h-[360px] overflow-y-auto no-scrollbar">
                       {rawImages.map((img, i) => (
                         <img
                           key={i}
@@ -272,12 +289,8 @@ export default function ProductCard({ product }) {
                               const exactIdx = rawImages.findIndex(img => img === c.image_url || getImageUrl(img) === c.image_url);
                               return exactIdx === i;
                             });
-                            if (matchingColorIdx === -1 && i < parsedColors.length) {
-                              matchingColorIdx = i;
-                            }
-                            if (matchingColorIdx !== -1 && matchingColorIdx < parsedColors.length) {
-                              setSelectedColorIdx(matchingColorIdx);
-                            }
+                            if (matchingColorIdx === -1 && i < parsedColors.length) matchingColorIdx = i;
+                            if (matchingColorIdx !== -1 && matchingColorIdx < parsedColors.length) setSelectedColorIdx(matchingColorIdx);
                           }}
                           className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
                         />
@@ -286,11 +299,11 @@ export default function ProductCard({ product }) {
                   )}
 
                   {/* Contenedor de Imagen y Colores */}
-                  <div className="flex-1 flex flex-col gap-4">
+                  <div className="flex-1 flex flex-col gap-3">
                     {/* Imagen Principal — Carrusel deslizable */}
                     <div
                       ref={carouselRef}
-                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar w-full aspect-square"
+                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar w-full aspect-square max-h-[38vh] md:max-h-none"
                       onScroll={(e) => {
                         if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
                         scrollTimeout.current = setTimeout(() => {
@@ -321,11 +334,10 @@ export default function ProductCard({ product }) {
 
                     {/* COLORES — Debajo de la imagen principal */}
                     {parsedColors.length > 0 && (
-                      <div className="flex flex-col gap-2">
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider m-0">Elige tu color</p>
-                        <div className="flex gap-3 items-center flex-wrap">
+                      <div className="flex flex-col gap-1.5">
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider m-0">Elige tu color</p>
+                        <div className="flex gap-2 items-center flex-wrap">
                           {parsedColors.map((color, idx) => {
-                            // Solo navegar a la imagen si el color tiene una URL de imagen asignada
                             let linkedIdx = -1;
                             if (color.image_url) {
                               const exactIdx = rawImages.findIndex(img => img === color.image_url || getImageUrl(img) === color.image_url);
@@ -335,7 +347,7 @@ export default function ProductCard({ product }) {
                             return (
                               <div
                                 key={idx}
-                                className="cursor-pointer flex flex-col items-center gap-1"
+                                className="cursor-pointer flex flex-col items-center gap-0.5"
                                 onClick={() => {
                                   setSelectedColorIdx(idx);
                                   if (linkedIdx !== -1) setModalImageIdx(linkedIdx);
@@ -344,20 +356,14 @@ export default function ProductCard({ product }) {
                                 <div
                                   className="transition-transform hover:scale-110"
                                   style={{
-                                    width: '36px',
-                                    height: '36px',
-                                    borderRadius: '50%',
+                                    width: '28px', height: '28px', borderRadius: '50%',
                                     backgroundColor: color.hex,
                                     border: isSelected ? '3px solid #F28705' : '3px solid white',
-                                    boxShadow: isSelected
-                                      ? '0 0 0 2px #F28705, 0 4px 8px rgba(0,0,0,0.15)'
-                                      : '0 0 0 2px #cbd5e1, 0 4px 6px rgba(0,0,0,0.08)',
+                                    boxShadow: isSelected ? '0 0 0 2px #F28705' : '0 0 0 2px #cbd5e1',
                                     transition: 'all 0.2s ease'
                                   }}
                                 />
-                                <span className="text-[9px] font-bold text-slate-500 text-center max-w-[44px] leading-tight">
-                                  {color.name}
-                                </span>
+                                <span className="text-[8px] font-bold text-slate-500 text-center max-w-[36px] leading-tight">{color.name}</span>
                               </div>
                             );
                           })}
@@ -369,18 +375,18 @@ export default function ProductCard({ product }) {
               </div>
 
               {/* Columna Derecha: Detalles */}
-              <div className="w-full md:w-[55%] lg:w-[60%] flex flex-col gap-4 pb-0 flex-1 min-h-0">
+              <div className="w-full md:w-[55%] lg:w-[60%] flex flex-col gap-3 md:gap-4 pb-2 md:pb-0">
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-black text-slate-900 uppercase leading-tight mb-2">
+                  <h2 className="text-lg md:text-3xl font-black text-slate-900 uppercase leading-tight mb-1">
                     {name}
                   </h2>
-                  <p className="text-sm text-slate-500 font-medium">
+                  <p className="text-xs md:text-sm text-slate-500 font-medium">
                     {technicalSummary}
                   </p>
                 </div>
                 
-                <div className="text-4xl font-black text-[#F28705] border-b border-slate-100 pb-4">
-                  <small className="text-xl align-top opacity-80 mr-1">Ref</small>
+                <div className="text-2xl md:text-4xl font-black text-[#F28705] border-b border-slate-100 pb-2 md:pb-4">
+                  <small className="text-sm md:text-xl align-top opacity-80 mr-1">Ref</small>
                   {parseFloat(price).toLocaleString('es-VE')}
                 </div>
 
