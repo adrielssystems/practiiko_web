@@ -8,6 +8,7 @@ export default function ProductCard({ product }) {
   const [activeBadge, setActiveBadge] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImageIdx, setModalImageIdx] = useState(0);
+  const [selectedColorIdx, setSelectedColorIdx] = useState(0);
   const carouselRef = useRef(null);
   const scrollTimeout = useRef(null);
   const [mounted, setMounted] = useState(false);
@@ -282,7 +283,15 @@ export default function ProductCard({ product }) {
                         scrollTimeout.current = setTimeout(() => {
                           const el = e.target;
                           const idx = Math.round(el.scrollLeft / el.clientWidth);
-                          if (idx !== modalImageIdx) setModalImageIdx(idx);
+                          if (idx !== modalImageIdx) {
+                            setModalImageIdx(idx);
+                            const matchingColorIdx = parsedColors.findIndex(c => {
+                              if (!c.image_url) return false;
+                              const exactIdx = rawImages.findIndex(img => img === c.image_url || getImageUrl(img) === c.image_url);
+                              return exactIdx === idx;
+                            });
+                            if (matchingColorIdx !== -1) setSelectedColorIdx(matchingColorIdx);
+                          }
                         }, 50);
                       }}
                     >
@@ -308,12 +317,15 @@ export default function ProductCard({ product }) {
                               const exactIdx = rawImages.findIndex(img => img === color.image_url || getImageUrl(img) === color.image_url);
                               if (exactIdx !== -1) linkedIdx = exactIdx;
                             }
-                            const isSelected = modalImageIdx === linkedIdx;
+                            const isSelected = selectedColorIdx === idx;
                             return (
                               <div
                                 key={idx}
                                 className="cursor-pointer flex flex-col items-center gap-1"
-                                onClick={() => setModalImageIdx(linkedIdx)}
+                                onClick={() => {
+                                  setSelectedColorIdx(idx);
+                                  setModalImageIdx(linkedIdx);
+                                }}
                               >
                                 <div
                                   className="transition-transform hover:scale-110"
