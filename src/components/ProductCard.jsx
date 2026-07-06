@@ -286,7 +286,7 @@ export default function ProductCard({ product }) {
                     {/* Imagen Principal — Carrusel deslizable */}
                     <div
                       ref={carouselRef}
-                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar w-full aspect-square max-h-[38vh] md:max-h-none"
+                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar w-full h-[38vh] md:h-auto md:aspect-square"
                       onScroll={(e) => {
                         if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
                         scrollTimeout.current = setTimeout(() => {
