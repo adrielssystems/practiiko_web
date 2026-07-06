@@ -255,28 +255,11 @@ export default function ProductCard({ product }) {
               {/* Columna Izquierda: Galería */}
               <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col gap-2 md:gap-3">
 
-                {/* MOBILE: Thumbnails horizontales arriba */}
-                {rawImages.length > 1 && (
-                  <div className="flex md:hidden gap-2 overflow-x-auto no-scrollbar pb-1">
-                    {rawImages.map((img, i) => (
-                      <img
-                        key={i}
-                        src={getImageUrl(img)}
-                        alt={`${name} thumb ${i}`}
-                        onClick={() => setModalImageIdx(i)}
-                        className={`flex-none w-12 h-12 object-cover rounded-lg cursor-pointer border-2 transition-all ${
-                          modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                )}
-
                 {/* Thumbnails verticales + Imagen Principal */}
                 <div className="flex gap-2">
-                  {/* Thumbnails verticales — solo en desktop */}
+                  {/* Thumbnails verticales — izquierda en todos los tamaños */}
                   {rawImages.length > 1 && (
-                    <div className="hidden md:flex flex-col gap-1.5 w-12 sm:w-16 shrink-0 max-h-[360px] overflow-y-auto no-scrollbar">
+                    <div className="flex flex-col gap-1 w-8 sm:w-14 shrink-0 max-h-[38vh] md:max-h-[360px] overflow-y-auto no-scrollbar">
                       {rawImages.map((img, i) => (
                         <img
                           key={i}
