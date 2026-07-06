@@ -255,11 +255,11 @@ export default function ProductCard({ product }) {
               {/* Columna Izquierda: Galería */}
               <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col gap-2 md:gap-3">
 
-                {/* Thumbnails verticales + Imagen Principal — fila con altura fija en móvil */}
-                <div className="flex gap-2 h-[36vh] md:h-auto">
+                {/* Thumbnails verticales + Imagen Principal */}
+                <div className="flex gap-2">
                   {/* Thumbnails verticales */}
                   {rawImages.length > 1 && (
-                    <div className="flex flex-col gap-1 w-8 sm:w-14 shrink-0 h-full overflow-y-auto no-scrollbar">
+                    <div className="flex flex-col gap-1 w-8 sm:w-14 shrink-0 overflow-y-auto no-scrollbar" style={{maxHeight: 'min(36vw, 280px)'}}>
                       {rawImages.map((img, i) => (
                         <img
                           key={i}
@@ -286,7 +286,7 @@ export default function ProductCard({ product }) {
                     {/* Imagen Principal — cuadrada, llena el espacio disponible */}
                     <div
                       ref={carouselRef}
-                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar flex-1 md:flex-none md:w-full md:aspect-square"
+                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar w-full aspect-square"
                       onScroll={(e) => {
                         if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
                         scrollTimeout.current = setTimeout(() => {
@@ -306,11 +306,11 @@ export default function ProductCard({ product }) {
                     >
                       {rawImages.length > 0 ? rawImages.map((img, i) => (
                         <div key={i} className="flex-none w-full h-full relative snap-center">
-                          <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-cover md:object-contain" />
+                          <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
                         </div>
                       )) : (
                         <div className="flex-none w-full h-full relative snap-center">
-                          <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-cover md:object-contain" />
+                          <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
                         </div>
                       )}
                     </div>
