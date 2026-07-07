@@ -326,7 +326,15 @@ export default function ProductCard({ product }) {
                         {/* COLORES — Debajo de la imagen principal */}
                         {parsedColors.length > 0 && (
                           <div className="flex flex-col gap-1.5">
-                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider m-0">Elige tu color</p>
+                            <div className="flex items-center gap-1.5 mb-1 animate-[pulse_2s_infinite]">
+                              <span className="relative flex h-2.5 w-2.5">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F28705] opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#d97706]"></span>
+                              </span>
+                              <p className="text-[11px] font-black text-[#F28705] uppercase tracking-wider m-0 drop-shadow-sm">
+                                ¡Toca el color y Sorpréndete!
+                              </p>
+                            </div>
                             <div className="flex gap-2 items-center flex-wrap">
                               {parsedColors.map((color, idx) => {
                                 const isSelected = selectedColorIdx === idx;
