@@ -71,11 +71,25 @@ async function getCatalogData() {
     }
   }
 
-  // Sort products by category order index, preserving original relative order for items in the same category
+  function getTagOrderIndex(p) {
+    if (p.is_featured) return 1;
+    if (p.is_new) return 2;
+    if (p.is_coming_soon) return 3;
+    if (p.is_promotion) return 4;
+    if (p.is_clearance) return 5;
+    return 6;
+  }
+
+  // Sort products by tag priority first, then by category order index
   const sortedProducts = [...products].sort((a, b) => {
-    const orderA = getCategoryOrderIndex(a.category_name);
-    const orderB = getCategoryOrderIndex(b.category_name);
-    return orderA - orderB;
+    const tagA = getTagOrderIndex(a);
+    const tagB = getTagOrderIndex(b);
+    if (tagA !== tagB) {
+      return tagA - tagB;
+    }
+    const catA = getCategoryOrderIndex(a.category_name);
+    const catB = getCategoryOrderIndex(b.category_name);
+    return catA - catB;
   });
 
   // Sort categories by category order index
