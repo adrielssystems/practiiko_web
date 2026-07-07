@@ -261,109 +261,105 @@ export default function ProductCard({ product }) {
               
               {/* Columna Izquierda: Galería */}
               <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col gap-2 md:gap-3">
+                
+                {(() => {
+                  const allColorImageUrls = parsedColors.map(c => c.image_url ? getImageUrl(c.image_url) : null).filter(Boolean);
+                  const activeColorUrl = parsedColors[selectedColorIdx]?.image_url ? getImageUrl(parsedColors[selectedColorIdx].image_url) : null;
+                  
+                  const displayImages = rawImages.filter(img => {
+                    const url = getImageUrl(img);
+                    if (allColorImageUrls.includes(url)) {
+                      return url === activeColorUrl;
+                    }
+                    return true;
+                  });
 
-                {/* Thumbnails verticales + Imagen Principal */}
-                <div className="flex gap-2">
-                  {/* Thumbnails verticales */}
-                  {rawImages.length > 1 && (
-                    <div className="w-8 sm:w-14 shrink-0 relative">
-                      <div className="absolute inset-0 flex flex-col gap-1 overflow-y-auto no-scrollbar pb-1">
-                        {rawImages.map((img, i) => (
-                          <img
-                            key={i}
-                            src={getImageUrl(img)}
-                            alt={`${name} thumb ${i}`}
-                            onClick={() => {
-                              setModalImageIdx(i);
-                              let matchingColorIdx = parsedColors.findIndex(c => {
-                                if (!c.image_url) return false;
-                                const exactIdx = rawImages.findIndex(img => img === c.image_url || getImageUrl(img) === c.image_url);
-                                return exactIdx === i;
-                              });
-                              if (matchingColorIdx === -1 && i < parsedColors.length) matchingColorIdx = i;
-                              if (matchingColorIdx !== -1 && matchingColorIdx < parsedColors.length) setSelectedColorIdx(matchingColorIdx);
-                            }}
-                            className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all shrink-0 ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Contenedor de Imagen y Colores */}
-                  <div className="flex-1 flex flex-col gap-3 min-w-0">
-                    {/* Imagen Principal — cuadrada, llena el espacio disponible */}
-                    <div
-                      ref={carouselRef}
-                      className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar w-full aspect-square"
-                      onScroll={(e) => {
-                        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-                        scrollTimeout.current = setTimeout(() => {
-                          const el = e.target;
-                          const idx = Math.round(el.scrollLeft / el.clientWidth);
-                          if (idx !== modalImageIdx) {
-                            setModalImageIdx(idx);
-                            const matchingColorIdx = parsedColors.findIndex(c => {
-                              if (!c.image_url) return false;
-                              const exactIdx = rawImages.findIndex(img => img === c.image_url || getImageUrl(img) === c.image_url);
-                              return exactIdx === idx;
-                            });
-                            if (matchingColorIdx !== -1) setSelectedColorIdx(matchingColorIdx);
-                          }
-                        }, 50);
-                      }}
-                    >
-                      {rawImages.length > 0 ? rawImages.map((img, i) => (
-                        <div key={i} className="flex-none w-full h-full relative snap-center">
-                          <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
-                        </div>
-                      )) : (
-                        <div className="flex-none w-full h-full relative snap-center">
-                          <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
+                  return (
+                    <div className="flex gap-2">
+                      {/* Thumbnails verticales */}
+                      {displayImages.length > 1 && (
+                        <div className="w-8 sm:w-14 shrink-0 relative">
+                          <div className="absolute inset-0 flex flex-col gap-1 overflow-y-auto no-scrollbar pb-1">
+                            {displayImages.map((img, i) => (
+                              <img
+                                key={i}
+                                src={getImageUrl(img)}
+                                alt={`${name} thumb ${i}`}
+                                onClick={() => {
+                                  setModalImageIdx(i);
+                                }}
+                                className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all shrink-0 ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
+                              />
+                            ))}
+                          </div>
                         </div>
                       )}
-                    </div>
 
-                    {/* COLORES — Debajo de la imagen principal */}
-                    {parsedColors.length > 0 && (
-                      <div className="flex flex-col gap-1.5">
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider m-0">Elige tu color</p>
-                        <div className="flex gap-2 items-center flex-wrap">
-                          {parsedColors.map((color, idx) => {
-                            let linkedIdx = -1;
-                            if (color.image_url) {
-                              const exactIdx = rawImages.findIndex(img => img === color.image_url || getImageUrl(img) === color.image_url);
-                              if (exactIdx !== -1) linkedIdx = exactIdx;
-                            }
-                            const isSelected = selectedColorIdx === idx;
-                            return (
-                              <div
-                                key={idx}
-                                className="cursor-pointer flex flex-col items-center gap-0.5"
-                                onClick={() => {
-                                  setSelectedColorIdx(idx);
-                                  if (linkedIdx !== -1) setModalImageIdx(linkedIdx);
-                                }}
-                              >
-                                <div
-                                  className="transition-transform hover:scale-110"
-                                  style={{
-                                    width: '28px', height: '28px', borderRadius: '50%',
-                                    backgroundColor: color.hex,
-                                    border: isSelected ? '3px solid #F28705' : '3px solid white',
-                                    boxShadow: isSelected ? '0 0 0 2px #F28705' : '0 0 0 2px #cbd5e1',
-                                    transition: 'all 0.2s ease'
-                                  }}
-                                />
-                                <span className="text-[8px] font-bold text-slate-500 text-center max-w-[36px] leading-tight">{color.name}</span>
-                              </div>
-                            );
-                          })}
+                      {/* Contenedor de Imagen y Colores */}
+                      <div className="flex-1 flex flex-col gap-3 min-w-0">
+                        {/* Imagen Principal — cuadrada, llena el espacio disponible */}
+                        <div
+                          ref={carouselRef}
+                          className="bg-white rounded-xl overflow-x-auto snap-x snap-mandatory flex no-scrollbar w-full aspect-square"
+                          onScroll={(e) => {
+                            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+                            scrollTimeout.current = setTimeout(() => {
+                              const el = e.target;
+                              const idx = Math.round(el.scrollLeft / el.clientWidth);
+                              if (idx !== modalImageIdx && idx >= 0 && idx < displayImages.length) {
+                                setModalImageIdx(idx);
+                              }
+                            }, 50);
+                          }}
+                        >
+                          {displayImages.length > 0 ? displayImages.map((img, i) => (
+                            <div key={i} className="flex-none w-full h-full relative snap-center">
+                              <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
+                            </div>
+                          )) : (
+                            <div className="flex-none w-full h-full relative snap-center">
+                              <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
+                            </div>
+                          )}
                         </div>
+
+                        {/* COLORES — Debajo de la imagen principal */}
+                        {parsedColors.length > 0 && (
+                          <div className="flex flex-col gap-1.5">
+                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider m-0">Elige tu color</p>
+                            <div className="flex gap-2 items-center flex-wrap">
+                              {parsedColors.map((color, idx) => {
+                                const isSelected = selectedColorIdx === idx;
+                                return (
+                                  <div
+                                    key={idx}
+                                    className="cursor-pointer flex flex-col items-center gap-0.5"
+                                    onClick={() => {
+                                      setSelectedColorIdx(idx);
+                                      setModalImageIdx(0); // Al cambiar color, volvemos a la foto principal de ese color
+                                    }}
+                                  >
+                                    <div
+                                      className="transition-transform hover:scale-110"
+                                      style={{
+                                        width: '28px', height: '28px', borderRadius: '50%',
+                                        backgroundColor: color.hex,
+                                        border: isSelected ? '3px solid #F28705' : '3px solid white',
+                                        boxShadow: isSelected ? '0 0 0 2px #F28705' : '0 0 0 2px #cbd5e1',
+                                        transition: 'all 0.2s ease'
+                                      }}
+                                    />
+                                    <span className="text-[8px] font-bold text-slate-500 text-center max-w-[36px] leading-tight">{color.name}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                </div>
+                    </div>
+                  );
+                })()}
               </div>
 
               {/* Columna Derecha: Detalles */}
