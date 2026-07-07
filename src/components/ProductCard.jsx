@@ -95,7 +95,14 @@ export default function ProductCard({ product }) {
     <div className="w-full max-w-[380px] mx-auto bg-white rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.05)] font-sans relative transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.05)]">
       
       {/* HEADER IMAGE SECTION (1x1) */}
-      <div className="relative w-full aspect-square bg-white overflow-hidden rounded-t-[24px] group/media">
+      <div 
+        className="relative w-full aspect-square bg-white overflow-hidden rounded-t-[24px] group/media cursor-pointer"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setIsModalOpen(true);
+        }}
+      >
         <img 
           src={mainImage} 
           alt={name} 
@@ -156,17 +163,17 @@ export default function ProductCard({ product }) {
         </div>
 
         {/* INTERACTIVE BADGES */}
-        <div className="flex gap-2 flex-wrap mt-2 relative">
+        <div className="grid grid-cols-2 gap-2 mt-2 relative">
           {interactiveBadges.map((badge, idx) => (
             <button 
               key={idx}
               onMouseEnter={() => setActiveBadge(idx)}
               onMouseLeave={() => setActiveBadge(null)}
-              className={`border-none px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase flex items-center gap-1 cursor-pointer transition-colors
+              className={`w-full min-h-[34px] border-none px-2 py-1.5 rounded-lg text-[9.5px] font-bold uppercase flex items-center justify-start gap-1.5 cursor-pointer transition-colors text-left leading-tight
                 ${activeBadge === idx ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}
               `}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F28705" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> 
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F28705" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> 
               {badge.title}
             </button>
           ))}
