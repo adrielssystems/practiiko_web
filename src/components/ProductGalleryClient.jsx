@@ -48,7 +48,12 @@ export default function ProductGalleryClient({ initialProducts }) {
       mediaList.push({ type: "image", url: product.main_image });
     }
     if (product.video_url) {
-      mediaList.push({ type: "video", url: product.video_url });
+      try {
+        const parsedVideos = product.video_url.startsWith('[') ? JSON.parse(product.video_url) : [product.video_url];
+        parsedVideos.forEach(v => mediaList.push({ type: "video", url: v }));
+      } catch (e) {
+        mediaList.push({ type: "video", url: product.video_url });
+      }
     }
     if (mediaList.length === 0) {
       mediaList.push({ type: "image", url: "/hero-sofa.png" });
