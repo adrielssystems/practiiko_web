@@ -266,25 +266,27 @@ export default function ProductCard({ product }) {
                 <div className="flex gap-2">
                   {/* Thumbnails verticales */}
                   {rawImages.length > 1 && (
-                    <div className="flex flex-col gap-1 w-8 sm:w-14 shrink-0 overflow-y-auto no-scrollbar" style={{maxHeight: 'min(36vw, 280px)'}}>
-                      {rawImages.map((img, i) => (
-                        <img
-                          key={i}
-                          src={getImageUrl(img)}
-                          alt={`${name} thumb ${i}`}
-                          onClick={() => {
-                            setModalImageIdx(i);
-                            let matchingColorIdx = parsedColors.findIndex(c => {
-                              if (!c.image_url) return false;
-                              const exactIdx = rawImages.findIndex(img => img === c.image_url || getImageUrl(img) === c.image_url);
-                              return exactIdx === i;
-                            });
-                            if (matchingColorIdx === -1 && i < parsedColors.length) matchingColorIdx = i;
-                            if (matchingColorIdx !== -1 && matchingColorIdx < parsedColors.length) setSelectedColorIdx(matchingColorIdx);
-                          }}
-                          className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
-                        />
-                      ))}
+                    <div className="w-8 sm:w-14 shrink-0 relative">
+                      <div className="absolute inset-0 flex flex-col gap-1 overflow-y-auto no-scrollbar pb-1">
+                        {rawImages.map((img, i) => (
+                          <img
+                            key={i}
+                            src={getImageUrl(img)}
+                            alt={`${name} thumb ${i}`}
+                            onClick={() => {
+                              setModalImageIdx(i);
+                              let matchingColorIdx = parsedColors.findIndex(c => {
+                                if (!c.image_url) return false;
+                                const exactIdx = rawImages.findIndex(img => img === c.image_url || getImageUrl(img) === c.image_url);
+                                return exactIdx === i;
+                              });
+                              if (matchingColorIdx === -1 && i < parsedColors.length) matchingColorIdx = i;
+                              if (matchingColorIdx !== -1 && matchingColorIdx < parsedColors.length) setSelectedColorIdx(matchingColorIdx);
+                            }}
+                            className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all shrink-0 ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
+                          />
+                        ))}
+                      </div>
                     </div>
                   )}
 
