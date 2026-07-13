@@ -358,14 +358,17 @@ export default function ProductCard({ product }) {
                             <div key={i} className="flex-none w-full h-full relative snap-center flex items-center justify-center bg-black/5" onContextMenu={(e) => e.preventDefault()}>
                               {media.type === 'video' ? (
                                 <video 
-                                  src={typeof media.url === 'string' ? media.url.replace('http://', 'https://') : media.url} 
                                   controls 
                                   controlsList="nodownload"
                                   playsInline
-                                  preload="metadata"
+                                  preload="auto"
+                                  muted
                                   data-index={i}
                                   className="modal-video-element absolute inset-0 w-full h-full object-contain" 
-                                />
+                                >
+                                  <source src={typeof media.url === 'string' ? media.url.trim().replace('http://', 'https://') : media.url} type="video/mp4" />
+                                  Tu navegador no soporta el formato de video.
+                                </video>
                               ) : (
                                 <img 
                                   src={media.url} 
