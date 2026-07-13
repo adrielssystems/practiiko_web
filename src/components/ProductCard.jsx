@@ -317,7 +317,7 @@ export default function ProductCard({ product }) {
                                   className={`w-full aspect-square relative rounded-lg cursor-pointer border-2 transition-all shrink-0 overflow-hidden bg-black flex items-center justify-center ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
                                 >
                                   <svg className="w-6 h-6 text-white absolute z-10 pointer-events-none" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                  <video src={media.url} className="w-full h-full object-cover opacity-60 pointer-events-none select-none" controlsList="nodownload" />
+                                  <video src={typeof media.url === 'string' ? media.url.replace('http://', 'https://') : media.url} preload="metadata" playsInline muted className="w-full h-full object-cover opacity-60 pointer-events-none select-none" controlsList="nodownload" />
                                 </div>
                               ) : (
                                 <img
@@ -358,9 +358,11 @@ export default function ProductCard({ product }) {
                             <div key={i} className="flex-none w-full h-full relative snap-center flex items-center justify-center bg-black/5" onContextMenu={(e) => e.preventDefault()}>
                               {media.type === 'video' ? (
                                 <video 
-                                  src={media.url} 
+                                  src={typeof media.url === 'string' ? media.url.replace('http://', 'https://') : media.url} 
                                   controls 
                                   controlsList="nodownload"
+                                  playsInline
+                                  preload="metadata"
                                   data-index={i}
                                   className="modal-video-element absolute inset-0 w-full h-full object-contain" 
                                 />
