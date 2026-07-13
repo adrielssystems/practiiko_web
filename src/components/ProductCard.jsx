@@ -22,7 +22,20 @@ export default function ProductCard({ product }) {
         carouselRef.current.scrollTo({ left: targetScroll, behavior: 'smooth' });
       }
     }
-  }, [modalImageIdx]);
+    
+    // Auto-play videos when they become active in the modal
+    if (isModalOpen) {
+      const videos = document.querySelectorAll('.modal-video-element');
+      videos.forEach(vid => {
+        if (vid.dataset.index === String(modalImageIdx)) {
+          vid.currentTime = 0;
+          vid.play().catch(e => console.log('Autoplay blocked:', e));
+        } else {
+          vid.pause();
+        }
+      });
+    }
+  }, [modalImageIdx, isModalOpen]);
 
   const id = product?.id;
   const initialLikes = product?.likes_count || 0;
@@ -113,11 +126,13 @@ export default function ProductCard({ product }) {
           e.stopPropagation();
           setIsModalOpen(true);
         }}
+        onContextMenu={(e) => e.preventDefault()}
       >
         <img 
           src={mainImage} 
           alt={name} 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover select-none pointer-events-none"
+          onDragStart={(e) => e.preventDefault()}
         />
         
         {/* LIFESTYLE BADGE (MEDALLA DORADA) */}
@@ -298,10 +313,11 @@ export default function ProductCard({ product }) {
                                 <div
                                   key={i}
                                   onClick={() => setModalImageIdx(i)}
+                                  onContextMenu={(e) => e.preventDefault()}
                                   className={`w-full aspect-square relative rounded-lg cursor-pointer border-2 transition-all shrink-0 overflow-hidden bg-black flex items-center justify-center ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
                                 >
-                                  <svg className="w-6 h-6 text-white absolute z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                  <video src={media.url} className="w-full h-full object-cover opacity-60" />
+                                  <svg className="w-6 h-6 text-white absolute z-10 pointer-events-none" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                  <video src={media.url} className="w-full h-full object-cover opacity-60 pointer-events-none select-none" controlsList="nodownload" />
                                 </div>
                               ) : (
                                 <img
@@ -311,7 +327,9 @@ export default function ProductCard({ product }) {
                                   onClick={() => {
                                     setModalImageIdx(i);
                                   }}
-                                  className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all shrink-0 ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
+                                  onContextMenu={(e) => e.preventDefault()}
+                                  onDragStart={(e) => e.preventDefault()}
+                                  className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all shrink-0 select-none ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
                                 />
                               )
                             ))}
@@ -337,16 +355,27 @@ export default function ProductCard({ product }) {
                           }}
                         >
                           {displayMedia.length > 0 ? displayMedia.map((media, i) => (
-                            <div key={i} className="flex-none w-full h-full relative snap-center flex items-center justify-center bg-black/5">
+                            <div key={i} className="flex-none w-full h-full relative snap-center flex items-center justify-center bg-black/5" onContextMenu={(e) => e.preventDefault()}>
                               {media.type === 'video' ? (
-                                <video src={media.url} controls className="absolute inset-0 w-full h-full object-contain" />
+                                <video 
+                                  src={media.url} 
+                                  controls 
+                                  controlsList="nodownload"
+                                  data-index={i}
+                                  className="modal-video-element absolute inset-0 w-full h-full object-contain" 
+                                />
                               ) : (
-                                <img src={media.url} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
+                                <img 
+                                  src={media.url} 
+                                  alt={`${name} ${i}`} 
+                                  onDragStart={(e) => e.preventDefault()}
+                                  className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none" 
+                                />
                               )}
                             </div>
                           )) : (
-                            <div className="flex-none w-full h-full relative snap-center">
-                              <img src={mainImage} alt={name} className="absolute inset-0 w-full h-full object-contain" />
+                            <div className="flex-none w-full h-full relative snap-center" onContextMenu={(e) => e.preventDefault()}>
+                              <img src={mainImage} alt={name} onDragStart={(e) => e.preventDefault()} className="absolute inset-0 w-full h-full object-contain select-none pointer-events-none" />
                             </div>
                           )}
                         </div>
