@@ -90,6 +90,17 @@ export default function ProductCard({ product }) {
     try { parsedColors = JSON.parse(product.colors); } catch(e) { parsedColors = []; }
   }
 
+  let parsedVideos = [];
+  if (Array.isArray(product?.video_url)) {
+    parsedVideos = product.video_url;
+  } else if (product?.video_url) {
+    try {
+      parsedVideos = typeof product.video_url === 'string' && product.video_url.startsWith('[') ? JSON.parse(product.video_url) : [product.video_url];
+    } catch (e) {
+      parsedVideos = [product.video_url];
+    }
+  }
+
   return (
     <>
     <div className="w-full max-w-[380px] mx-auto bg-white rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.05)] font-sans relative transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.08),0_2px_4px_rgba(0,0,0,0.05)]">
@@ -272,24 +283,37 @@ export default function ProductCard({ product }) {
                       return url === activeColorUrl;
                     }
                     return true;
-                  });
+                  }).map(img => ({ type: 'image', url: getImageUrl(img) }));
+
+                  const displayMedia = [...displayImages, ...parsedVideos.map(v => ({ type: 'video', url: v }))];
 
                   return (
                     <div className="flex gap-2">
                       {/* Thumbnails verticales */}
-                      {displayImages.length > 1 && (
+                      {displayMedia.length > 1 && (
                         <div className="w-8 sm:w-14 shrink-0 relative">
                           <div className="absolute inset-0 flex flex-col gap-1 overflow-y-auto no-scrollbar pb-1">
-                            {displayImages.map((img, i) => (
-                              <img
-                                key={i}
-                                src={getImageUrl(img)}
-                                alt={`${name} thumb ${i}`}
-                                onClick={() => {
-                                  setModalImageIdx(i);
-                                }}
-                                className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all shrink-0 ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
-                              />
+                            {displayMedia.map((media, i) => (
+                              media.type === 'video' ? (
+                                <div
+                                  key={i}
+                                  onClick={() => setModalImageIdx(i)}
+                                  className={`w-full aspect-square relative rounded-lg cursor-pointer border-2 transition-all shrink-0 overflow-hidden bg-black flex items-center justify-center ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
+                                >
+                                  <svg className="w-6 h-6 text-white absolute z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                  <video src={media.url} className="w-full h-full object-cover opacity-60" />
+                                </div>
+                              ) : (
+                                <img
+                                  key={i}
+                                  src={media.url}
+                                  alt={`${name} thumb ${i}`}
+                                  onClick={() => {
+                                    setModalImageIdx(i);
+                                  }}
+                                  className={`w-full aspect-square object-cover rounded-lg cursor-pointer border-2 transition-all shrink-0 ${modalImageIdx === i ? 'border-[#F28705] shadow-md' : 'border-transparent hover:border-slate-300'}`}
+                                />
+                              )
                             ))}
                           </div>
                         </div>
@@ -306,15 +330,19 @@ export default function ProductCard({ product }) {
                             scrollTimeout.current = setTimeout(() => {
                               const el = e.target;
                               const idx = Math.round(el.scrollLeft / el.clientWidth);
-                              if (idx !== modalImageIdx && idx >= 0 && idx < displayImages.length) {
+                              if (idx !== modalImageIdx && idx >= 0 && idx < displayMedia.length) {
                                 setModalImageIdx(idx);
                               }
                             }, 50);
                           }}
                         >
-                          {displayImages.length > 0 ? displayImages.map((img, i) => (
-                            <div key={i} className="flex-none w-full h-full relative snap-center">
-                              <img src={getImageUrl(img)} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
+                          {displayMedia.length > 0 ? displayMedia.map((media, i) => (
+                            <div key={i} className="flex-none w-full h-full relative snap-center flex items-center justify-center bg-black/5">
+                              {media.type === 'video' ? (
+                                <video src={media.url} controls className="absolute inset-0 w-full h-full object-contain" />
+                              ) : (
+                                <img src={media.url} alt={`${name} ${i}`} className="absolute inset-0 w-full h-full object-contain" />
+                              )}
                             </div>
                           )) : (
                             <div className="flex-none w-full h-full relative snap-center">
