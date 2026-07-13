@@ -300,7 +300,7 @@ export default function ProductCard({ product }) {
                     return true;
                   }).map(img => ({ type: 'image', url: getImageUrl(img) }));
 
-                  const displayMedia = [...displayImages, ...parsedVideos.map(v => ({ type: 'video', url: v }))];
+                  const displayMedia = [...displayImages, ...parsedVideos.map(v => ({ type: 'video', url: getImageUrl(v) }))];
 
                   return (
                     <div className="flex gap-2">
