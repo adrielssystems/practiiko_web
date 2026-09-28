@@ -25,8 +25,8 @@ function getCategoryOrderIndex(categoryName) {
   if (name.includes("colchón") || name.includes("colchon") || name.includes("colchones")) {
     return 2; // 3) Colchones
   }
-  if (name.includes("accesorio") || name.includes("hogar") || name.includes("home")) {
-    return 3; // 4) Accesorios para el Hogar
+  if (name.includes("vela") || name.includes("accesorio") || name.includes("hogar") || name.includes("home")) {
+    return 3; // 4) Velas Perladas / Accesorios
   }
   return 99; // Fallback
 }
@@ -120,8 +120,10 @@ function getMockData() {
   };
 }
 
-export default async function CatalogoPage() {
+export default async function CatalogoPage({ searchParams }) {
   const { products, categories } = await getCatalogData();
+  const resolvedSearchParams = await Promise.resolve(searchParams || {});
+  const initialCategoryQuery = resolvedSearchParams.categoria || resolvedSearchParams.category || resolvedSearchParams.cat || null;
 
   return (
     <div className="relative font-body-md text-on-surface antialiased min-h-screen flex flex-col">
@@ -139,7 +141,11 @@ export default async function CatalogoPage() {
       <TopNavBar />
 
       <main className="pt-24 md:pt-40 pb-32 flex-grow">
-        <CatalogClient initialProducts={products} categories={categories} />
+        <CatalogClient 
+          initialProducts={products} 
+          categories={categories} 
+          initialCategoryQuery={initialCategoryQuery}
+        />
       </main>
 
       <Footer />

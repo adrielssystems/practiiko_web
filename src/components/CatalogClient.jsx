@@ -7,9 +7,37 @@ import { getImageUrl } from "@/lib/utils";
 import ProductCard from "./ProductCard";
 import ImageModal from "./ImageModal";
 
-export default function CatalogClient({ initialProducts, categories }) {
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [filteredProducts, setFilteredProducts] = useState(initialProducts);
+export default function CatalogClient({ initialProducts, categories, initialCategoryQuery }) {
+  // Resolver categoría inicial según el query param (puede ser id, slug o nombre)
+  const getInitialCategoryId = () => {
+    if (!initialCategoryQuery || !categories || categories.length === 0) return "all";
+    const q = initialCategoryQuery.toString().toLowerCase().trim();
+    
+    // 1. Coincidencia directa por id
+    const byId = categories.find(c => c.id.toString() === q);
+    if (byId) return byId.id.toString();
+
+    // 2. Coincidencia por slug o nombre exacto/parcial
+    const match = categories.find(c => {
+      const name = (c.name || "").toLowerCase();
+      const slug = (c.slug || "").toLowerCase();
+      if (slug && (slug === q || slug.includes(q) || q.includes(slug))) return true;
+      if (name === q) return true;
+      if (q.includes("vela") && (name.includes("vela") || name.includes("accesorio"))) return true;
+      if (q.includes("sofa") && (name.includes("sofá") || name.includes("sofa") || name.includes("sala"))) return true;
+      if (q.includes("colchon") && (name.includes("colchón") || name.includes("colchon"))) return true;
+      return false;
+    });
+
+    return match ? match.id.toString() : "all";
+  };
+
+  const [activeCategory, setActiveCategory] = useState(getInitialCategoryId());
+  const [filteredProducts, setFilteredProducts] = useState(() => {
+    const initCat = getInitialCategoryId();
+    if (initCat === "all") return initialProducts;
+    return initialProducts.filter(p => p.category_id == initCat);
+  });
   const [activeCardId, setActiveCardId] = useState(null);
   const [modalData, setModalData] = useState(null);
   const containerRef = useRef(null);
